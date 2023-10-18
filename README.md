@@ -7,3 +7,8 @@ Gõ các từ vựng trên thanh tìm kiếm, sau đó click vào từ muốn tr
 Khi đến "thời điểm vàng", hãy vào app ôn tập lại các từ đã học để có được hiệu quả tốt hơn. Hình thức ôn tập là đọc flashcard.
 # Phần chơi game
 Chọn game mà mình muốn chơi và chơi thoiii.
+# Tích hợp
+Google translate API?
+ChatGPT.
+AWS?
+Hash password.
