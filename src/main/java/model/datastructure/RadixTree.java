@@ -62,7 +62,7 @@ public class RadixTree {
             if (currentNode.child[prefix[i]] == null) {
                 return ans;
             }
-            currentNode = currentNode.child[word[i]];
+            currentNode = currentNode.child[prefix[i]];
         }
 
 

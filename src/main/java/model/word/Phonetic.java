@@ -13,7 +13,7 @@ public class Phonetic {
      * @param text text representation of the phonetic
      * @param audio link of audio file of the phonetic
      */
-    Phonetic(String text, String audio) {
+    public Phonetic(String text, String audio) {
         this.text = text;
         this.audio = audio;
     }
