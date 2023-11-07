@@ -1,7 +1,9 @@
 package model.datastructure;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
 
 public class RadixTree {
     private final RadixTreeNode root;
@@ -54,17 +56,44 @@ public class RadixTree {
      * @param numberOfNeededWord the number of needed word
      * @return numberOfNeededWord word that match the prefix in the ascending lexico order
      */
-    public List<Integer[]> findTenBestMatchWord(int[] prefix, int numberOfNeededWord) {
+    public List<Integer[]> findTenBestMatchWord(Integer[] prefix, int numberOfNeededWord) {
         List<Integer[]> ans = new ArrayList<>();
         RadixTreeNode currentNode = root;
-        for (int i = 0; i < prefix.length; i++) {
+        for (int j : prefix) {
             // Case the prefix does not exist in the tree
-            if (currentNode.child[prefix[i]] == null) {
+            if (currentNode.child[j] == null) {
                 return ans;
             }
-            currentNode = currentNode.child[prefix[i]];
+            currentNode = currentNode.child[j];
         }
 
+        Queue<RadixTreeNode> queue = new ArrayDeque<>();
+        queue.add(currentNode);
+        while (!queue.isEmpty()) {
+            RadixTreeNode node = queue.poll();
+            if (node.isHasString()) {
+                List<Integer> currentString = new ArrayList<>();
+                RadixTreeNode thisNode = node;
+                while (thisNode.parent != null) {
+                    // we are comparing address
+                    if (thisNode.parent.child[0] == thisNode) {
+                        currentString.add(0);
+                    } else {
+                        currentString.add(1);
+                    }
+                    thisNode = thisNode.parent;
+                }
+                Integer[] stringData = new Integer[currentString.size()];
+                for (int i = 0; i < stringData.length; i++) {
+                    stringData[i] = currentString.get(stringData.length - i - 1);
+                }
+                ans.add(stringData);
+
+                if (ans.size() == numberOfNeededWord) {
+                    return ans;
+                }
+            }
+        }
 
         return ans;
     }
