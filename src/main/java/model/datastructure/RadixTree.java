@@ -21,7 +21,7 @@ public class RadixTree {
      *
      * @param word the added word in binary representation
      */
-    public void add(int[] word) {
+    public void add(Integer[] word) {
         RadixTreeNode currentNode = root;
         for (int i = 0; i < word.length; i++) {
             if (currentNode.child[word[i]] == null) {
@@ -56,7 +56,7 @@ public class RadixTree {
      * @param numberOfNeededWord the number of needed word
      * @return numberOfNeededWord word that match the prefix in the ascending lexico order
      */
-    public List<Integer[]> findTenBestMatchWord(Integer[] prefix, int numberOfNeededWord) {
+    public List<Integer[]> findBestMatchWord(Integer[] prefix, int numberOfNeededWord) {
         List<Integer[]> ans = new ArrayList<>();
         RadixTreeNode currentNode = root;
         for (int j : prefix) {

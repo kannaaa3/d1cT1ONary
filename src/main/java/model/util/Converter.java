@@ -1,5 +1,6 @@
 package model.util;
-public class Util {
+
+public class Converter {
     public static int NUMBER_BIT_OF_CHAR = 8;
 
     /**

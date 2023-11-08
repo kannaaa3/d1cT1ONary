@@ -5,9 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cf917cb8-c520-48fa-8fee-7c7cef67b367" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/datastructure/RadixTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/datastructure/RadixTree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/dictionary/Dictionary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/dictionary/Dictionary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/util/Util.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/util/Converter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,10 +73,22 @@
       <workItem from="1699285025621" duration="246000" />
       <workItem from="1699317356907" duration="596000" />
       <workItem from="1699372759089" duration="2572000" />
+      <workItem from="1699420534734" duration="13585000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
