@@ -4,15 +4,15 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="602.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.GameController">
+<AnchorPane prefHeight="602.0" prefWidth="720.0" style="-fx-background-color: #2C2F48;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.GameController">
    <children>
-      <Label layoutX="23.0" layoutY="25.0" prefHeight="42.0" prefWidth="180.0" text="Game Center">
+      <Label layoutX="23.0" layoutY="25.0" prefHeight="42.0" prefWidth="180.0" text="Game Center" textFill="WHITE">
          <font>
             <Font name="Century Gothic" size="23.0" />
          </font>
       </Label>
       <Button layoutX="35.0" layoutY="100.0" mnemonicParsing="false" prefHeight="120.0" prefWidth="450.0" text="Button" />
-      <Button layoutX="35.0" layoutY="270.0" mnemonicParsing="false" text="Button" prefHeight="120.0" prefWidth="450.0"/>
-      <Button layoutX="35.0" layoutY="440.0" mnemonicParsing="false" text="Button" prefHeight="120.0" prefWidth="450.0"/>
+      <Button layoutX="35.0" layoutY="270.0" mnemonicParsing="false" prefHeight="120.0" prefWidth="450.0" text="Button" />
+      <Button layoutX="35.0" layoutY="440.0" mnemonicParsing="false" prefHeight="120.0" prefWidth="450.0" text="Button" />
    </children>
 </AnchorPane>

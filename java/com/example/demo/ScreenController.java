@@ -1,5 +1,9 @@
 package com.example.demo;
 
+import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,11 +12,13 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
 
 
 public class ScreenController implements Initializable {
@@ -42,31 +48,10 @@ public class ScreenController implements Initializable {
     @FXML
     private ShowWordController showWordController;
 
-    /*public  void setMainScreen(AnchorPane anchorPane) {
-        mainScreen.getChildren().setAll(anchorPane);
-    }
-
-    @FXML
-    public void setHelloPane() {
-        setMainScreen(helloPane);
-    }
-
+    public static String currentWord;
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("search.fxml"));
-            helloPane = loader.load();
-            helloController = loader.getController();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }*/
-
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL arg0, ResourceBundle arg1) {
         myListView.getItems().addAll(words);
-        //setShowWordView();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("showWord.fxml"));
             showWordPane = loader.load();
@@ -88,6 +73,25 @@ public class ScreenController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        setShowWordView();
+        myListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                currentWord = t1;
+                Phonetic phonetic = new Phonetic("həˈləʊ", "//ssl.gstatic.com/diction" +
+                        "ary/static/sounds/20200429/hello--_gb_1.mp3");
+                String[] x = new String[]{
+                        "aa", "bb", "cc"
+                };
+                String[] y = new String[]{
+                        "dd", "ee", "ff"
+                };
+                Meaning meaning = new Meaning("noun", "aaa", "Hello!", x, y);
+                Word word = new Word("hello", phonetic, meaning);
+                showWordController.displayWord(word);
+                setShowWordView();
+            }
+        });
     }
 
     @FXML
@@ -118,5 +122,6 @@ public class ScreenController implements Initializable {
     public void setGameView() {
         mainScreen.getChildren().setAll(gamePane);
     }
+
 
 }
