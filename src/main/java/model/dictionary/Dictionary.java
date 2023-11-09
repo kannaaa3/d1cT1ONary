@@ -100,5 +100,7 @@ public class Dictionary {
             e.printStackTrace();
             return null;
         }
+
+        return null;
     }
 }

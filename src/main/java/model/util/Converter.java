@@ -10,13 +10,13 @@ public class Converter {
      * @return an Integer array which is the converted string
      */
     public static Integer[] convertStringToBinaryArray(String target) {
-       Integer[] ans = new Integer[target.length() * NUMBER_BIT_OF_CHAR];
-       for (int i = 0; i < target.length(); i++) {
-           for (int j = 0; j < NUMBER_BIT_OF_CHAR; j++) {
-               ans[NUMBER_BIT_OF_CHAR * i + j] = ((int) target.charAt(i) >> j) & 1;
-           }
-       }
-       return ans;
+        Integer[] ans = new Integer[target.length() * NUMBER_BIT_OF_CHAR];
+        for (int i = 0; i < target.length(); i++) {
+            for (int j = 0; j < NUMBER_BIT_OF_CHAR; j++) {
+                ans[NUMBER_BIT_OF_CHAR * i + j] = ((int) target.charAt(i) >> j) & 1;
+            }
+        }
+        return ans;
     }
 
     /**
@@ -26,11 +26,15 @@ public class Converter {
      * @return the recovered string
      */
     public static String convertBinaryArrayToString(Integer[] target) {
+        if (target.length % NUMBER_BIT_OF_CHAR != 0) {
+            throw new IllegalArgumentException("Converter exception: Converted array length: "
+                    + target.length + "does not divided by " + NUMBER_BIT_OF_CHAR + "!");
+        }
         StringBuilder ans = new StringBuilder();
         for (int i = 0; i < target.length; i += NUMBER_BIT_OF_CHAR) {
             int currentChar = 0;
             for (int j = 0; j < NUMBER_BIT_OF_CHAR; j++) {
-                currentChar += target[j] << (NUMBER_BIT_OF_CHAR - j - 1);
+                currentChar += target[i + j] << j;
             }
             ans.append((char) currentChar);
         }

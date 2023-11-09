@@ -22,7 +22,7 @@ public class Algorithm {
     }
 
     public static <T extends Comparable<T>> void sort(T[] a) {
-        T[] aux = (T[]) new Object[a.length];
+        T[] aux = (T[]) new Comparable[a.length];
         mergeSort(a, aux, 0, a.length - 1);
     }
 }
