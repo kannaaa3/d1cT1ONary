@@ -38,7 +38,7 @@ public class RadixTree {
      * @param word the word we want to check in binary representation
      * @return true if the word in the tree
      */
-    public boolean contain(Integer[] word) {
+    public boolean contains(Integer[] word) {
         RadixTreeNode currentNode = root;
         for (int i = 0; i < word.length; i++) {
             if (currentNode.child[word[i]] == null) {

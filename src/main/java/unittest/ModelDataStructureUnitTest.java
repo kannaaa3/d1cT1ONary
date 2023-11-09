@@ -15,7 +15,7 @@ public class ModelDataStructureUnitTest {
             }
             radixTree.add(tmp);
         }
-        Assert.assertFalse(radixTree.contain(new Integer[]{
+        Assert.assertFalse(radixTree.contains(new Integer[]{
                 1, 0, 1, 0, 1
         }));
     }
@@ -36,7 +36,7 @@ public class ModelDataStructureUnitTest {
             radixTree.add(integers);
         }
         for (Integer[] integers : test) {
-            Assert.assertTrue(radixTree.contain(integers));
+            Assert.assertTrue(radixTree.contains(integers));
         }
         Integer[][] notInTest = new Integer[][]{
                 {1, 0},
@@ -47,7 +47,7 @@ public class ModelDataStructureUnitTest {
                 {1, 1, 0, 0}
         };
         for (Integer[] integers : notInTest) {
-            Assert.assertFalse(radixTree.contain(integers));
+            Assert.assertFalse(radixTree.contains(integers));
         }
     }
 }
