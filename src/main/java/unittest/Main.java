@@ -1,15 +1,20 @@
 package unittest;
 
+import model.dictionary.Dictionary;
+import model.util.APIHandler;
 import model.util.Converter;
+import model.word.Word;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class Main {
     public static void main(String[] args) {
-        String word = "hello";
-        Integer[] ans = Converter.convertStringToBinaryArray(word);
-        for (int i = 0; i < ans.length; i++) {
-            System.out.print(ans[i]);
-        }
-        System.out.println();
-        System.out.println(Converter.convertBinaryArrayToString(ans));
+        System.out.println("Working Directory = " + System.getProperty("user.dir"));
+        Dictionary dictionary = new Dictionary("src/main/resources/words.txt");
+        Word word = dictionary.getWordData("opinions");
+        System.out.println(word);
     }
 }

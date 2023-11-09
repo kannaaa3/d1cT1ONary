@@ -25,4 +25,13 @@ public class Phonetic {
     public String getAudio() {
         return audio;
     }
+
+    /**
+     * This function returns the string representation of the phonetic.
+     *
+     * @return a string in format Phonetic[text=%s,audio=%s]
+     */
+    public String toString() {
+        return String.format("Phonetic[text=%s,audio=%s]", this.text, this.audio);
+    }
 }

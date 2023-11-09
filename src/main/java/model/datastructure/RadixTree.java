@@ -23,11 +23,11 @@ public class RadixTree {
      */
     public void add(Integer[] word) {
         RadixTreeNode currentNode = root;
-        for (int i = 0; i < word.length; i++) {
-            if (currentNode.child[word[i]] == null) {
-                currentNode.child[word[i]] = new RadixTreeNode(currentNode);
+        for (Integer integer : word) {
+            if (currentNode.child[integer] == null) {
+                currentNode.child[integer] = new RadixTreeNode(currentNode);
             }
-            currentNode = currentNode.child[i];
+            currentNode = currentNode.child[integer];
         }
         currentNode.setHasString(true);
     }
@@ -38,13 +38,13 @@ public class RadixTree {
      * @param word the word we want to check in binary representation
      * @return true if the word in the tree
      */
-    public boolean contain(int[] word) {
+    public boolean contain(Integer[] word) {
         RadixTreeNode currentNode = root;
         for (int i = 0; i < word.length; i++) {
             if (currentNode.child[word[i]] == null) {
                 return false;
             }
-            currentNode = currentNode.child[i];
+            currentNode = currentNode.child[word[i]];
         }
         return currentNode.isHasString();
     }

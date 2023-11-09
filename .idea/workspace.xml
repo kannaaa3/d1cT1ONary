@@ -6,12 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="cf917cb8-c520-48fa-8fee-7c7cef67b367" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/datastructure/RadixTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/datastructure/RadixTree.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/dictionary/Dictionary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/dictionary/Dictionary.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/util/APIHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/util/APIHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/util/Algorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/util/Algorithm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/util/Converter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/util/Converter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/word/Meaning.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/word/Meaning.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/word/Phonetic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/word/Phonetic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/word/Word.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/word/Word.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/unittest/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unittest/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/unittest/ModelDataStructureUnitTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unittest/ModelDataStructureUnitTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/unittest/ModelUtilUnitTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unittest/ModelUtilUnitTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/unittest/ModelWordUnitTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/unittest/ModelWordUnitTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,8 +65,21 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="JUnit.ModelUtilUnitTest.sortTest5">
-    <configuration name="ModelUtilUnitTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.ModelDataStructureUnitTest">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="unittest.Main" />
+      <module name="demo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="unittest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ModelDataStructureUnitTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="demo" />
       <extension name="coverage">
         <pattern>
@@ -71,13 +88,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="unittest" />
-      <option name="MAIN_CLASS_NAME" value="unittest.ModelUtilUnitTest" />
+      <option name="MAIN_CLASS_NAME" value="unittest.ModelDataStructureUnitTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ModelUtilUnitTest.sortTest1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ModelDataStructureUnitTest.TestRadixTree1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="demo" />
       <extension name="coverage">
         <pattern>
@@ -86,24 +103,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="unittest" />
-      <option name="MAIN_CLASS_NAME" value="unittest.ModelUtilUnitTest" />
-      <option name="METHOD_NAME" value="sortTest1" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ModelUtilUnitTest.sortTest4" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="demo" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="unittest.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="unittest" />
-      <option name="MAIN_CLASS_NAME" value="unittest.ModelUtilUnitTest" />
-      <option name="METHOD_NAME" value="sortTest4" />
+      <option name="MAIN_CLASS_NAME" value="unittest.ModelDataStructureUnitTest" />
+      <option name="METHOD_NAME" value="TestRadixTree1" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -125,12 +126,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ModelWordUnitTest.wordToStringTest1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="demo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="unittest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="unittest" />
+      <option name="MAIN_CLASS_NAME" value="unittest.ModelWordUnitTest" />
+      <option name="METHOD_NAME" value="wordToStringTest1" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ModelDataStructureUnitTest" />
+        <item itemvalue="JUnit.ModelDataStructureUnitTest.TestRadixTree1" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.ModelWordUnitTest.wordToStringTest1" />
         <item itemvalue="JUnit.ModelUtilUnitTest.sortTest5" />
-        <item itemvalue="JUnit.ModelUtilUnitTest.sortTest4" />
-        <item itemvalue="JUnit.ModelUtilUnitTest" />
-        <item itemvalue="JUnit.ModelUtilUnitTest.sortTest1" />
       </list>
     </recent_temporary>
   </component>
@@ -149,7 +167,8 @@
       <workItem from="1699317356907" duration="596000" />
       <workItem from="1699372759089" duration="2572000" />
       <workItem from="1699420534734" duration="13585000" />
-      <workItem from="1699495098173" duration="5536000" />
+      <workItem from="1699495098173" duration="14471000" />
+      <workItem from="1699514867988" duration="1314000" />
     </task>
     <servers />
   </component>

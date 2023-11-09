@@ -45,4 +45,37 @@ public class Meaning {
     public String[] getAntonyms() {
         return antonyms;
     }
+
+    /**
+     * This function returns the representation of the meaning object.
+     *
+     * @return a string in format: Meaning[partOfSpeech=%s,definition=%s,example=%s,
+     * synonyms=[%s],antonyms[%s]]
+     */
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Meaning[");
+        sb.append("partOfSpeech=");
+        sb.append(partOfSpeech);
+        sb.append(",definition=");
+        sb.append(definition);
+        sb.append(",example=");
+        sb.append(example);
+        sb.append(",synonyms=[");
+        for (int i = 0; i < synonyms.length; i++) {
+            sb.append(synonyms[i]);
+            if (i != synonyms.length - 1) {
+                sb.append(",");
+            }
+        }
+        sb.append("],antonyms=[");
+        for (int i = 0; i < antonyms.length; i++) {
+            sb.append(antonyms[i]);
+            if (i != antonyms.length - 1) {
+                sb.append(",");
+            }
+        }
+        sb.append("]]");
+        return sb.toString();
+    }
 }

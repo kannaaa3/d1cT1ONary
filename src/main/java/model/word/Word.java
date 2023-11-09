@@ -30,4 +30,9 @@ public class Word {
     public Meaning getMeaning() {
         return meaning;
     }
+
+    public String toString() {
+        return String.format("Word[word=%s,phonetic=%s,meaning=%s]",
+                word, phonetic.toString(), meaning.toString());
+    }
 }
