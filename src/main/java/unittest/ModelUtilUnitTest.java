@@ -9,46 +9,46 @@ public class ModelUtilUnitTest {
     @Test
     public void convertBinaryArrayToStringTest1() {
         Assert.assertEquals(Converter.convertBinaryArrayToString(new Integer[]{
-                0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0,
-                0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0,
-                1, 1, 1, 1, 0, 1, 1, 0
+                0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 1,
+                0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0,
+                0, 1, 1, 0, 1, 1, 1, 1
         }), "hello");
     }
 
     @Test
     public void convertBinaryArrayToStringTest2() {
         Assert.assertEquals(Converter.convertBinaryArrayToString(new Integer[]{
-                1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0,
-                0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0,
-                0, 1, 0, 0, 1, 1, 1, 0
+                0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0,
+                0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 1,
+                0, 1, 1, 1, 0, 0, 1, 0
         }), "UPPer");
     }
 
     @Test
     public void convertBinaryArrayToStringTest3() {
         Assert.assertEquals(Converter.convertBinaryArrayToString(new Integer[]{
-                1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0,
-                1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0,
-                1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0,
-                0, 1, 1, 0, 1, 1, 1, 0
+                0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0 ,0, 0, 0, 0, 0,
+                0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0,
+                0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0,
+                0, 1, 1, 1, 0, 1, 1, 0
         }), "A@50G^v");
     }
 
     @Test
     public void convertBinaryArrayToStringTest4() {
         Assert.assertEquals(Converter.convertBinaryArrayToString(new Integer[]{
-                0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 0,
-                1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0,
-                0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0
+                0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0,
+                0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+                0, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0
         }), "|zk_V>");
     }
 
     @Test
     public void convertBinaryArrayToStringTest5() {
         Assert.assertEquals(Converter.convertBinaryArrayToString(new Integer[]{
-                1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0,
-                0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0,
-                1, 0, 0, 1, 1, 1, 0, 0
+                0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 1,
+                0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0,
+                0, 0, 1, 1, 1, 0, 0, 1
         }), "!#&69");
     }
 
@@ -56,9 +56,9 @@ public class ModelUtilUnitTest {
     public void convertStringToArrayTest1() {
         Assert.assertArrayEquals(Converter.convertStringToBinaryArray("hello"),
                 new Integer[]{
-                        0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0,
-                        0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0,
-                        1, 1, 1, 1, 0, 1, 1, 0
+                        0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 1,
+                        0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0,
+                        0, 1, 1, 0, 1, 1, 1, 1
                 });
     }
 
@@ -66,9 +66,9 @@ public class ModelUtilUnitTest {
     public void convertStringToArrayTest2() {
         Assert.assertArrayEquals(Converter.convertStringToBinaryArray("UPPer"),
                 new Integer[]{
-                        1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0,
-                        0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0,
-                        0, 1, 0, 0, 1, 1, 1, 0
+                        0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0,
+                        0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 1,
+                        0, 1, 1, 1, 0, 0, 1, 0
                 });
     }
 
@@ -76,10 +76,10 @@ public class ModelUtilUnitTest {
     public void convertStringToArrayTest3() {
         Assert.assertArrayEquals(Converter.convertStringToBinaryArray("A@50G^v"),
                 new Integer[]{
-                        1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0,
-                        1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0,
-                        1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0,
-                        0, 1, 1, 0, 1, 1, 1, 0
+                        0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0 ,0, 0, 0, 0, 0,
+                        0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0,
+                        0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0,
+                        0, 1, 1, 1, 0, 1, 1, 0
                 });
     }
 
@@ -87,9 +87,9 @@ public class ModelUtilUnitTest {
     public void convertStringToArrayTest4() {
         Assert.assertArrayEquals(Converter.convertStringToBinaryArray("|zk_V>"),
                 new Integer[]{
-                        0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 0,
-                        1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0,
-                        0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0
+                        0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0,
+                        0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1,
+                        0, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0
                 });
     }
 
@@ -97,9 +97,9 @@ public class ModelUtilUnitTest {
     public void convertStringToArrayTest5() {
         Assert.assertArrayEquals(Converter.convertStringToBinaryArray("!#&69"),
                 new Integer[]{
-                        1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0,
-                        0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0,
-                        1, 0, 0, 1, 1, 1, 0, 0
+                        0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 1,
+                        0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0,
+                        0, 0, 1, 1, 1, 0, 0, 1
                 });
     }
 

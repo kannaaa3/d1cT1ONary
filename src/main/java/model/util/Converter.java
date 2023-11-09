@@ -13,7 +13,7 @@ public class Converter {
         Integer[] ans = new Integer[target.length() * NUMBER_BIT_OF_CHAR];
         for (int i = 0; i < target.length(); i++) {
             for (int j = 0; j < NUMBER_BIT_OF_CHAR; j++) {
-                ans[NUMBER_BIT_OF_CHAR * i + j] = ((int) target.charAt(i) >> j) & 1;
+                ans[NUMBER_BIT_OF_CHAR * i + j] = ((int) target.charAt(i) >> (NUMBER_BIT_OF_CHAR - j - 1)) & 1;
             }
         }
         return ans;
@@ -34,7 +34,7 @@ public class Converter {
         for (int i = 0; i < target.length; i += NUMBER_BIT_OF_CHAR) {
             int currentChar = 0;
             for (int j = 0; j < NUMBER_BIT_OF_CHAR; j++) {
-                currentChar += target[i + j] << j;
+                currentChar += target[i + j] << (8 - j - 1);
             }
             ans.append((char) currentChar);
         }

@@ -1,20 +1,38 @@
 package model;
 
-import model.word.Word;
-import model.word.Phonetic;
-import model.word.Meaning;
+import java.sql.*;
 
 public class Main {
     public static void main(String[] args) {
-        Phonetic phonetic = new Phonetic("həˈləʊ", "//ssl.gstatic.com/diction" +
-                "ary/static/sounds/20200429/hello--_gb_1.mp3");
-        String[] x = new String[]{
-            "aa", "bb", "cc"
-        };
-        String[] y = new String[]{
-                "dd", "ee", "ff"
-        };
-        Meaning meaning = new Meaning("noun", "aaa", "Hello!", x, y);
-        Word word = new Word("hello", phonetic, meaning);
+        Connection c = null;
+        Statement stmt = null;
+
+        try {
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:SqliteJavaDB.db");
+            System.out.println("Database Opened...\n");
+            stmt = c.createStatement();
+
+            String sql = "CREATE TABLE Product " +
+
+                    "(p_id INTEGER PRIMARY KEY AUTOINCREMENT," +
+
+                    " p_name TEXT NOT NULL, " +
+
+                    " price REAL NOT NULL, " +
+
+                    " quantity INTEGER) " ;
+
+            stmt.executeUpdate(sql);
+
+            stmt.close();
+
+            c.close();
+        }
+        catch ( Exception e ) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
+        }
+        System.out.println("Table Product Created Successfully!!!");
     }
 }

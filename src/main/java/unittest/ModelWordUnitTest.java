@@ -20,9 +20,4 @@ public class ModelWordUnitTest {
                 + "meaning=Meaning[partOfSpeech=noun,definition=\"Hello!\" or an equivalent "
                 + "greeting.,example=Hewwo!,synonyms=[donowall,kappa],antonyms=[hmm,goodbye]]]");
     }
-
-    @Test
-    public void wordToStringTest2() {
-
-    }
 }

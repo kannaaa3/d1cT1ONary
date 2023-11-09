@@ -1,4 +1,5 @@
-package model;
+package model.user;
 
 public class User {
+
 }

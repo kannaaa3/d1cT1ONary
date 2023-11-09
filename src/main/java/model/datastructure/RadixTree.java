@@ -1,9 +1,6 @@
 package model.datastructure;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 public class RadixTree {
     private final RadixTreeNode root;
@@ -67,10 +64,10 @@ public class RadixTree {
             currentNode = currentNode.child[j];
         }
 
-        Queue<RadixTreeNode> queue = new ArrayDeque<>();
+        Stack<RadixTreeNode> queue = new Stack<>();
         queue.add(currentNode);
         while (!queue.isEmpty()) {
-            RadixTreeNode node = queue.poll();
+            RadixTreeNode node = queue.pop();
             if (node.isHasString()) {
                 List<Integer> currentString = new ArrayList<>();
                 RadixTreeNode thisNode = node;
@@ -93,6 +90,12 @@ public class RadixTree {
                     return ans;
                 }
             }
+            for (int i = RadixTreeNode.NUMBER_OF_CHILD - 1; i >= 0; i--) {
+                if (node.child[i] != null) {
+                    queue.add(node.child[i]);
+                }
+            }
+
         }
 
         return ans;
