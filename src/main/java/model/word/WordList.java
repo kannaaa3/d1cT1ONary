@@ -1,5 +1,60 @@
 package model.word;
 
-public class WordList {
+import java.util.ArrayList;
+import java.util.List;
 
+public class WordList {
+    private String name;
+    private List<Word> words;
+
+    /**
+     * This function is used to create a new word list. Please only use this function to create a
+     * new wordList, if you already have a collection of the word, please use the constructor with
+     * two parameters.
+     *
+     * @param name the name of the word list (i.e: fruit, health)
+     */
+    public WordList(String name) {
+        this.name = name;
+        this.words = new ArrayList<>();
+    }
+
+    /**
+     * This function is used when you want to load a word list. Please do not pass a null word list.
+     *
+     * @param name the name of the word list (i.e: fruit, health)
+     * @param words the wordlist that we want to load
+     */
+    public WordList(String name, List<Word> words) {
+        if (words == null) {
+            throw new IllegalArgumentException("Please do not create a wordlist will a null "
+                    + "collection of word");
+        }
+        this.name = name;
+        this.words = words;
+    }
+
+    /**
+     * This function is used to add a new word to the word list.
+     *
+     * @param word the word user wants to add to the word list.
+     */
+    public void addWord(Word word) {
+        if (word == null) {
+            throw new IllegalArgumentException("Please do not add a null word to the word list!");
+        }
+        words.add(word);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Word> getWords() {
+        return words;
+    }
 }
