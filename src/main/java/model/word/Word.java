@@ -31,8 +31,20 @@ public class Word {
         return meaning;
     }
 
+    /**
+     *
+     * @return
+     */
     public String toString() {
         return String.format("Word[word=%s,phonetic=%s,meaning=%s]",
                 word, phonetic.toString(), meaning.toString());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Word otherWord)) {
+            return false;
+        }
+        return this.word.equals(otherWord.word);
     }
 }

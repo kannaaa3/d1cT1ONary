@@ -46,6 +46,20 @@ public class WordList {
         words.add(word);
     }
 
+    /**
+     * Function to remove a word from the word list.
+     *
+     * @param word the word user want to remove from the list.
+     */
+    public void removeWord(Word word) {
+        for (int i = 0; i < words.size(); i++) {
+            if (words.get(i).equals(word)) {
+                words.remove(i);
+                return;
+            }
+        }
+    }
+
     public String getName() {
         return name;
     }

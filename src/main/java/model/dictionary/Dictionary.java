@@ -55,7 +55,7 @@ public class Dictionary {
      * @param numberOfRecommendedWord the number of word we need to recommend
      * @return a List of String which are the recommended word
      */
-    public List<String> getRecommendedWord(String word, int numberOfRecommendedWord) {
+    public List<String> getRecommendedWordByPrefix(String word, int numberOfRecommendedWord) {
         if (word == null) {
             throw new IllegalArgumentException("Can not get recommended for null word!");
         }
