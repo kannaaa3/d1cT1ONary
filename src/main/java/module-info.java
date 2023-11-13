@@ -21,4 +21,6 @@ module java {
     exports model.word;
 
     exports unittest;
+    exports controller;
+    opens controller to javafx.fxml;
 }

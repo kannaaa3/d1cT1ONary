@@ -1,4 +1,4 @@
-package view;
+package controller;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +11,7 @@ public class MyApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MyApplication.class.getResource("screen.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 975, 600);
+        Scene scene = new Scene(fxmlLoader.load(), 1920, 960);
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
