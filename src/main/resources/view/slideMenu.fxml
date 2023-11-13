@@ -4,20 +4,15 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="603.0" prefWidth="256.0" style="-fx-background-color: #9747FF;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SlideMenuController">
+<AnchorPane prefHeight="800.0" prefWidth="320.0" style="-fx-background-color: #9747FF;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SlideMenuController">
    <children>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" />
-      <Line endX="75.0" startX="75.0" startY="550.0" />
-      <Line endX="0.0" endY="550.5" startX="254.40000915527344" startY="550.5" />
-      <Line endX="253.3000030517578" startX="253.29998779296875" startY="602.4000244140625" />
-      <BorderPane prefHeight="602.0" prefWidth="255.0" style="-fx-background-color: #483D8B;">
+      <BorderPane prefHeight="800.0" prefWidth="320.0" style="-fx-background-color: #483D8B;">
          <bottom>
-            <AnchorPane prefHeight="51.0" prefWidth="255.0" style="-fx-background-color: #2C2F48;" BorderPane.alignment="CENTER">
+            <AnchorPane prefHeight="60.0" prefWidth="320.0" style="-fx-background-color: #2C2F48;" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="settingButton" layoutX="214.0" layoutY="12.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27" prefWidth="27" style="-fx-background-radius: 13.5; -fx-background-color: #2C2F48;">
+                  <Button fx:id="settingButton" layoutX="280.0" layoutY="12.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27" prefWidth="27" style="-fx-background-radius: 13.5; -fx-background-color: #2C2F48;">
                      <graphic>
                         <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -27,9 +22,9 @@
                </children></AnchorPane>
          </bottom>
          <left>
-            <AnchorPane fx:id="slideMenu" prefHeight="844.0" prefWidth="76.0" style="-fx-background-color: #6A5ACD;" BorderPane.alignment="CENTER">
+            <AnchorPane fx:id="slideMenu" prefHeight="740.0" prefWidth="61.0" style="-fx-background-color: #6A5ACD;" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fitHeight="844.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="740.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../assets/SideMenu/SideBar.png" />
                      </image></ImageView>
@@ -49,7 +44,7 @@
                         </Button>
                      </children>
                   </VBox>
-                   <Button fx:id="searchButton" layoutX="18.0" layoutY="127.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#setShowWordView" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 20;" textFill="#d42626">
+                   <Button fx:id="searchButton" layoutX="22.0" layoutY="127.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#setShowWordView" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 20;" textFill="#d42626">
                      <graphic>
                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -58,7 +53,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                   <Button fx:id="reviewButton" layoutX="18.0" layoutY="207.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#setReviewView" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 20;" textFill="#d42626">
+                   <Button fx:id="reviewButton" layoutX="22.0" layoutY="207.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#setReviewView" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 20;" textFill="#d42626">
                      <graphic>
                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -67,7 +62,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                   <Button fx:id="playButton" layoutX="18.0" layoutY="288.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#setGameView" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 20;" textFill="#d42626">
+                   <Button fx:id="playButton" layoutX="22.0" layoutY="287.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#setGameView" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 20;" textFill="#d42626">
                      <graphic>
                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -80,15 +75,15 @@
             </AnchorPane>
          </left>
          <right>
-            <AnchorPane fx:id="searchView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="180.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+            <AnchorPane fx:id="searchView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="245.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
                <children>
-                  <TextField fx:id="searchBar" layoutX="9.0" layoutY="43.0" opacity="0.5" prefHeight="42.0" prefWidth="166.0" />
-                  <VBox layoutX="12.0" layoutY="86.0" prefHeight="359.0" prefWidth="158.0">
+                  <TextField fx:id="searchBar" layoutX="13.0" layoutY="43.0" opacity="0.5" prefHeight="40.0" prefWidth="212.0" />
+                  <VBox layoutX="12.0" layoutY="86.0" prefHeight="359.0" prefWidth="213.0">
                      <children>
-                        <ListView fx:id="myListView" prefHeight="236.0" prefWidth="575.0" style="-fx-background-color: #483D8B;" />
+                        <ListView fx:id="myListView" prefHeight="236.0" prefWidth="184.0" style="-fx-background-color: #483D8B;" />
                      </children>
                   </VBox>
-                  <Label layoutX="12.0" layoutY="6.0" prefHeight="30.0" prefWidth="72.0" text="Search" textFill="#fffdfd">
+                  <Label layoutX="13.0" layoutY="9.0" prefHeight="30.0" prefWidth="96.0" text="Dictionary" textFill="#fffdfd">
                      <font>
                         <Font name="Century Gothic Bold" size="16.0" />
                      </font>
