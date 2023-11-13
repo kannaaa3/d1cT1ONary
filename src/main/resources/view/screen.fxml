@@ -7,7 +7,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="975.0" style="-fx-background-color: #9747FF;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.ScreenController">
+<AnchorPane prefHeight="600.0" prefWidth="975.0" style="-fx-background-color: #9747FF;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ScreenController">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" />
       <Line endX="75.0" startX="75.0" startY="550.0" />
@@ -29,7 +29,7 @@
                                     <Image url="@SearchLogo1.jpg" />
                                  </image></ImageView>
                            </graphic></Button>
-                         <Button fx:id="reviewButton" mnemonicParsing="false" onAction="#setReviewPane" prefHeight="50.0" prefWidth="50.0" text="Review" textFill="#d42626" />
+                         <Button fx:id="reviewButton" mnemonicParsing="false" onAction="#setReviewView" prefHeight="50.0" prefWidth="50.0" text="Review" textFill="#d42626" />
                          <Button fx:id="playButton" mnemonicParsing="false" onAction="#setGameView" prefHeight="50.0" prefWidth="50.0" text="Play" textFill="#d42626" />
                      </children>
                   </VBox>

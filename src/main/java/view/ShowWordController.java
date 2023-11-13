@@ -1,4 +1,4 @@
-package com.example.demo;
+package view;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -6,8 +6,7 @@ import javafx.scene.control.Label;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import static com.example.demo.ScreenController.currentWord;
+import model.word.Word;
 
 public class ShowWordController implements Initializable {
     @FXML
@@ -32,17 +31,17 @@ public class ShowWordController implements Initializable {
 
 
     public void displayWord(Word myWord) {
-        String[] x = myWord.meaning.getSynonyms();
+        String[] x = myWord.getMeaning().getSynonyms();
         String s1 = "";
         for (int i = 0; i < x.length; i++) s1 = s1 + x[i] + "\n";
-        String[] y = myWord.meaning.getAntonyms();
+        String[] y = myWord.getMeaning().getAntonyms();
         String s2 = "";
         for (int j = 0; j < y.length; j++) s2 = s2 + y[j] + "\n";
-        word.setText(myWord.word);
-        phoneticText.setText(myWord.phonetic.getText());
-        partOfSpeech.setText(myWord.meaning.getPartOfSpeech());
-        definition.setText(myWord.meaning.getDefinition());
-        example.setText(myWord.meaning.getExample());
+        word.setText(myWord.getWord());
+        phoneticText.setText(myWord.getPhonetic().getText());
+        partOfSpeech.setText(myWord.getMeaning().getPartOfSpeech());
+        definition.setText(myWord.getMeaning().getDefinition());
+        example.setText(myWord.getMeaning().getExample());
         synonyms.setText(s1);
         antonyms.setText(s2);
     }

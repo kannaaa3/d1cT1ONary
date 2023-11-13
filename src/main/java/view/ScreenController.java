@@ -1,21 +1,18 @@
-package com.example.demo;
+package view;
 
-import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import java.io.IOException;
+import model.word.Meaning;
+import model.word.Phonetic;
+import model.word.Word;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -51,7 +48,7 @@ public class ScreenController implements Initializable {
     public static String currentWord;
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-        myListView.getItems().addAll(words);
+        myListView.getItems().addAll();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("showWord.fxml"));
             showWordPane = loader.load();
@@ -99,7 +96,7 @@ public class ScreenController implements Initializable {
     @FXML
     public TextField searchBar;
 
-    String[] words = {"Dung" , "Tuong" ,"Chau", "Tran" , "Vu", "Nguyen", "Thuy", "Thi", "Minh", "Java"};
+    //String[] words = {"Dung" , "Tuong" ,"Chau", "Tran" , "Vu", "Nguyen", "Thuy", "Thi", "Minh", "Java"};
 
     /*
     @FXML
@@ -115,7 +112,7 @@ public class ScreenController implements Initializable {
         mainScreen.getChildren().setAll(showWordPane);
     }
 
-    public void setReviewPane() {
+    public void setReviewView() {
         mainScreen.getChildren().setAll(reviewPane);
     }
 

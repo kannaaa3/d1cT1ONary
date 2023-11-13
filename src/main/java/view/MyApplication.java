@@ -1,4 +1,4 @@
-package com.example.demo;
+package view;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +16,6 @@ public class MyApplication extends Application {
         stage.setScene(scene);
         stage.show();
     }
-
 
     public static void main(String[] args) {
         launch();
