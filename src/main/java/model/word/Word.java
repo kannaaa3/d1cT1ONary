@@ -32,8 +32,9 @@ public class Word {
     }
 
     /**
+     * The representation of the word.
      *
-     * @return
+     * @return the representation in format: Word[word=%s,phonetic=%s,meaning=%s]
      */
     public String toString() {
         return String.format("Word[word=%s,phonetic=%s,meaning=%s]",

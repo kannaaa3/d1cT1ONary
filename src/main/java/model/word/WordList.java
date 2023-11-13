@@ -5,7 +5,7 @@ import java.util.List;
 
 public class WordList {
     private String name;
-    private List<Word> words;
+    private final List<Word> words;
 
     /**
      * This function is used to create a new word list. Please only use this function to create a
@@ -43,6 +43,7 @@ public class WordList {
         if (word == null) {
             throw new IllegalArgumentException("Please do not add a null word to the word list!");
         }
+        removeWord(word);
         words.add(word);
     }
 

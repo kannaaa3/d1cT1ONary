@@ -13,6 +13,11 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 <junit.version>5.9.2</junit.version>  </properties>
   <dependencies>
+    <dependency>
+      <groupId>software.amazon.awssdk.iotdevicesdk</groupId>
+      <artifactId>aws-iot-device-sdk</artifactId>
+      <version>1.17.5</version>
+    </dependency>
     <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
     <dependency>
       <groupId>org.slf4j</groupId>

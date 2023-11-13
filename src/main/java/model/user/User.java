@@ -28,7 +28,7 @@ public class User {
      *
      * @param word a string which is the word we want to add to the history
      */
-    public void addWordSearchHistory(String word) {
+    public void addWordToSearchHistory(String word) {
         if (word == null) {
             throw new IllegalArgumentException("Please do not add a null word "
                     + "into the search history!");

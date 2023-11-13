@@ -1,5 +1,7 @@
 package model;
 
+import model.user.CredentialManager;
+
 import java.sql.*;
 
 public class Main {
@@ -13,15 +15,7 @@ public class Main {
             System.out.println("Database Opened...\n");
             stmt = c.createStatement();
 
-            String sql = "CREATE TABLE Product " +
-
-                    "(p_id INTEGER PRIMARY KEY AUTOINCREMENT," +
-
-                    " p_name TEXT NOT NULL, " +
-
-                    " price REAL NOT NULL, " +
-
-                    " quantity INTEGER) " ;
+            String sql = "";
 
             stmt.executeUpdate(sql);
 
@@ -34,5 +28,7 @@ public class Main {
             System.exit(0);
         }
         System.out.println("Table Product Created Successfully!!!");
+
+        // CredentialManager.loginWithUsernameAndPassword("aa", "hello");
     }
 }
