@@ -37,11 +37,11 @@ public class RadixTree {
      */
     public boolean contains(Integer[] word) {
         RadixTreeNode currentNode = root;
-        for (int i = 0; i < word.length; i++) {
-            if (currentNode.child[word[i]] == null) {
+        for (Integer integer : word) {
+            if (currentNode.child[integer] == null) {
                 return false;
             }
-            currentNode = currentNode.child[word[i]];
+            currentNode = currentNode.child[integer];
         }
         return currentNode.isHasString();
     }

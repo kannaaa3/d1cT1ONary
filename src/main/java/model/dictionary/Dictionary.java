@@ -157,8 +157,7 @@ public class Dictionary {
             text = object.getString("text");
         } catch (Exception e) {
             text = "";
-            System.out.println(e.toString());
-            System.out.println(object.toString());
+            e.printStackTrace();
         }
         try {
             audio = object.getString("audio");
