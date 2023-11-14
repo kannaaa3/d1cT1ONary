@@ -12,8 +12,6 @@ module java {
     opens model to org.slf4j.simple;
     opens view to javafx.fxml;
 
-    exports view;
-
     exports model.datastructure;
     exports model.dictionary;
     exports model.user;
