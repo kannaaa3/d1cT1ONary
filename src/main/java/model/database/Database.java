@@ -17,7 +17,6 @@ public class Database {
             Class.forName("org.sqlite.JDBC");
             connection = DriverManager.getConnection("jdbc:sqlite:"
                     + "src/main/resources/SqliteJavaDB.db");
-            System.out.println("Database Opened...\n");
             statement = connection.createStatement();
         } catch (ClassNotFoundException e) {
             System.out.println("Can not find class org.sqlite.JDBC, maybe missing dependencies");
@@ -37,7 +36,11 @@ public class Database {
     private void createTables() {
         try {
             TableCreator.createUserTable(statement);
+            TableCreator.createWordDatabase(statement);
+            TableCreator.createSynonymDatabase(statement);
+            TableCreator.createAntonymDatabase(statement);
             TableCreator.createUserWordListDataTable(statement);
+            TableCreator.createUserWordListNameDataTable(statement);
             TableCreator.createUserWordReviewDataTable(statement);
             TableCreator.createUserSearchHistoryDataTable(statement);
         } catch (SQLException e) {
@@ -112,5 +115,41 @@ public class Database {
             System.exit(-1);
         }
         return null;
+    }
+
+    /**
+     * Function to check if a username is already existed.
+     *
+     * @param username the username we want to check
+     * @return true if the username is already existed, false if otherwise
+     */
+    public boolean containsUsername(String username) {
+        try {
+            return UsersQueryHandler.containsUsername(connection, username);
+        } catch (SQLException e) {
+            System.out.println("Error while checking if username: " + username + "exist!");
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    /**
+     * Please note that this function is only used when testing.
+     */
+    public void removeAllTables() {
+        try {
+            statement.executeUpdate("DROP TABLE IF EXISTS users;");
+            statement.executeUpdate("DROP TABLE IF EXISTS words;");
+            statement.executeUpdate("DROP TABLE IF EXISTS word_synonym");
+            statement.executeUpdate("DROP TABLE IF EXISTS word_antonym");
+            statement.executeUpdate("DROP TABLE IF EXISTS user_word_review_data;");
+            statement.executeUpdate("DROP TABLE IF EXISTS user_word_list_data;");
+            statement.executeUpdate("DROP TABLE IF EXISTS user_search_history_data;");
+            statement.executeUpdate("DROP TABLE IF EXISTS user_word_list_name_data");
+        } catch (SQLException e) {
+            System.out.println("Error while removing all tables!");
+            e.printStackTrace();
+            System.exit(-1);
+        }
     }
 }

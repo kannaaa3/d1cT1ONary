@@ -25,7 +25,7 @@ public class UsersQueryHandler {
         statement.setString(1, userID);
         statement.setString(2, username);
         statement.setString(3, password);
-        statement.executeUpdate(sql);
+        statement.executeUpdate();
     }
 
     /**

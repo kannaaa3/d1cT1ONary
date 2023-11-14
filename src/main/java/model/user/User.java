@@ -8,8 +8,8 @@ import java.util.List;
 
 public class User {
     private final String userID;
-    private List<String> searchHistory;
-    private List<WordList> wordLists;
+    private final List<String> searchHistory;
+    private final List<WordList> wordLists;
 
     /**
      * Create a new user with the userID. Please note that this is the demo function, still need
@@ -56,7 +56,7 @@ public class User {
     }
 
     /**
-     * Function to add a new word to an user's word list.
+     * Function to add a new word to a user's word list.
      *
      * @param word       the word user want to add
      * @param wordListID the wordListID, please note that enumeration begins at 0
@@ -89,5 +89,9 @@ public class User {
      */
     public List<WordList> getAllWordLists() {
         return this.wordLists;
+    }
+
+    public String getUserID() {
+        return this.userID;
     }
 }
