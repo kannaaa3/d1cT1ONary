@@ -4,11 +4,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="800.0" prefWidth="960.0" style="-fx-background-color: #2C2F48;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReviewController">
+<AnchorPane prefHeight="800.0" prefWidth="946.0" style="-fx-background-color: #2C2F48;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReviewController">
    <children>
-      <ScrollPane layoutX="19.0" layoutY="143.0" prefHeight="571.0" prefWidth="760.0" style="-fx-background-color: #2C2F48;" AnchorPane.bottomAnchor="85.79999999999995" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="181.0" AnchorPane.topAnchor="143.0">
+      <ScrollPane layoutX="19.0" layoutY="143.0" prefHeight="571.0" prefWidth="680.0" style="-fx-background-color: #2C2F48;">
          <content>
-          <AnchorPane fx:id="anchorPane" minHeight="0.0" minWidth="0.0" prefWidth="760.0" style="-fx-background-color: #2C2F48;">
+          <AnchorPane fx:id="anchorPane" minHeight="570.0" minWidth="0.0" prefWidth="660.0" style="-fx-background-color: #2C2F48;">
           </AnchorPane>
          </content>
       </ScrollPane>

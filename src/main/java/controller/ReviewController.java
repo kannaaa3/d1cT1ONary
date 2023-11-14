@@ -19,9 +19,12 @@ public class ReviewController implements Initializable  {
     List<Button> buttons = new ArrayList<Button>();
     int h = 0;
     int w = 0;
+    List<String> buttonNames = new ArrayList<String>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        buttonNames.add("Hihi");
+        buttonNames.add("Haha");
         for (int i = 0; i < numberofWordlist; i++) {
             Button button = new Button("MyWordlist");
             button.setPrefWidth(200);
@@ -33,6 +36,14 @@ public class ReviewController implements Initializable  {
             anchorPane.getChildren().add(button);
             buttons.add(button);
         }
-
+        Button button = new Button("+");
+        button.setPrefWidth(200);
+        button.setPrefHeight(200);
+        button.setLayoutX(10 + (w % 3) * 220 );
+        w++;
+        button.setLayoutY(10 + h * 220);
+        if (w % 3 == 0) h++;
+        anchorPane.getChildren().add(button);
+        buttons.add(button);
     }
 }

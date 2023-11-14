@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="800.0" prefWidth="946.0" style="-fx-background-color: #705CAC; -fx-background-color: #2C2F48;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ShowWordController">
             <children>
-      <ImageView fitHeight="523.0" fitWidth="408.0" layoutX="588.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="469.0" fitWidth="445.0" layoutX="525.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/TranslateScreen/Diamond.png" />
          </image>
@@ -57,14 +57,14 @@
                             <left>
                                 <AnchorPane prefHeight="310.0" prefWidth="714.0" BorderPane.alignment="CENTER">
                                     <children>
-                                        <Label layoutX="20.0" prefHeight="38.0" prefWidth="414.0" text="Save word to your amazing list" textFill="WHITE">
+                                        <Label layoutX="20.0" prefHeight="59.0" prefWidth="414.0" text="Save word to your amazing list" textFill="WHITE">
                                             <font>
                                                 <Font name="Century Gothic Bold" size="26.0" />
                                             </font>
                                         </Label>
                                         <Button layoutX="20.0" layoutY="85.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" text="Button" />
                                         <Button layoutX="260.0" layoutY="85.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" text="Button" />
-                                        <Button layoutX="520.0" layoutY="85.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" text="Button" />
+                                        <Button layoutX="500.0" layoutY="85.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" text="Button" />
                                     </children>
                                 </AnchorPane>
                             </left>
