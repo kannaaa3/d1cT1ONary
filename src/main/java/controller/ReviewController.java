@@ -9,19 +9,30 @@ import javafx.scene.layout.Pane;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class ReviewController implements Initializable  {
     @FXML
     AnchorPane anchorPane;
-    static Button button = new Button("Hiii");
+    static int numberofWordlist = 15;
+    List<Button> buttons = new ArrayList<Button>();
+    int h = 0;
+    int w = 0;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println(1);
-        button.setLayoutX(100);
-        button.setLayoutY(100);
-        button.setPrefHeight(100);
-        button.setPrefWidth(100);
-        anchorPane.getChildren().add(button);
+        for (int i = 0; i < numberofWordlist; i++) {
+            Button button = new Button("MyWordlist");
+            button.setPrefWidth(200);
+            button.setPrefHeight(200);
+            button.setLayoutX(10 + (w % 3) * 220 );
+            w++;
+            button.setLayoutY(10 + h * 220);
+            if (w % 3 == 0) h++;
+            anchorPane.getChildren().add(button);
+            buttons.add(button);
+        }
+
     }
 }
