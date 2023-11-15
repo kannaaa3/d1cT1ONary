@@ -28,7 +28,7 @@
                      <image>
                         <Image url="@../assets/SideMenu/SideBar.png" />
                      </image></ImageView>
-                  <VBox layoutX="13.0" layoutY="14.0" prefHeight="105.0" prefWidth="50.0">
+                  <VBox layoutX="7.0" layoutY="5.0" prefHeight="105.0" prefWidth="50.0">
                      <children>
                         <Button fx:id="logoButton" centerShape="false" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER" textFill="#d42626" textOverrun="CLIP">
                            <graphic>
@@ -44,7 +44,7 @@
                         </Button>
                      </children>
                   </VBox>
-                   <Button fx:id="searchButton" layoutX="22.0" layoutY="127.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#setShowWordView" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 20;" textFill="#d42626">
+                   <Button fx:id="searchButton" onAction="#renderShowWordScreen" layoutX="22.0" layoutY="127.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 20;" textFill="#d42626">
                      <graphic>
                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -53,7 +53,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                   <Button fx:id="reviewButton" layoutX="22.0" layoutY="207.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#setReviewView" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 20;" textFill="#d42626">
+                   <Button fx:id="reviewButton" onAction="#renderReviewScreen" layoutX="22.0" layoutY="207.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 20;" textFill="#d42626">
                      <graphic>
                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -62,7 +62,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                   <Button fx:id="playButton" layoutX="22.0" layoutY="287.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#setGameView" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 20;" textFill="#d42626">
+                   <Button fx:id="playButton" onAction="#renderGameScreen" layoutX="22.0" layoutY="287.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 20;" textFill="#d42626">
                      <graphic>
                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                            <image>

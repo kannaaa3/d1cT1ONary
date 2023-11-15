@@ -32,13 +32,11 @@ public class ReviewController implements Initializable  {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        buttonNames.add("Hihi");
-        buttonNames.add("Haha");
         for (int i = 0; i < 5; i++) {
             Image image = new Image("file:src\\main\\resources\\assets\\TranslateScreen\\WordlistDescription" + i + ".png");
             images[i] = image;
         }
-        for (int i = 0; i < numberofWordlist; i++) {
+        for (int i = 0; i <= numberofWordlist; i++) {
             ImageView imageView = new ImageView(images[i % 5]);
             Button button = new Button();
             button.setGraphic(imageView);
@@ -55,14 +53,14 @@ public class ReviewController implements Initializable  {
             anchorPane.getChildren().add(button);
             buttons.add(button);
         }
-        Button button = new Button("+");
-        button.setPrefWidth(200);
-        button.setPrefHeight(200);
-        button.setLayoutX(10 + (w % 3) * 220 );
-        w++;
-        button.setLayoutY(10 + h * 220);
-        if (w % 3 == 0) h++;
-        anchorPane.getChildren().add(button);
-        buttons.add(button);
+//        Button button = new Button("+");
+//        button.setPrefWidth(200);
+//        button.setPrefHeight(200);
+//        button.setLayoutX(10 + (w % 3) * 220 );
+//        w++;
+//        button.setLayoutY(10 + h * 220);
+//        if (w % 3 == 0) h++;
+//        anchorPane.getChildren().add(button);
+//        buttons.add(button);
     }
 }
