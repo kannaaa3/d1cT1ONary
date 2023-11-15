@@ -1,9 +1,9 @@
 package model.word;
 
 public class Word {
-    String word;
-    Phonetic phonetic;
-    Meaning meaning;
+    private final String word;
+    private final Phonetic phonetic;
+    private final Meaning meaning;
 
     /**
      * Public constructor for a word. Note that meaning contains definition, part of speech, example

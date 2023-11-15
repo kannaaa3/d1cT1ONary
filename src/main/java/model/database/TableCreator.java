@@ -17,9 +17,9 @@ public class TableCreator {
     public static void createUserTable(Statement statement) throws SQLException {
         String sql = """
                 CREATE TABLE IF NOT EXISTS users(
-                    user_id VARCHAR[MAX_WORD_LENGTH],
-                    username VARCHAR[MAX_USERNAME_LENGTH],
-                    password VARCHAR[MAX_USERNAME_LENGTH],
+                    user_id VARCHAR(255),
+                    username VARCHAR(255),
+                    password VARCHAR(255),
                     CONSTRAINT users_pk PRIMARY KEY (user_id)
                 );
                 """;
@@ -35,15 +35,14 @@ public class TableCreator {
     public static void createWordDatabase(Statement statement) throws SQLException {
         String sql = """
                 CREATE TABLE IF NOT EXISTS words(
-                    word_id VARCHAR[MAX_WORD_LENGTH],
-                    word VARCHAR[MAX_WORD_LENGTH],
-                    text VARCHAR[MAX_WORD_LENGTH],
-                    audio VARCHAR[MAX_URL_LENGTH],
-                    part_of_speech VARCHAR[MAX_WORD_LENGTH],
-                    definition VARCHAR[MAX_WORD_LENGTH],
-                    example VARCHAR[MAX_WORD_LENGTH],
+                    word_id VARCHAR(255),
+                    word VARCHAR(255),
+                    text VARCHAR(255),
+                    audio VARCHAR(255),
+                    part_of_speech VARCHAR(255),
+                    definition VARCHAR(255),
+                    example VARCHAR(255),
                     CONSTRAINT words_pk PRIMARY KEY (word_id)
-                    
                 );
                 """;
         statement.execute(sql);
@@ -58,8 +57,8 @@ public class TableCreator {
     public static void createSynonymDatabase(Statement statement) throws SQLException {
         String sql = """
                 CREATE TABLE IF NOT EXISTS word_synonym(
-                    word_id VARCHAR[MAX_WORD_LENGTH],
-                    synonym VARCHAR[MAX_WORD_LENGTH],
+                    word_id VARCHAR(255),
+                    synonym VARCHAR(255),
                     CONSTRAINT word_synonym_pk PRIMARY KEY (word_id, synonym),
                     CONSTRAINT word_synonym_word_id_fk
                     FOREIGN KEY (word_id)
@@ -80,8 +79,8 @@ public class TableCreator {
     public static void createAntonymDatabase(Statement statement) throws SQLException {
         String sql = """
                 CREATE TABLE IF NOT EXISTS word_antonym(
-                    word_id VARCHAR[MAX_WORD_LENGTH],
-                    antonym VARCHAR[MAX_WORD_LENGTH],
+                    word_id VARCHAR(255),
+                    antonym VARCHAR(255),
                     CONSTRAINT word_antonym_pk PRIMARY KEY (word_id, antonym),
                     CONSTRAINT word_antonym_word_id
                     FOREIGN KEY (word_id)
@@ -102,10 +101,11 @@ public class TableCreator {
     public static void createUserWordReviewDataTable(Statement statement) throws SQLException {
         String sql = """
                 CREATE TABLE IF NOT EXISTS user_word_review_data(
-                    user_id VARCHAR[MAX_WORD_LENGTH],
-                    word_id VARCHAR[MAX_WORD_LENGTH],
+                    user_id VARCHAR(255),
+                    word_id VARCHAR(255),
                     timestamp INTEGER,
                     fluency_level INTEGER,
+                    review_times INTEGER,
                     CONSTRAINT user_word_review_data_pk PRIMARY KEY (user_id, word_id),
                     CONSTRAINT user_word_review_data_user_id_fk
                     FOREIGN KEY (user_id)
@@ -131,9 +131,9 @@ public class TableCreator {
     public static void createUserWordListDataTable(Statement statement) throws SQLException {
         String sql = """
                 CREATE TABLE IF NOT EXISTS user_word_list_data(
-                    user_id VARCHAR[MAX_WORD_LENGTH],
+                    user_id VARCHAR(255),
                     word_list_id INTEGER,
-                    word_id VARCHAR[MAX_WORD_LENGTH],
+                    word_id VARCHAR(255),
                     CONSTRAINT user_word_list_data_pk PRIMARY KEY (user_id, word_list_id, word_id),
                     CONSTRAINT user_word_list_data_user_id
                     FOREIGN KEY (user_id)
@@ -159,9 +159,9 @@ public class TableCreator {
     public static void createUserWordListNameDataTable(Statement statement) throws SQLException {
         String sql = """
                 CREATE TABLE IF NOT EXISTS user_word_list_name_data(
-                    user_id VARCHAR[MAX_WORD_LENGTH],
+                    user_id VARCHAR(255),
                     word_list_id INTEGER,
-                    word_list_name VARCHAR[MAX_WORD_LENGTH],
+                    word_list_name VARCHAR(255),
                     CONSTRAINT user_word_list_name_data_pk PRIMARY KEY (user_id, word_list_id),
                     CONSTRAINT user_word_list_name_data_user_id_fk
                     FOREIGN KEY (user_id)
@@ -182,8 +182,8 @@ public class TableCreator {
     public static void createUserSearchHistoryDataTable(Statement statement) throws SQLException {
         String sql = """
                 CREATE TABLE IF NOT EXISTS user_search_history_data(
-                    user_id VARCHAR[MAX_WORD_LENGTH],
-                    word_id VARCHAR[MAX_WORD_LENGTH],
+                    user_id VARCHAR(255),
+                    word_id VARCHAR(255),
                     timestamp INTEGER,
                     CONSTRAINT user_search_history_data_pk
                         PRIMARY KEY (user_id, word_id),

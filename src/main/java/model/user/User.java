@@ -12,8 +12,7 @@ public class User {
     private final List<WordList> wordLists;
 
     /**
-     * Create a new user with the userID. Please note that this is the demo function, still need
-     * to connect with a database.
+     * Create a new user with the userID.
      *
      * @param userID the userID
      */

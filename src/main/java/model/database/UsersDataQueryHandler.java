@@ -3,15 +3,26 @@ package model.database;
 import model.word.WordList;
 import model.dictionary.Dictionary;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class UsersDataQueryHandler {
+    /**
+     * Function to get the user's search history with userID.
+     *
+     * @param connection the database connection
+     * @param userID the user's userID
+     * @return a list of string which is user's search history
+     * @throws SQLException a sql exception if the queries failed
+     */
     public static List<String> getUserSearchHistory(Connection connection, String userID)
             throws SQLException {
         String sql = """
-                SELECT word
+                SELECT word_id
                 FROM user_search_history_data
                 WHERE user_id = ?
                 ORDER BY timestamp DESC;
@@ -22,11 +33,19 @@ public class UsersDataQueryHandler {
 
         List<String> answer = new ArrayList<>();
         while (resultSet.next()) {
-            answer.add(resultSet.getString("word"));
+            answer.add(resultSet.getString("word_id"));
         }
         return answer;
     }
 
+    /**
+     * Function to get user's wordlist data.
+     *
+     * @param connection the database connection
+     * @param userID the user's userID
+     * @return a list of wordlist which is
+     * @throws SQLException
+     */
     public static List<WordList> getUserWordLists(Connection connection, String userID)
             throws SQLException {
         String sql = """
@@ -44,16 +63,23 @@ public class UsersDataQueryHandler {
         }
 
         sql = """
-                SELECT word_list_id, word
+                SELECT word_list_id, word_id
                 FROM user_word_list_data
                 WHERE user_id = ?
         """;
         statement = connection.prepareStatement(sql);
         statement.setString(1, userID);
         resultSet = statement.executeQuery();
-        while (resultSet.next()) {
-            wordLists.get(resultSet.getInt("word_list_id"))
-                    .addWord(Dictionary.getWordData(resultSet.getString("word")));
+        try {
+            while (resultSet.next()) {
+                wordLists.get(resultSet.getInt("word_list_id"))
+                        .addWord(WordDataQueryHandler
+                                .getWordData(connection, resultSet.getString("word_id")));
+            }
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Something is wrong with the database construction!");
+            e.printStackTrace();
+            System.exit(-1);
         }
 
         return wordLists;
