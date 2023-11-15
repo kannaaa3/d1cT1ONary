@@ -51,6 +51,7 @@ public class ReviewController implements Initializable  {
             if (w % 3 == 0) h++;
             button.setMinWidth(Region.USE_PREF_SIZE);
             button.setMinHeight(Region.USE_PREF_SIZE);
+            button.setStyle("-fx-background-radius: 20px");
             anchorPane.getChildren().add(button);
             buttons.add(button);
         }
