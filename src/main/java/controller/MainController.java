@@ -7,8 +7,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Pair;
+import model.dictionary.Dictionary;
+
 import java.net.URL;
 import java.util.ResourceBundle;
+
 
 public class MainController implements Initializable {
         @FXML
@@ -37,6 +41,8 @@ public class MainController implements Initializable {
 
         @Override
         public void initialize(URL location, ResourceBundle resources) {
+                Dictionary dictionary = new Dictionary("src/main/java/resources/word.txt");
+
                 showWordButton.setPrefWidth(40);
                 showWordButton.setPrefHeight(40);
                 showWordButton.setLayoutX(22);
@@ -60,39 +66,35 @@ public class MainController implements Initializable {
                 playButton.setOnAction(event -> renderGameScreen());
                 playButton.setDisable(true);
                 playButton.setOpacity(0);
-                try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/showWord.fxml"));
-                        showWordPane = loader.load();
-                        showWordController = loader.getController();
-                } catch (Exception e) {
-                        e.printStackTrace();
-                }
-                try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/review.fxml"));
-                        reviewPane = loader.load();
-                        reviewController = loader.getController();
-                } catch (Exception e) {
-                        e.printStackTrace();
-                }
-                try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/game.fxml"));
-                        gamePane = loader.load();
-                        gameController = loader.getController();
-                } catch (Exception e) {
-                        e.printStackTrace();
-                }
-                try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/slideMenu.fxml"));
-                        slideMenuPane = loader.load();
-                        slideMenuController = loader.getController();
-                } catch (Exception e) {
-                        e.printStackTrace();
-                }
+
+                showWordPane = getController("/view/showWord.fxml").getKey();
+                showWordController = (ShowWordController) getController("/view/showWord.fxml").getValue();
+
+                reviewPane = getController("/view/review.fxml").getKey();
+                reviewController = (ReviewController) getController("/view/review.fxml").getValue();
+
+                gamePane = getController("/view/game.fxml").getKey();
+                gameController = (GameController) getController("/view/game.fxml").getValue();
+
+                slideMenuPane = getController("/view/slideMenu.fxml").getKey();
+                slideMenuController = (SlideMenuController) getController("/view/slideMenu.fxml").getValue();
+
                 renderSlideMenuScreen();
-                renderReviewScreen();
+                renderShowWordScreen();
                 mainPane.getChildren().add(showWordButton);
                 mainPane.getChildren().add(reviewButton);
                 mainPane.getChildren().add(playButton);
+        }
+
+        public Pair<AnchorPane, Initializable> getController(String path) {
+                try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
+                        return new Pair<>( loader.load(), loader.getController());
+                } catch (Exception e) {
+                        e.printStackTrace();
+                        System.exit(-1);
+                }
+                return null;
         }
 
         public void renderSlideMenuScreen() {

@@ -24,6 +24,7 @@ public class ShowWordController implements Initializable {
     @FXML
     public Label antonyms;
 
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 

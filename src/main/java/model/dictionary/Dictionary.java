@@ -146,7 +146,7 @@ public class Dictionary {
      * @param object a json object
      * @return a phonetic object that extract "text" and "audio" data from the json object
      */
-    private Phonetic extractPhonetic(JSONObject object) {
+    private static Phonetic extractPhonetic(JSONObject object) {
         if (object == null) {
             return new Phonetic("", "");
         }
@@ -175,7 +175,7 @@ public class Dictionary {
      * @param object the json object
      * @return a meaning object with "definition", "example", "synonyms", "antonyms"
      */
-    private Meaning extractMeaning(JSONObject object) {
+    private static Meaning extractMeaning(JSONObject object) {
         String partOfSpeech;
         String definition;
         String example;

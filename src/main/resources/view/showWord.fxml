@@ -62,9 +62,30 @@
                                                 <Font name="Century Gothic Bold" size="26.0" />
                                             </font>
                                         </Label>
-                                        <Button layoutX="20.0" layoutY="85.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" text="Button" />
-                                        <Button layoutX="260.0" layoutY="85.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" text="Button" />
-                                        <Button layoutX="500.0" layoutY="85.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" text="Button" />
+                                        <Button layoutX="20.0" layoutY="85.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" style="-fx-background-radius: 20;">
+                           <graphic>
+                              <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../assets/TranslateScreen/WordlistDescription0.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                                        <Button layoutX="260.0" layoutY="85.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" style="-fx-background-radius: 20;">
+                           <graphic>
+                              <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../assets/TranslateScreen/WordlistDescription1.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                                        <Button layoutX="500.0" layoutY="85.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" style="-fx-background-radius: 20;">
+                           <graphic>
+                              <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../assets/TranslateScreen/WordlistDescription2.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
                                     </children>
                                 </AnchorPane>
                             </left>
