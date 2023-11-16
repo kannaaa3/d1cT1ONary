@@ -1,5 +1,6 @@
 package model.user;
 
+import model.word.UserWord;
 import model.word.Word;
 import model.word.WordList;
 
@@ -10,6 +11,7 @@ public class User {
     private final String userID;
     private final List<String> searchHistory;
     private final List<WordList> wordLists;
+    private final List<UserWord> reviewWordlist;
 
     /**
      * Create a new user with the userID.
@@ -20,6 +22,7 @@ public class User {
         this.userID = userID;
         this.searchHistory = new ArrayList<>();
         this.wordLists = new ArrayList<>();
+        this.reviewWordlist = new ArrayList<>();
     }
 
     /**
@@ -66,6 +69,12 @@ public class User {
                     + "when adding word to word list!");
         }
         wordLists.get(wordListID).addWord(word);
+        for (Word reviewWord : reviewWordlist) {
+            if (reviewWord.equals(word)) {
+                return;
+            }
+        }
+
     }
 
     /**

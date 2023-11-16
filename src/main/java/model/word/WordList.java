@@ -35,16 +35,22 @@ public class WordList {
     }
 
     /**
-     * This function is used to add a new word to the word list.
+     * Function to add a new word to the word list.
      *
-     * @param word the word user wants to add to the word list.
+     * @param word the word we want to add
+     * @return true if the word does not appear in the wordlist and add the word, false otherwise
      */
-    public void addWord(Word word) {
+    public boolean addWord(Word word) {
         if (word == null) {
             throw new IllegalArgumentException("Please do not add a null word to the word list!");
         }
-        removeWord(word);
+        for (Word value : words) {
+            if (value.equals(word)) {
+                return false;
+            }
+        }
         words.add(word);
+        return true;
     }
 
     /**
