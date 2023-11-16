@@ -19,20 +19,15 @@ public class SlideMenuController extends MainController implements Initializable
     @FXML
     private Button logoButton;
     @FXML
-    private Button searchButton;
+    private Button showWordButton;
     @FXML
     private Button reviewButton;
     @FXML
     private Button playButton;
 
-    @FXML
-    private AnchorPane reviewPane;
-    @FXML
-    private ReviewController reviewController;
-
     public static String currentWord;
     @Override
-    public void initialize(URL arg0, ResourceBundle mainPane) {
+    public void initialize(URL arg0, ResourceBundle arg1) {
 
     }
 
@@ -40,6 +35,7 @@ public class SlideMenuController extends MainController implements Initializable
     private ListView<String> myListView;
     @FXML
     public TextField searchBar;
+
 
     public void displayRecommendedWordByPrefix(String[] words) {
         myListView.getItems().addAll(words);

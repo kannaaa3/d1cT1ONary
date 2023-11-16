@@ -5,22 +5,23 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
         @FXML
-        private GameController gameController;
+        public GameController gameController;
         @FXML
-        private ReviewController reviewController;
+        public ReviewController reviewController;
         @FXML
-        protected ShowWordController showWordController;
+        private ShowWordController showWordController;
         @FXML
         private SlideMenuController slideMenuController;
 
         @FXML
-        protected AnchorPane showWordPane;
+        private AnchorPane showWordPane;
         @FXML
         private AnchorPane reviewPane;
         @FXML
@@ -28,11 +29,37 @@ public class MainController implements Initializable {
         @FXML
         private AnchorPane slideMenuPane;
         @FXML
-        private AnchorPane mainPane;
+        public AnchorPane mainPane;
 
+        Button showWordButton = new Button();
+        Button reviewButton = new Button();
+        Button playButton = new Button();
 
         @Override
         public void initialize(URL location, ResourceBundle resources) {
+                showWordButton.setPrefWidth(40);
+                showWordButton.setPrefHeight(40);
+                showWordButton.setLayoutX(22);
+                showWordButton.setLayoutY(127);
+                showWordButton.setOnAction(event -> renderShowWordScreen());
+                showWordButton.setDisable(true);
+                showWordButton.setOpacity(0);
+
+                reviewButton.setPrefWidth(40);
+                reviewButton.setPrefHeight(40);
+                reviewButton.setLayoutX(22);
+                reviewButton.setLayoutY(207);
+                reviewButton.setOnAction(event -> renderReviewScreen());
+                reviewButton.setDisable(true);
+                reviewButton.setOpacity(0);
+
+                playButton.setPrefWidth(40);
+                playButton.setPrefHeight(40);
+                playButton.setLayoutX(22);
+                playButton.setLayoutY(287);
+                playButton.setOnAction(event -> renderGameScreen());
+                playButton.setDisable(true);
+                playButton.setOpacity(0);
                 try {
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/showWord.fxml"));
                         showWordPane = loader.load();
@@ -61,18 +88,24 @@ public class MainController implements Initializable {
                 } catch (Exception e) {
                         e.printStackTrace();
                 }
-                renderSlideMenuScreeen();
+                renderSlideMenuScreen();
                 renderReviewScreen();
-
+                mainPane.getChildren().add(showWordButton);
+                mainPane.getChildren().add(reviewButton);
+                mainPane.getChildren().add(playButton);
         }
 
-        public void renderSlideMenuScreeen() {
+        public void renderSlideMenuScreen() {
                 slideMenuPane.setLayoutX(0);
                 slideMenuPane.setLayoutY(0);
                 mainPane.getChildren().add(slideMenuPane);
+                showWordButton.setDisable(false);
+                reviewButton.setDisable(false);
+                playButton.setDisable(false);
         }
 
         public void renderShowWordScreen() {
+                mainPane.getChildren().remove(showWordPane);
                 showWordPane.setLayoutX(320);
                 showWordPane.setLayoutY(0);
                 mainPane.getChildren().add(showWordPane);
@@ -80,12 +113,14 @@ public class MainController implements Initializable {
 
 
         public void renderReviewScreen() {
+                mainPane.getChildren().remove(reviewPane);
                 reviewPane.setLayoutX(320);
                 reviewPane.setLayoutY(0);
                 mainPane.getChildren().add(reviewPane);
         }
 
         public void renderGameScreen() {
+                mainPane.getChildren().remove(gamePane);
                 gamePane.setLayoutX(320);
                 gamePane.setLayoutY(0);
                 mainPane.getChildren().add(gamePane);
