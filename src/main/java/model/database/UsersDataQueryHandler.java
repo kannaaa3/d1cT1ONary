@@ -1,5 +1,6 @@
 package model.database;
 
+import model.word.UserWord;
 import model.word.WordList;
 import model.dictionary.Dictionary;
 
@@ -44,7 +45,7 @@ public class UsersDataQueryHandler {
      * @param connection the database connection
      * @param userID the user's userID
      * @return a list of wordlist which is
-     * @throws SQLException
+     * @throws SQLException a SQLException if the query can not be performed
      */
     public static List<WordList> getUserWordLists(Connection connection, String userID)
             throws SQLException {
@@ -85,8 +86,15 @@ public class UsersDataQueryHandler {
         return wordLists;
     }
 
-    public static List<String> getUserWordReview(Connection connection, String userID)
+    public static List<UserWord> getUserWordReview(Connection connection, String userID)
             throws SQLException {
+        String sql = """
+                SELECT word_id, timestamp, fluency_level, review_times
+                FROM user_word_review_data
+                WHERE user_id = ?
+                """;
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1, userID);
         return null;
     }
 }
