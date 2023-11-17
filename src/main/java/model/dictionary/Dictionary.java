@@ -55,7 +55,7 @@ public class Dictionary {
      * @param numberOfRecommendedWord the number of word we need to recommend
      * @return a List of String which are the recommended word
      */
-    public List<String> getRecommendedWord(String word, int numberOfRecommendedWord) {
+    public List<String> getRecommendedWordByPrefix(String word, int numberOfRecommendedWord) {
         if (word == null) {
             throw new IllegalArgumentException("Can not get recommended for null word!");
         }
@@ -92,7 +92,7 @@ public class Dictionary {
      * @param word the word we want to translate
      * @return a Word object for the translation of the word (english - english)
      */
-    public Word getWordData(String word) {
+    public static Word getWordData(String word) {
         if (word == null) {
             throw new IllegalArgumentException("Can not get word data on null object!");
         }
@@ -157,8 +157,7 @@ public class Dictionary {
             text = object.getString("text");
         } catch (Exception e) {
             text = "";
-            System.out.println(e.toString());
-            System.out.println(object.toString());
+            e.printStackTrace();
         }
         try {
             audio = object.getString("audio");

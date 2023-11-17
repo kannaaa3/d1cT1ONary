@@ -1,9 +1,9 @@
 package model.word;
 
 public class Word {
-    String word;
-    Phonetic phonetic;
-    Meaning meaning;
+    private final String word;
+    private final Phonetic phonetic;
+    private final Meaning meaning;
 
     /**
      * Public constructor for a word. Note that meaning contains definition, part of speech, example
@@ -31,8 +31,21 @@ public class Word {
         return meaning;
     }
 
+    /**
+     * The representation of the word.
+     *
+     * @return the representation in format: Word[word=%s,phonetic=%s,meaning=%s]
+     */
     public String toString() {
         return String.format("Word[word=%s,phonetic=%s,meaning=%s]",
                 word, phonetic.toString(), meaning.toString());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Word otherWord)) {
+            return false;
+        }
+        return this.word.equals(otherWord.word);
     }
 }

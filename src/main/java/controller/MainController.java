@@ -41,8 +41,6 @@ public class MainController implements Initializable {
 
         @Override
         public void initialize(URL location, ResourceBundle resources) {
-                Dictionary dictionary = new Dictionary("src/main/java/resources/word.txt");
-
                 showWordButton.setPrefWidth(40);
                 showWordButton.setPrefHeight(40);
                 showWordButton.setLayoutX(22);
@@ -67,6 +65,7 @@ public class MainController implements Initializable {
                 playButton.setDisable(true);
                 playButton.setOpacity(0);
 
+
                 showWordPane = getController("/view/showWord.fxml").getKey();
                 showWordController = (ShowWordController) getController("/view/showWord.fxml").getValue();
 
@@ -81,9 +80,11 @@ public class MainController implements Initializable {
 
                 renderSlideMenuScreen();
                 renderShowWordScreen();
+
                 mainPane.getChildren().add(showWordButton);
                 mainPane.getChildren().add(reviewButton);
                 mainPane.getChildren().add(playButton);
+
         }
 
         public Pair<AnchorPane, Initializable> getController(String path) {
