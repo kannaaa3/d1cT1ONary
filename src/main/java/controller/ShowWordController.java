@@ -1,17 +1,22 @@
 package controller;
 
+import javafx.beans.value.ObservableValue;
+import javafx.collections.SetChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import model.dictionary.Dictionary;
 import model.word.Meaning;
 import model.word.Phonetic;
 import model.word.Word;
 
-import static controller.SlideMenuController.myWord;
+import static controller.SlideMenuController.*;
+
 
 public class ShowWordController implements Initializable {
     @FXML
@@ -29,26 +34,19 @@ public class ShowWordController implements Initializable {
     @FXML
     public Label antonyms;
 
-    Word testword = new Word("dummy",
-            new Phonetic("/həˈləʊ/", "https://api.dictionaryapi.dev"
-                    + "/media/pronunciations/en/hello-uk.mp3"),
-            new Meaning("noun", "\"Hello!\" or an equivalent greeting.",
-                    "Hewwo!", new String[]{"donowall", "kappa"},
-                    new String[]{"hmm", "goodbye"}));
-    Word word1 = new Word("hiiii",
-            new Phonetic("/həˈləʊ/", "https://api.dictionaryapi.dev"
-                    + "/media/pronunciations/en/hello-uk.mp3"),
-            new Meaning("noun", "\"Hello!\" or an equivalent greeting.",
-                    "Hewwo!", new String[]{"donowall", "kappa"},
-                    new String[]{"hmm", "goodbye"}));
-    
+
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        //displayWord(myWord);
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        
     }
 
 
-    public void displayWord(Word myWord) {
+
+    @FXML
+    public void displayWord() {
+        myWord = dictionary.getWordData(showWord);
+        System.out.println("Vao ham");
+        System.out.println(showWord);
         String[] x = myWord.getMeaning().synonyms();
         String s1 = "";
         for (int i = 0; i < x.length; i++) s1 = s1 + x[i] + "\n";
@@ -62,5 +60,7 @@ public class ShowWordController implements Initializable {
         example.setText(myWord.getMeaning().example());
         synonyms.setText(s1);
         antonyms.setText(s2);
+        System.out.println("Het ham");
     }
+
 }

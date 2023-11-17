@@ -92,7 +92,7 @@ public class Dictionary {
      * @param word the word we want to translate
      * @return a Word object for the translation of the word (english - english)
      */
-    public static Word getWordData(String word) {
+    public Word getWordData(String word) {
         if (word == null) {
             throw new IllegalArgumentException("Can not get word data on null object!");
         }

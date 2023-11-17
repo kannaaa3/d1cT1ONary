@@ -13,6 +13,8 @@ import model.dictionary.Dictionary;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static controller.SlideMenuController.*;
+
 
 public class MainController implements Initializable {
         @FXML
@@ -20,9 +22,9 @@ public class MainController implements Initializable {
         @FXML
         public ReviewController reviewController;
         @FXML
-        private ShowWordController showWordController;
+        public static ShowWordController showWordController;
         @FXML
-        private SlideMenuController slideMenuController;
+        public SlideMenuController slideMenuController;
 
         @FXML
         private AnchorPane showWordPane;
@@ -65,6 +67,8 @@ public class MainController implements Initializable {
                 playButton.setDisable(true);
                 playButton.setOpacity(0);
 
+                slideMenuPane = getController("/view/slideMenu.fxml").getKey();
+                slideMenuController = (SlideMenuController) getController("/view/slideMenu.fxml").getValue();
 
                 showWordPane = getController("/view/showWord.fxml").getKey();
                 showWordController = (ShowWordController) getController("/view/showWord.fxml").getValue();
@@ -75,8 +79,6 @@ public class MainController implements Initializable {
                 gamePane = getController("/view/game.fxml").getKey();
                 gameController = (GameController) getController("/view/game.fxml").getValue();
 
-                slideMenuPane = getController("/view/slideMenu.fxml").getKey();
-                slideMenuController = (SlideMenuController) getController("/view/slideMenu.fxml").getValue();
 
                 renderSlideMenuScreen();
                 renderShowWordScreen();
@@ -85,6 +87,7 @@ public class MainController implements Initializable {
                 mainPane.getChildren().add(reviewButton);
                 mainPane.getChildren().add(playButton);
 
+                System.out.println(showWordController);
         }
 
         public Pair<AnchorPane, Initializable> getController(String path) {

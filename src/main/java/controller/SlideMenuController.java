@@ -19,6 +19,8 @@ import model.word.Meaning;
 import model.word.Phonetic;
 import model.word.Word;
 
+import static controller.MainController.showWordController;
+
 
 public class SlideMenuController implements Initializable {
     @FXML
@@ -33,9 +35,11 @@ public class SlideMenuController implements Initializable {
     @FXML
     private Button playButton;
     public String currentWord = "";
+    public static String showWord = "Hello";
 
     public List<String> words = new ArrayList<String>();
     static Dictionary dictionary = new Dictionary("src/main/resources/words.txt");
+
     public static Word myWord = new Word("dummy",
             new Phonetic("/həˈləʊ/", "https://api.dictionaryapi.dev"
                     + "/media/pronunciations/en/hello-uk.mp3"),
@@ -48,14 +52,21 @@ public class SlideMenuController implements Initializable {
         searchBar.textProperty().addListener((observable, oldValue, newValue) -> {
             currentWord = newValue;
             System.out.println(currentWord);
-            //myWord = dictionary.getWordData(currentWord);
             words = dictionary.getRecommendedWordByPrefix(currentWord, 10);
             displayRecommendedWordByPrefix(words);
         });
+
+        myListView.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> {
+            showWord = t1;
+            System.out.println(showWord);
+            showWordController.displayWord();
+            System.out.println(showWordController);
+        });
+
     }
 
     @FXML
-    private ListView<String> myListView;
+    public ListView<String> myListView;
     @FXML
     public TextField searchBar;
 
