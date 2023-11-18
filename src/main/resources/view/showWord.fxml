@@ -32,9 +32,9 @@
                                     </font>
                                 </Label>
                                 <Button layoutX="465.0" layoutY="14.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="27.0">
-                     <graphic>
-                        <FontAwesomeIconView glyphName="MICROPHONE" strokeType="OUTSIDE" strokeWidth="0.0" />
-                     </graphic></Button>
+                                 <graphic>
+                                    <FontAwesomeIconView glyphName="MICROPHONE" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                 </graphic></Button>
                                 <Line endX="926.0" endY="500.6000061035156" layoutX="-20.0" layoutY="-45.0" startX="71.29998779296875" startY="500.6000061035156" stroke="WHITE" />
                   <Label fx:id="partOfSpeech" layoutX="19.0" layoutY="52.0" prefHeight="26.0" prefWidth="230.0" text="Noun" textFill="WHITE">
                      <font>
@@ -101,12 +101,12 @@
                                             <font>
                                                 <Font size="20.0" />
                                             </font></Label>
-                        <Label fx:id="antonyms" alignment="TOP_LEFT" layoutX="27.0" layoutY="181.0" prefHeight="61.0" prefWidth="146.0" text="Antonyms" textFill="WHITE">
+                        <Label fx:id="antonyms" alignment="TOP_LEFT" layoutX="27.0" layoutY="181.0" prefHeight="61.0" prefWidth="146.0" text="Antonyms" textFill="WHITE" wrapText="true">
                            <font>
                               <Font name="Century Gothic" size="15.0" />
                            </font>
                         </Label>
-                        <Label fx:id="synonyms" alignment="TOP_LEFT" layoutX="27.0" layoutY="46.0" prefHeight="61.0" prefWidth="146.0" text="Synonyms" textFill="WHITE">
+                        <Label fx:id="synonyms" alignment="TOP_LEFT" layoutX="27.0" layoutY="46.0" prefHeight="61.0" prefWidth="146.0" text="Synonyms" textFill="WHITE" wrapText="true">
                            <font>
                               <Font name="Century Gothic" size="15.0" />
                            </font></Label>

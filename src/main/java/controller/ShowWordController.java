@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 import javafx.scene.layout.AnchorPane;
@@ -40,7 +41,7 @@ public class ShowWordController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        displayWord();
     }
 
 

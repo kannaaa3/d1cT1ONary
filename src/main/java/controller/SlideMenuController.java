@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
@@ -20,10 +21,13 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import controller.MainController;
+import javafx.util.Callback;
 import model.dictionary.Dictionary;
 import model.word.Meaning;
 import model.word.Phonetic;
 import model.word.Word;
+
+
 
 import static controller.MainController.showWordController;
 
@@ -47,12 +51,7 @@ public class SlideMenuController implements Initializable {
     public List<String> words = new ArrayList<String>();
     static Dictionary dictionary = new Dictionary("src/main/resources/words.txt");
 
-    public static Word myWord = new Word("dummy",
-            new Phonetic("/həˈləʊ/", "https://api.dictionaryapi.dev"
-                    + "/media/pronunciations/en/hello-uk.mp3"),
-            new Meaning("noun", "\"Hello!\" or an equivalent greeting.",
-                    "Hewwo!", new String[]{"donowall", "kappa"},
-                    new String[]{"hmm", "goodbye"}));;
+    public static Word myWord;
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -87,6 +86,30 @@ public class SlideMenuController implements Initializable {
 
 
     public void displayRecommendedWordByPrefix(List<String> words) {
+
+        myListView.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
+            @Override
+            public ListCell<String> call(ListView<String> param) {
+                return new ListCell<String>() {
+                    @Override
+                    protected void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+
+                        if (item == null || empty) {
+                            setText(null);
+                            setStyle("-fx-control-inner-background: " + "#483D8B" + ";");
+                        } else {
+                            setText(item);
+                            //f (item.startsWith("J")) {
+                            setStyle("-fx-control-inner-background: " + "#4C3E87" + ";");
+                            //} else {
+                            //("-fx-control-inner-background: " + DEFAULT_CONTROL_INNER_BACKGROUND + ";");
+                            //}
+                        }
+                    }
+                };
+            }
+        });
         myListView.getItems().clear();
         myListView.getItems().addAll(words);
     }
