@@ -25,6 +25,8 @@ public class MainController implements Initializable {
         public static ShowWordController showWordController;
         @FXML
         public SlideMenuController slideMenuController;
+        @FXML
+        public WordlistController wordlistController;
 
         @FXML
         private AnchorPane showWordPane;
@@ -34,6 +36,8 @@ public class MainController implements Initializable {
         private AnchorPane gamePane;
         @FXML
         private AnchorPane slideMenuPane;
+        @FXML
+        private AnchorPane wordlistPane;
         @FXML
         public AnchorPane mainPane;
 
@@ -85,6 +89,10 @@ public void initialize(URL location, ResourceBundle resources) {
         gamePane = controller.getKey();
         gameController = (GameController) controller.getValue();
 
+        controller = getController("/view/wordlist.fxml");
+        wordlistPane = controller.getKey();
+        wordlistController = (WordlistController) controller.getValue();
+
 
         renderSlideMenuScreen();
         renderShowWordScreen();
@@ -134,5 +142,12 @@ public void initialize(URL location, ResourceBundle resources) {
                 gamePane.setLayoutX(320);
                 gamePane.setLayoutY(0);
                 mainPane.getChildren().add(gamePane);
+        }
+
+        public void renderWordlistScreen() {
+                mainPane.getChildren().remove(wordlistPane);
+                wordlistPane.setLayoutX(320);
+                wordlistPane.setLayoutY(0);
+                mainPane.getChildren().add(wordlistPane);
         }
 }

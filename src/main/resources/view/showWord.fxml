@@ -86,6 +86,12 @@
                                  </image>
                               </ImageView>
                            </graphic></Button>
+                        <ImageView fx:id="addImage" fitHeight="40.0" fitWidth="40.0" layoutX="660.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/TranslateScreen/Icon%20Add.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="add" layoutX="660.0" layoutY="19.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" opacity="0.0" prefHeight="40.0" prefWidth="40.0" />
                                     </children>
                                 </AnchorPane>
                             </left>
@@ -113,5 +119,11 @@
                                     </children></AnchorPane>
                             </right></BorderPane>
                     </bottom></BorderPane>
+      <ImageView fx:id="adđWordlistWindow" fitHeight="802.0" fitWidth="945.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/TranslateScreen/AddWordlist%20Window.png" />
+         </image>
+      </ImageView>
+      <DialogPane layoutX="230.0" layoutY="143.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="317.0" prefWidth="484.0" visible="false" />
             </children>
 </AnchorPane>
