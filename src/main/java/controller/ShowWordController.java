@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.scene.layout.AnchorPane;
 import model.dictionary.Dictionary;
 import model.word.Meaning;
 import model.word.Phonetic;
@@ -19,6 +20,8 @@ import static controller.SlideMenuController.*;
 
 
 public class ShowWordController implements Initializable {
+    @FXML
+    public AnchorPane showWordScreen;
     @FXML
     public Label word;
     @FXML
@@ -37,7 +40,7 @@ public class ShowWordController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        
+
     }
 
 
@@ -56,8 +59,8 @@ public class ShowWordController implements Initializable {
         word.setText(myWord.getWord());
         phoneticText.setText(myWord.getPhonetic().text());
         partOfSpeech.setText(myWord.getMeaning().partOfSpeech());
-        definition.setText(myWord.getMeaning().definition());
-        example.setText(myWord.getMeaning().example());
+        definition.setText("Definition:\n" + myWord.getMeaning().definition());
+        example.setText("Example:\n" + myWord.getMeaning().example());
         synonyms.setText(s1);
         antonyms.setText(s2);
         System.out.println("Het ham");

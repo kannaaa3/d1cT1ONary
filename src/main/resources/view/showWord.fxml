@@ -7,7 +7,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="800.0" prefWidth="946.0" style="-fx-background-color: #705CAC; -fx-background-color: #2C2F48;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ShowWordController">
+<AnchorPane fx:id="showWordScreen" prefHeight="800.0" prefWidth="946.0" style="-fx-background-color: #705CAC; -fx-background-color: #2C2F48;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ShowWordController">
             <children>
       <ImageView fitHeight="469.0" fitWidth="445.0" layoutX="525.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -40,11 +40,11 @@
                      <font>
                         <Font name="Century Gothic" size="15.0" />
                      </font></Label>
-                  <Label fx:id="definition" layoutX="19.0" layoutY="78.0" prefHeight="42.0" prefWidth="619.0" text="Definition" textFill="WHITE">
+                  <Label fx:id="definition" layoutX="19.0" layoutY="78.0" prefHeight="111.0" prefWidth="619.0" text="Definition" textFill="WHITE" wrapText="true">
                      <font>
                         <Font name="Century Gothic" size="17.0" />
                      </font></Label>
-                  <Label fx:id="example" alignment="TOP_LEFT" layoutX="57.0" layoutY="129.0" prefHeight="114.0" prefWidth="651.0" text="Example" textFill="WHITE">
+                  <Label fx:id="example" alignment="TOP_LEFT" layoutX="48.0" layoutY="199.0" prefHeight="114.0" prefWidth="651.0" text="Example" textFill="WHITE" wrapText="true">
                      <font>
                         <Font size="17.0" />
                      </font>

@@ -1,12 +1,18 @@
 package controller;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import java.net.URL;
 import java.util.ArrayList;
@@ -37,6 +43,7 @@ public class SlideMenuController implements Initializable {
     public String currentWord = "";
     public static String showWord = "Hello";
 
+
     public List<String> words = new ArrayList<String>();
     static Dictionary dictionary = new Dictionary("src/main/resources/words.txt");
 
@@ -55,7 +62,15 @@ public class SlideMenuController implements Initializable {
             words = dictionary.getRecommendedWordByPrefix(currentWord, 10);
             displayRecommendedWordByPrefix(words);
         });
-
+        searchBar.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent keyEvent) {
+                if (keyEvent.getCode() == KeyCode.ENTER) {
+                    showWord = searchBar.getText();
+                    showWordController.displayWord();
+                }
+            }
+        });
         myListView.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> {
             showWord = t1;
             System.out.println(showWord);

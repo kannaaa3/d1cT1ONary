@@ -41,54 +41,105 @@ public class MainController implements Initializable {
         Button reviewButton = new Button();
         Button playButton = new Button();
 
-        @Override
-        public void initialize(URL location, ResourceBundle resources) {
-                showWordButton.setPrefWidth(40);
-                showWordButton.setPrefHeight(40);
-                showWordButton.setLayoutX(22);
-                showWordButton.setLayoutY(127);
-                showWordButton.setOnAction(event -> renderShowWordScreen());
-                showWordButton.setDisable(true);
-                showWordButton.setOpacity(0);
+//        @Override
+//        public void initialize(URL location, ResourceBundle resources) {
+//                showWordButton.setPrefWidth(40);
+//                showWordButton.setPrefHeight(40);
+//                showWordButton.setLayoutX(22);
+//                showWordButton.setLayoutY(127);
+//                showWordButton.setOnAction(event -> renderShowWordScreen());
+//                showWordButton.setDisable(true);
+//                showWordButton.setOpacity(0);
+//
+//                reviewButton.setPrefWidth(40);
+//                reviewButton.setPrefHeight(40);
+//                reviewButton.setLayoutX(22);
+//                reviewButton.setLayoutY(207);
+//                reviewButton.setOnAction(event -> renderReviewScreen());
+//                reviewButton.setDisable(true);
+//                reviewButton.setOpacity(0);
+//
+//                playButton.setPrefWidth(40);
+//                playButton.setPrefHeight(40);
+//                playButton.setLayoutX(22);
+//                playButton.setLayoutY(287);
+//                playButton.setOnAction(event -> renderGameScreen());
+//                playButton.setDisable(true);
+//                playButton.setOpacity(0);
+//
+//                slideMenuPane = getController("/view/slideMenu.fxml").getKey();
+//                slideMenuController = (SlideMenuController) getController("/view/slideMenu.fxml").getValue();
+//
+//                showWordPane = getController("/view/showWord.fxml").getKey();
+//                showWordController = (ShowWordController) getController("/view/showWord.fxml").getValue();
+//
+//                reviewPane = getController("/view/review.fxml").getKey();
+//                reviewController = (ReviewController) getController("/view/review.fxml").getValue();
+//
+//                gamePane = getController("/view/game.fxml").getKey();
+//                gameController = (GameController) getController("/view/game.fxml").getValue();
+//
+//
+//                renderSlideMenuScreen();
+//                renderShowWordScreen();
+//
+//                mainPane.getChildren().add(showWordButton);
+//                mainPane.getChildren().add(reviewButton);
+//                mainPane.getChildren().add(playButton);
+//
+//                System.out.println(showWordController);
+//        }
+@Override
+public void initialize(URL location, ResourceBundle resources) {
+        showWordButton.setPrefWidth(40);
+        showWordButton.setPrefHeight(40);
+        showWordButton.setLayoutX(22);
+        showWordButton.setLayoutY(127);
+        showWordButton.setOnAction(event -> renderShowWordScreen());
+        showWordButton.setDisable(true);
+        showWordButton.setOpacity(0);
 
-                reviewButton.setPrefWidth(40);
-                reviewButton.setPrefHeight(40);
-                reviewButton.setLayoutX(22);
-                reviewButton.setLayoutY(207);
-                reviewButton.setOnAction(event -> renderReviewScreen());
-                reviewButton.setDisable(true);
-                reviewButton.setOpacity(0);
+        reviewButton.setPrefWidth(40);
+        reviewButton.setPrefHeight(40);
+        reviewButton.setLayoutX(22);
+        reviewButton.setLayoutY(207);
+        reviewButton.setOnAction(event -> renderReviewScreen());
+        reviewButton.setDisable(true);
+        reviewButton.setOpacity(0);
 
-                playButton.setPrefWidth(40);
-                playButton.setPrefHeight(40);
-                playButton.setLayoutX(22);
-                playButton.setLayoutY(287);
-                playButton.setOnAction(event -> renderGameScreen());
-                playButton.setDisable(true);
-                playButton.setOpacity(0);
+        playButton.setPrefWidth(40);
+        playButton.setPrefHeight(40);
+        playButton.setLayoutX(22);
+        playButton.setLayoutY(287);
+        playButton.setOnAction(event -> renderGameScreen());
+        playButton.setDisable(true);
+        playButton.setOpacity(0);
 
-                slideMenuPane = getController("/view/slideMenu.fxml").getKey();
-                slideMenuController = (SlideMenuController) getController("/view/slideMenu.fxml").getValue();
+        Pair<AnchorPane, Initializable> controller;
+        controller = getController("/view/slideMenu.fxml");
+        slideMenuPane = controller.getKey();
+        slideMenuController = (SlideMenuController) controller.getValue();
 
-                showWordPane = getController("/view/showWord.fxml").getKey();
-                showWordController = (ShowWordController) getController("/view/showWord.fxml").getValue();
+        controller = getController("/view/showWord.fxml");
+        showWordPane = controller.getKey();
+        showWordController = (ShowWordController) controller.getValue();
 
-                reviewPane = getController("/view/review.fxml").getKey();
-                reviewController = (ReviewController) getController("/view/review.fxml").getValue();
+        controller = getController("/view/review.fxml");
+        reviewPane = controller.getKey();
+        reviewController = (ReviewController) controller.getValue();
 
-                gamePane = getController("/view/game.fxml").getKey();
-                gameController = (GameController) getController("/view/game.fxml").getValue();
+        controller = getController("/view/game.fxml");
+        gamePane = controller.getKey();
+        gameController = (GameController) controller.getValue();
 
 
-                renderSlideMenuScreen();
-                renderShowWordScreen();
+        renderSlideMenuScreen();
+        renderShowWordScreen();
 
-                mainPane.getChildren().add(showWordButton);
-                mainPane.getChildren().add(reviewButton);
-                mainPane.getChildren().add(playButton);
-
-                System.out.println(showWordController);
-        }
+        mainPane.getChildren().add(showWordButton);
+        mainPane.getChildren().add(reviewButton);
+        mainPane.getChildren().add(playButton);
+}
 
         public Pair<AnchorPane, Initializable> getController(String path) {
                 try {
