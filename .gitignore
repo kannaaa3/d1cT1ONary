@@ -38,3 +38,4 @@ build/
 src/main/resources/SqliteJavaDB.db
 src/main/resources/words.txt
 src/main/resources/device_cert/*
+src/main/resources/data.sql

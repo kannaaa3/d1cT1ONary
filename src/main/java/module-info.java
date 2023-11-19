@@ -5,6 +5,7 @@ module java {
 
     // Unit test dependencies
     requires junit;
+    requires javafx.fxml;
 
     requires org.slf4j;
 

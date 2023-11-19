@@ -1,204 +1,98 @@
 package model.database;
 
-import java.sql.SQLException;
-import java.sql.Statement;
+import org.junit.Assert;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.*;
 
 public class TableCreator {
-    public static final int MAX_WORD_LENGTH = 64;
-    public static final int MAX_USERNAME_LENGTH = 64;
-    public static final int MAX_URL_LENGTH = 256;
-    
+    public static final String[] tables = new String[]{
+            "wn_gloss",
+            "wn_synset",
+            "wn_antonym",
+            "wn_similar"
+    };
+    public static final String[] statements = new String[]{
+            "INSERT INTO `wn_gloss` VALUES (?,?);",
+            "INSERT INTO `wn_synset` VALUES (?,?,?,?,?,?);",
+            "INSERT INTO `wn_antonym` VALUES (?,?,?,?);",
+            "INSERT INTO `wn_similar` VALUES (?,?);"
+    };
+    public static final Integer[] numberOfArguments = new Integer[]{
+            2, 6, 4, 2
+    };
+
     /**
-     * Function to create users database.
+     * Function to get sql query from file.
      *
-     * @param statement a statement object that what created by a database connection
-     * @throws SQLException throws when the statement can not be executed
+     * @param filePath the path to the file
+     * @return an array of string which are the sql queries
      */
-    public static void createUserTable(Statement statement) throws SQLException {
-        String sql = """
-                CREATE TABLE IF NOT EXISTS users(
-                    user_id VARCHAR(255),
-                    username VARCHAR(255),
-                    password VARCHAR(255),
-                    CONSTRAINT users_pk PRIMARY KEY (user_id)
-                );
-                """;
-        statement.execute(sql);
+    private static String[] getQueryData(String filePath, String seperate) {
+        try {
+            File file = new File(filePath);
+            if (file.exists()) {
+                InputStream inputStream = new FileInputStream(file);
+                String[] ans = new String(inputStream.readAllBytes()).split(seperate);
+                inputStream.close();
+                return ans;
+            }
+        } catch (IOException e) {
+            System.out.println("Error while reading file: " + filePath);
+            e.printStackTrace();
+            System.exit(-1);
+        }
+        return new String[0];
     }
 
     /**
-     * Function to create word database.
+     * Function to load table's data from file.
      *
-     * @param statement a statement object that what created by a database connection
-     * @throws SQLException throws when the statement can not be executed
+     * @param connection the database connection
+     * @param filePath the table's queries filepath
+     * @throws SQLException throw new SQLException if the query can not be performed
      */
-    public static void createWordDatabase(Statement statement) throws SQLException {
-        String sql = """
-                CREATE TABLE IF NOT EXISTS words(
-                    word_id VARCHAR(255),
-                    word VARCHAR(255),
-                    text VARCHAR(255),
-                    audio VARCHAR(255),
-                    part_of_speech VARCHAR(255),
-                    definition VARCHAR(255),
-                    example VARCHAR(255),
-                    CONSTRAINT words_pk PRIMARY KEY (word_id)
-                );
-                """;
-        statement.execute(sql);
+    public static void createTable(Connection connection, String filePath) throws SQLException {
+        String[] sql = getQueryData(filePath, ";");
+        Statement statement = connection.createStatement();
+        for (String query : sql) {
+            statement.execute(query);
+        }
     }
 
     /**
-     * Function to create synonym database.
+     * Function to load dictionary data
      *
-     * @param statement a statement object that what created by a database connection
-     * @throws SQLException throws when the statement can not be executed
+     * @param connection the database connection
+     * @param filePath the filepath of the dictionary data
+     * @throws SQLException if the query can not be done
      */
-    public static void createSynonymDatabase(Statement statement) throws SQLException {
-        String sql = """
-                CREATE TABLE IF NOT EXISTS word_synonym(
-                    word_id VARCHAR(255),
-                    synonym VARCHAR(255),
-                    CONSTRAINT word_synonym_pk PRIMARY KEY (word_id, synonym),
-                    CONSTRAINT word_synonym_word_id_fk
-                    FOREIGN KEY (word_id)
-                        REFERENCES words (word_id)
-                            ON DELETE CASCADE
-                            ON UPDATE NO ACTION
-                );
-                """;
-        statement.execute(sql);
-    }
+    public static void loadDictionaryData(Connection connection,
+                                          String filePath) throws SQLException {
+        ResultSet resultSet = connection.createStatement()
+                .executeQuery("SELECT * FROM wn_synset");
+        if (resultSet.next()) {
+            return;
+        }
 
-    /**
-     * Function to create antonym database.
-     *
-     * @param statement a statement object that what created by a database connection
-     * @throws SQLException throws when the statement can not be executed
-     */
-    public static void createAntonymDatabase(Statement statement) throws SQLException {
-        String sql = """
-                CREATE TABLE IF NOT EXISTS word_antonym(
-                    word_id VARCHAR(255),
-                    antonym VARCHAR(255),
-                    CONSTRAINT word_antonym_pk PRIMARY KEY (word_id, antonym),
-                    CONSTRAINT word_antonym_word_id
-                    FOREIGN KEY (word_id)
-                        REFERENCES words (word_id)
-                            ON DELETE CASCADE
-                            ON UPDATE NO ACTION
-                );
-                """;
-        statement.execute(sql);
-    }
-
-    /**
-     * Function to create user's word revision database.
-     *
-     * @param statement a statement object that what created by a database connection
-     * @throws SQLException throws when the statement can not be executed
-     */
-    public static void createUserWordReviewDataTable(Statement statement) throws SQLException {
-        String sql = """
-                CREATE TABLE IF NOT EXISTS user_word_review_data(
-                    user_id VARCHAR(255),
-                    word_id VARCHAR(255),
-                    timestamp INTEGER,
-                    fluency_level INTEGER,
-                    review_times INTEGER,
-                    CONSTRAINT user_word_review_data_pk PRIMARY KEY (user_id, word_id),
-                    CONSTRAINT user_word_review_data_user_id_fk
-                    FOREIGN KEY (user_id)
-                        REFERENCES users (user_id)
-                            ON DELETE CASCADE
-                            ON UPDATE NO ACTION,
-                    CONSTRAINT user_word_review_data_word_id_fk
-                    FOREIGN KEY (word_id)
-                        REFERENCES words (word_id)
-                            ON DELETE CASCADE
-                            ON UPDATE NO ACTION
-                );
-                """;
-        statement.execute(sql);
-    }
-
-    /**
-     * Function to create user's wordlist database.
-     *
-     * @param statement a statement object that what created by a database connection
-     * @throws SQLException throws when the statement can not be executed
-     */
-    public static void createUserWordListDataTable(Statement statement) throws SQLException {
-        String sql = """
-                CREATE TABLE IF NOT EXISTS user_word_list_data(
-                    user_id VARCHAR(255),
-                    word_list_id INTEGER,
-                    word_id VARCHAR(255),
-                    CONSTRAINT user_word_list_data_pk PRIMARY KEY (user_id, word_list_id, word_id),
-                    CONSTRAINT user_word_list_data_user_id
-                    FOREIGN KEY (user_id)
-                        REFERENCES users (user_id)
-                            ON DELETE CASCADE
-                            ON UPDATE NO ACTION,
-                    CONSTRAINT user_word_list_data_word_id
-                    FOREIGN KEY (word_id)
-                        REFERENCES words (word_id)
-                            ON DELETE CASCADE
-                            ON UPDATE NO ACTION
-                );
-                """;
-        statement.execute(sql);
-    }
-
-    /**
-     * Function to create user's wordlist database.
-     *
-     * @param statement a statement object that what created by a database connection
-     * @throws SQLException throws when the statement can not be executed
-     */
-    public static void createUserWordListNameDataTable(Statement statement) throws SQLException {
-        String sql = """
-                CREATE TABLE IF NOT EXISTS user_word_list_name_data(
-                    user_id VARCHAR(255),
-                    word_list_id INTEGER,
-                    word_list_name VARCHAR(255),
-                    CONSTRAINT user_word_list_name_data_pk PRIMARY KEY (user_id, word_list_id),
-                    CONSTRAINT user_word_list_name_data_user_id_fk
-                    FOREIGN KEY (user_id)
-                        REFERENCES users (user_id)
-                            ON DELETE CASCADE
-                            ON UPDATE NO ACTION
-                );
-                """;
-        statement.execute(sql);
-    }
-
-    /**
-     * Function to create user's search history database.
-     *
-     * @param statement a statement object that what created by a database connection
-     * @throws SQLException throws when the statement can not be executed
-     */
-    public static void createUserSearchHistoryDataTable(Statement statement) throws SQLException {
-        String sql = """
-                CREATE TABLE IF NOT EXISTS user_search_history_data(
-                    user_id VARCHAR(255),
-                    word_id VARCHAR(255),
-                    timestamp INTEGER,
-                    CONSTRAINT user_search_history_data_pk
-                        PRIMARY KEY (user_id, word_id),
-                    CONSTRAINT user_search_history_data_user_id_fk
-                        FOREIGN KEY (user_id)
-                            REFERENCES users (user_id)
-                                ON DELETE CASCADE
-                                ON UPDATE NO ACTION,
-                    CONSTRAINT user_search_history_data_word_id_fk
-                        FOREIGN KEY (word_id)
-                            REFERENCES words (word_id)
-                                ON DELETE CASCADE
-                                ON UPDATE NO ACTION
-                );
-                """;
-        statement.execute(sql);
+        String[] sql = getQueryData(filePath, "\n");
+        int currentPointer = 0;
+        while (currentPointer < sql.length) {
+            for (int i = 2; i < statements.length; i++) {
+                if (sql[currentPointer].trim().equals(tables[i])) {
+                    PreparedStatement preparedStatement
+                            = connection.prepareStatement(statements[i]);
+                    for (int j = 1; j <= numberOfArguments[i]; j++) {
+                        preparedStatement.setString(j, sql[currentPointer + j].trim());
+                    }
+                    preparedStatement.executeUpdate();
+                    currentPointer += numberOfArguments[i];
+                }
+            }
+            currentPointer++;
+        }
     }
 }

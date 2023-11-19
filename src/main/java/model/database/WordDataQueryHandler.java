@@ -1,5 +1,8 @@
 package model.database;
 
+import javafx.util.Pair;
+import model.util.Algorithm;
+import model.util.ComparablePair;
 import model.word.Meaning;
 import model.word.Phonetic;
 import model.word.Word;
@@ -21,57 +24,176 @@ public class WordDataQueryHandler {
      * @throws SQLException throw if the query can not be executed
      */
     public static Word getWordData(Connection connection, String wordID) throws SQLException {
-        List<String> synonyms = new ArrayList<>();
-        List<String> antonyms = new ArrayList<>();
-        ResultSet resultSet;
-        String sql;
-        PreparedStatement statement;
-
-        sql = """
-        SELECT synonym
-        FROM word_synonym
-        WHERE word_id = ?;
-        """;
-        statement = connection.prepareStatement(sql);
-        statement.setString(1, wordID);
-        resultSet = statement.executeQuery();
-        while (resultSet.next()) {
-            synonyms.add(resultSet.getString("synonym"));
-        }
-
-        sql = """
-        SELECT antonym
-        FROM word_antonym
-        WHERE word_id = ?;
-        """;
-        statement = connection.prepareStatement(sql);
-        statement.setString(1, wordID);
-        resultSet = statement.executeQuery();
-        while (resultSet.next()) {
-            antonyms.add(resultSet.getString("antonym"));
-        }
-
-        sql = """
-        SELECT word, text, audio, part_of_speech, definition, example
-        FROM words
-        WHERE word_id = ?;
-        """;
-        statement = connection.prepareStatement(sql);
-        statement.setString(1, wordID);
-        resultSet = statement.executeQuery();
-        if (resultSet.next()) {
-            Phonetic phonetic = new Phonetic(
-                    resultSet.getString("text"),
-                    resultSet.getString("audio"));
-            Meaning meaning = new Meaning(
-                    resultSet.getString("part_of_speech"),
-                    resultSet.getString("definition"),
-                    resultSet.getString("example"),
-                    (String[]) synonyms.toArray(),
-                    (String[]) antonyms.toArray());
-
-            return new Word(resultSet.getString("word"), phonetic, meaning);
-        }
         return null;
+    }
+
+    /**
+     * Function to get all the word from the database.
+     *
+     * @param connection the database connection
+     * @return an array of string which is the word from database
+     */
+    public static String[] getWordListFromDatabase(Connection connection) {
+        String sql = """
+                SELECT DISTINCT word
+                FROM wn_synset
+                """;
+        try {
+            ResultSet resultSet = connection.createStatement().executeQuery(sql);
+            List<String> ans = new ArrayList<>();
+            while (resultSet.next()) {
+                ans.add(resultSet.getString("word"));
+            }
+            return (String[]) ans.toArray();
+        } catch (SQLException e) {
+            System.out.println("Can not get word data from the database!");
+            e.printStackTrace();
+            System.exit(-1);
+        }
+        return new String[0];
+    }
+
+    /**
+     * Function to get wordlist from the synset list.
+     *
+     * @param connection the database connection
+     * @param synsetID the list of synset we want to retrieve
+     * @return an array of string where their synsetID in the array
+     * @throws SQLException an SQLException if the query can be performed
+     */
+    public static String[] getWordListFromSynsetID(Connection connection,
+                                            Long[] synsetID) throws SQLException {
+        String sql = """
+                SELECT synset_id, word
+                FROM wn_synset;
+                """;
+        List<String> ans = new ArrayList<>();
+        ResultSet resultSet = connection.createStatement().executeQuery(sql);
+        while (resultSet.next()) {
+            if (Algorithm.contains(synsetID, resultSet.getLong("synset_id"))) {
+                ans.add(resultSet.getString("word"));
+            }
+        }
+        return (String[]) ans.toArray();
+    }
+
+    /**
+     * Function to get word list from synset ID and word num
+     *
+     * @param connection the connection to database
+     * @param target the target we want to retrieve
+     * @return an array of word which match the synset id and word num
+     * @throws SQLException an SQLException if the query can be performed
+     */
+    public static String[] getWordListFromSynsetIDAndWordNum(
+            Connection connection, ComparablePair<Long, Long>[] target) throws SQLException {
+        String sql = """
+                SELECT synset_id, w_num, word
+                FROM wn_synset;
+                """;
+        List<String> ans = new ArrayList<>();
+        ResultSet resultSet = connection.createStatement().executeQuery(sql);
+        while (resultSet.next()) {
+            if (Algorithm.contains(target, new ComparablePair<Long, Long>(
+                    resultSet.getLong("synset_id"),
+                    resultSet.getLong("w_num")))) {
+                ans.add(resultSet.getString("word"));
+            }
+        }
+        return (String[]) ans.toArray();
+    }
+
+    /**
+     * Function to query synonym from database.
+     *
+     * @param connection the database connection
+     * @param synsetID the id of the synset
+     * @return an array of synonym
+     * @throws SQLException an exception if the query can not be performed
+     */
+    public static String[] getWordSynonym(Connection connection,
+                                          long synsetID) throws SQLException {
+        String sql;
+        sql = """
+        SELECT synset_id_1
+        FROM wn_similar
+        WHERE synset_id_2 = ?
+        UNION
+        SELECT synset_id_2
+        FROM wn_similar
+        WHERE synset_id_1 = ?;
+        """;
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setLong(1, synsetID);
+        preparedStatement.setLong(2, synsetID);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        List<Long> resultSynset = new ArrayList<>();
+        while (resultSet.next()) {
+            resultSynset.add(resultSet.getLong(1));
+        }
+        return getWordListFromSynsetID(connection, (Long[]) resultSynset.toArray());
+    }
+
+    /**
+     * Function to query antonym from database.
+     *
+     * @param connection the connection to database
+     * @param synsetID the id of the synset
+     * @param wordNum the index of the word
+     * @return an array of antonym
+     * @throws SQLException an exception if the query can not be performed
+     */
+    public static String[] getWordAntonym(Connection connection,
+                                          long synsetID, long wordNum) throws SQLException {
+        String sql;
+        sql = """
+        SELECT synset_id_1, wnum_1
+        FROM wn_antonym
+        WHERE synset_id_2 = ? AND wnum_2 = ?
+        UNION
+        SELECT synset_id_2, wnum_2
+        FROM wn_antonym
+        WHERE synset_id_1 = ? AND wnum_1 = ?
+        """;
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setLong(1, synsetID);
+        preparedStatement.setLong(2, wordNum);
+        preparedStatement.setLong(3, synsetID);
+        preparedStatement.setLong(4, wordNum);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        List<ComparablePair<Long, Long>> resultSynset = new ArrayList<>();
+        while (resultSet.next()) {
+            resultSynset.add(new ComparablePair<>(
+                    resultSet.getLong(1), resultSet.getLong(2)));
+        }
+        return getWordListFromSynsetIDAndWordNum(connection,
+                (ComparablePair<Long, Long>[]) resultSynset.toArray());
+    }
+
+    /**
+     * Function to get key for word.
+     *
+     * @param connection the connection to the database
+     * @param word the word we want to find
+     * @return a list which is the pair (synset_id, w_num)
+     * @throws SQLException an exception if the query can not be performed
+     */
+    public static List<Pair<Long, Long> > getWordKey(Connection connection, String word)
+            throws SQLException {
+        String sql;
+        sql = """
+        SELECT synset_id, w_num
+        FROM wn_synset
+        WHERE word = ?;
+        """;
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1, word);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        List<Pair<Long, Long>> result = new ArrayList<>();
+        while (resultSet.next()) {
+            result.add(new Pair<>(resultSet.getLong("synset_id"),
+                    resultSet.getLong("w_num")));
+        }
+        return result;
     }
 }

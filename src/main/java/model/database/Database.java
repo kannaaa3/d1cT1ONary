@@ -1,18 +1,20 @@
 package model.database;
-
 import model.user.User;
 
 import java.sql.*;
 import java.util.Random;
 
 public class Database {
-    private Connection connection = null;
-    private Statement statement = null;
+    private static Connection connection = null;
+    private static Statement statement = null;
 
     /**
      * Constructor for a new database object.
      */
-    public Database() {
+    public static void init() {
+        if (connection != null) {
+            return;
+        }
         try {
             Class.forName("org.sqlite.JDBC");
             connection = DriverManager.getConnection("jdbc:sqlite:"
@@ -33,18 +35,19 @@ public class Database {
     /**
      * Function to create all essential tables.
      */
-    private void createTables() {
+    private static void createTables() {
         try {
-            TableCreator.createUserTable(statement);
-            TableCreator.createWordDatabase(statement);
-            TableCreator.createSynonymDatabase(statement);
-            TableCreator.createAntonymDatabase(statement);
-            TableCreator.createUserWordListDataTable(statement);
-            TableCreator.createUserWordListNameDataTable(statement);
-            TableCreator.createUserWordReviewDataTable(statement);
-            TableCreator.createUserSearchHistoryDataTable(statement);
+            TableCreator.createTable(connection, "src/main/resources/table.sql");
         } catch (SQLException e) {
             System.out.println("Something is wrong when creating tables!");
+            e.printStackTrace();
+            System.exit(-1);
+        }
+
+        try {
+            TableCreator.loadDictionaryData(connection, "src/main/resources/data.sql");
+        } catch (SQLException e) {
+            System.out.println("Something is wrong when loading tables!");
             e.printStackTrace();
             System.exit(-1);
         }
@@ -53,10 +56,13 @@ public class Database {
     /**
      * Function to close connection, use when the application is closed.
      */
-    public void closeConnection() {
+    public static void closeConnection() {
+        init();
         try {
             statement.close();
             connection.close();
+            statement = null;
+            connection = null;
         } catch (SQLException e) {
             System.out.println("Can not close SQLite connection!");
             e.printStackTrace();
@@ -71,7 +77,8 @@ public class Database {
      * @param password the new user's password
      * @return a string which is the user's id, adding user to database if needed
      */
-    public String register(String username, String password) {
+    public static String register(String username, String password) {
+        init();
         Random ran = new Random();
         while (true) {
             StringBuilder userID = new StringBuilder();
@@ -106,7 +113,8 @@ public class Database {
      * @return a string which is the user's id if the pair (username, password) matches a user or
      * null if it's not
      */
-    public String login(String username, String password) {
+    public static String login(String username, String password) {
+        init();
         try {
             return UsersQueryHandler.getUserID(connection, username, password);
         } catch (SQLException e) {
@@ -123,7 +131,8 @@ public class Database {
      * @param username the username we want to check
      * @return true if the username is already existed, false if otherwise
      */
-    public boolean containsUsername(String username) {
+    public static boolean containsUsername(String username) {
+        init();
         try {
             return UsersQueryHandler.containsUsername(connection, username);
         } catch (SQLException e) {
@@ -134,22 +143,27 @@ public class Database {
     }
 
     /**
-     * Please note that this function is only used when testing.
+     * Function to get all the word from the database.
+     *
+     * @return an array which are the word in the list
      */
-    public void removeAllTables() {
+    public static String[] getAllWordFromDatabase() {
+        return WordDataQueryHandler.getWordListFromDatabase(connection);
+    }
+
+    /**
+     * Function to remove all user's record from the database.
+     */
+    public static void removeAllUserRecord() {
+        init();
         try {
-            statement.executeUpdate("DROP TABLE IF EXISTS users;");
-            statement.executeUpdate("DROP TABLE IF EXISTS words;");
-            statement.executeUpdate("DROP TABLE IF EXISTS word_synonym");
-            statement.executeUpdate("DROP TABLE IF EXISTS word_antonym");
-            statement.executeUpdate("DROP TABLE IF EXISTS user_word_review_data;");
-            statement.executeUpdate("DROP TABLE IF EXISTS user_word_list_data;");
-            statement.executeUpdate("DROP TABLE IF EXISTS user_search_history_data;");
-            statement.executeUpdate("DROP TABLE IF EXISTS user_word_list_name_data");
+            statement.execute("DELETE FROM user_word_list_name_data");
+            statement.execute("DELETE FROM user_search_history_data");
+            statement.execute("DELETE FROM user_word_list_data");
+            statement.execute("DELETE FROM user_word_review_data");
+            statement.execute("DELETE FROM users");
         } catch (SQLException e) {
-            System.out.println("Error while removing all tables!");
             e.printStackTrace();
-            System.exit(-1);
         }
     }
 }
