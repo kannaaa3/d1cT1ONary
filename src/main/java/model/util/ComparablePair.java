@@ -4,6 +4,10 @@ import javafx.util.Pair;
 
 public class ComparablePair<K extends Comparable<K>, V extends Comparable<V>> extends
         Pair<K, V> implements Comparable<ComparablePair<K, V>> {
+    public ComparablePair() {
+        super(null, null);
+    }
+
     public ComparablePair(K key, V value) {
         super(key, value);
     }

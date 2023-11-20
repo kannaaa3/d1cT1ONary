@@ -3,6 +3,7 @@ package model.database;
 import javafx.util.Pair;
 import model.util.Algorithm;
 import model.util.ComparablePair;
+import model.util.Converter;
 import model.word.Meaning;
 import model.word.Phonetic;
 import model.word.Word;
@@ -44,7 +45,7 @@ public class WordDataQueryHandler {
             while (resultSet.next()) {
                 ans.add(resultSet.getString("word"));
             }
-            return (String[]) ans.toArray();
+            return ans.toArray(new String[0]);
         } catch (SQLException e) {
             System.out.println("Can not get word data from the database!");
             e.printStackTrace();
@@ -67,6 +68,7 @@ public class WordDataQueryHandler {
                 SELECT synset_id, word
                 FROM wn_synset;
                 """;
+        Algorithm.sort(synsetID);
         List<String> ans = new ArrayList<>();
         ResultSet resultSet = connection.createStatement().executeQuery(sql);
         while (resultSet.next()) {
@@ -74,7 +76,7 @@ public class WordDataQueryHandler {
                 ans.add(resultSet.getString("word"));
             }
         }
-        return (String[]) ans.toArray();
+        return ans.toArray(new String[0]);
     }
 
     /**
@@ -91,6 +93,7 @@ public class WordDataQueryHandler {
                 SELECT synset_id, w_num, word
                 FROM wn_synset;
                 """;
+        Algorithm.sort(target);
         List<String> ans = new ArrayList<>();
         ResultSet resultSet = connection.createStatement().executeQuery(sql);
         while (resultSet.next()) {
@@ -100,7 +103,7 @@ public class WordDataQueryHandler {
                 ans.add(resultSet.getString("word"));
             }
         }
-        return (String[]) ans.toArray();
+        return ans.toArray(new String[0]);
     }
 
     /**
@@ -131,15 +134,17 @@ public class WordDataQueryHandler {
         while (resultSet.next()) {
             resultSynset.add(resultSet.getLong(1));
         }
-        return getWordListFromSynsetID(connection, (Long[]) resultSynset.toArray());
+        resultSynset.add(synsetID);
+        return getWordListFromSynsetID(connection,
+                resultSynset.toArray(new Long[0]));
     }
 
     /**
      * Function to query antonym from database.
      *
      * @param connection the connection to database
-     * @param synsetID the id of the synset
-     * @param wordNum the index of the word
+     * @param synsetID the word's synsetID
+     * @param wordNum the word's num
      * @return an array of antonym
      * @throws SQLException an exception if the query can not be performed
      */
@@ -167,7 +172,37 @@ public class WordDataQueryHandler {
                     resultSet.getLong(1), resultSet.getLong(2)));
         }
         return getWordListFromSynsetIDAndWordNum(connection,
-                (ComparablePair<Long, Long>[]) resultSynset.toArray());
+                (Converter.convertFromListToArray(resultSynset)));
+    }
+
+
+    /**
+     * Function to get word's meaning from the database.
+     *
+     * @param connection the database connection
+     * @param word the word we want to get meaning
+     * @return an array of string which is the meaning
+     * @throws SQLException an exception if the query can not be performed
+     */
+    public static String[] getWordMeaning(Connection connection, String word) throws SQLException {
+        List<Pair<Long, Long> > synset = getWordKey(connection, word);
+        Long[] synsetID = new Long[synset.size()];
+        for (int i = 0; i < synset.size(); i++) {
+            synsetID[i] = synset.get(i).getKey();
+        }
+        String sql;
+        sql = """
+        SELECT synset_id, gloss
+        FROM wn_gloss;
+        """;
+        ResultSet resultSet = connection.createStatement().executeQuery(sql);
+        List<String> answer = new ArrayList<>();
+        while (resultSet.next()) {
+            if (Algorithm.contains(synsetID, resultSet.getLong("synset_id"))) {
+                answer.add(resultSet.getString("gloss"));
+            }
+        }
+        return answer.toArray(new String[0]);
     }
 
     /**

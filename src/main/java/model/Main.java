@@ -7,6 +7,10 @@ import java.sql.*;
 
 public class Main {
     public static void main(String[] args) {
-        Database.removeAllUserRecord();
+
+        String[] synonym = Database.getSynonym("hello");
+        for (String s : synonym) {
+            System.out.println(s);
+        }
     }
 }

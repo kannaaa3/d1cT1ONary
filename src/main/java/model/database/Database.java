@@ -1,7 +1,9 @@
 package model.database;
+import javafx.util.Pair;
 import model.user.User;
 
 import java.sql.*;
+import java.util.List;
 import java.util.Random;
 
 public class Database {
@@ -148,6 +150,7 @@ public class Database {
      * @return an array which are the word in the list
      */
     public static String[] getAllWordFromDatabase() {
+        init();
         return WordDataQueryHandler.getWordListFromDatabase(connection);
     }
 
@@ -165,5 +168,68 @@ public class Database {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public static String getWordMeaning(String word) {
+        init();
+        try {
+            String[] meaning = WordDataQueryHandler.getWordMeaning(connection, word);
+            if (meaning.length > 0) {
+                return meaning[0];
+            } else {
+                return null;
+            }
+        } catch (SQLException e) {
+            System.out.println("Something went wrong while getting word's data!");
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static String[] getSynonym(String word) {
+        init();
+        Pair<Long, Long> wordKey = getWordInformation(word);
+        if (wordKey == null) {
+            return new String[0];
+        }
+        try {
+            return WordDataQueryHandler.getWordSynonym(connection, wordKey.getKey());
+        } catch (SQLException e) {
+            System.out.println("Something went wrong while querying!");
+            e.printStackTrace();
+        }
+        return new String[0];
+    }
+
+    public static String[] getAntonym(String word) {
+        init();
+        Pair<Long, Long> wordKey = getWordInformation(word);
+        if (wordKey == null) {
+            return new String[0];
+        }
+        try {
+            return WordDataQueryHandler.getWordAntonym(connection,
+                    wordKey.getKey(), wordKey.getValue());
+        } catch (SQLException e) {
+            System.out.println("Something went wrong while querying!");
+            e.printStackTrace();
+        }
+        return new String[0];
+    }
+
+    public static Pair<Long, Long> getWordInformation(String word) {
+        init();
+        try {
+            List<Pair<Long, Long>> result = WordDataQueryHandler.getWordKey(connection, word);
+            if (result.isEmpty()) {
+                return null;
+            }
+            return result.get(0);
+        } catch (SQLException e) {
+            System.out.println("Something is wrong when fetching word data!");
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }

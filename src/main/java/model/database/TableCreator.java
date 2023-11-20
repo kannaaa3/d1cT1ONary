@@ -81,7 +81,7 @@ public class TableCreator {
         String[] sql = getQueryData(filePath, "\n");
         int currentPointer = 0;
         while (currentPointer < sql.length) {
-            for (int i = 2; i < statements.length; i++) {
+            for (int i = 0; i < statements.length; i++) {
                 if (sql[currentPointer].trim().equals(tables[i])) {
                     PreparedStatement preparedStatement
                             = connection.prepareStatement(statements[i]);

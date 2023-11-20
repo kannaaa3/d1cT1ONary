@@ -39,7 +39,7 @@ public class Algorithm {
             return false;
         }
         int l = 0;
-        int r = a.length;
+        int r = a.length - 1;
         while (l < r) {
             int mid = (l + r) >> 1;
             int compare = a[mid].compareTo(target);
