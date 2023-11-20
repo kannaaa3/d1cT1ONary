@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
@@ -17,5 +18,35 @@
             <Font name="Century Gothic" size="23.0" />
          </font>
       </Label>
+      <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="593.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/TranslateScreen/Icon%20Add.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="addNewWordlist" layoutX="593.0" layoutY="35.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#displayAddNewWordlistWindow" opacity="0.0" prefHeight="40.0" prefWidth="40.0" />
+      <ImageView fx:id="blurBG" fitHeight="800.0" fitWidth="946.0" pickOnBounds="true" visible="false">
+         <image>
+            <Image url="@../assets/TranslateScreen/Blur%20Background.png" />
+         </image>
+      </ImageView>
+      <AnchorPane fx:id="addNewWordlistWindow" layoutX="192.0" layoutY="360.0" prefHeight="89.0" prefWidth="562.0" visible="false">
+         <children>
+            <ImageView fitHeight="176.0" fitWidth="562.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/WordlistScreen/NewWordlistPopup.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="30.0" layoutY="27.0" prefHeight="42.0" prefWidth="157.0" text="Creating wordlist: " textFill="WHITE">
+               <font>
+                  <Font name="Century Gothic" size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="creatingWordlist" layoutX="215.0" layoutY="27.0" opacity="0.41" prefHeight="42.0" prefWidth="295.0">
+               <font>
+                  <Font name="Century Gothic" size="15.0" />
+               </font>
+            </TextField>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

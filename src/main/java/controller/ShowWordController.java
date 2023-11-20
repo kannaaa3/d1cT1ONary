@@ -67,8 +67,6 @@ public class ShowWordController implements Initializable {
     @FXML
     public void displayWord() {
         myWord = dictionary.getWordData(showWord);
-        System.out.println("Vao ham");
-        System.out.println(showWord);
         String[] x = myWord.getMeaning().synonyms();
         String s1 = "";
         for (int i = 0; i < x.length; i++) s1 = s1 + x[i] + "\n";
@@ -84,7 +82,6 @@ public class ShowWordController implements Initializable {
         antonyms.setText(s2);
         media = new Media(myWord.getPhonetic().audio());
         mediaPlayer = new MediaPlayer(media);
-        System.out.println("Het ham");
     }
     @FXML
     public void displayDialog() {

@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Pair;
 import model.dictionary.Dictionary;
+import model.user.User;
 
 import java.net.URL;
 import java.util.ResourceBundle;

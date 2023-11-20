@@ -107,17 +107,12 @@ public class SlideMenuController implements Initializable {
                     @Override
                     protected void updateItem(String item, boolean empty) {
                         super.updateItem(item, empty);
-
                         if (item == null || empty) {
                             setText(null);
                             setStyle("-fx-control-inner-background: " + "#483D8B" + ";");
                         } else {
                             setText(item);
-                            //f (item.startsWith("J")) {
                             setStyle("-fx-control-inner-background: " + "#4C3E87" + ";");
-                            //} else {
-                            //("-fx-control-inner-background: " + DEFAULT_CONTROL_INNER_BACKGROUND + ";");
-                            //}
                         }
                     }
                 };
