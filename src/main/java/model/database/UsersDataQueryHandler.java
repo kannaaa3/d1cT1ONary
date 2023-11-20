@@ -16,14 +16,14 @@ public class UsersDataQueryHandler {
      * Function to get the user's search history with userID.
      *
      * @param connection the database connection
-     * @param userID the user's userID
+     * @param userID     the user's userID
      * @return a list of string which is user's search history
      * @throws SQLException a sql exception if the queries failed
      */
     public static List<String> getUserSearchHistory(Connection connection, String userID)
             throws SQLException {
         String sql = """
-                SELECT word_id
+                SELECT synset_id, w_num
                 FROM user_search_history_data
                 WHERE user_id = ?
                 ORDER BY timestamp DESC;
@@ -34,7 +34,9 @@ public class UsersDataQueryHandler {
 
         List<String> answer = new ArrayList<>();
         while (resultSet.next()) {
-            answer.add(resultSet.getString("word_id"));
+            answer.add(Database.getWordFromSynsetIDAndWordNum(
+                    resultSet.getLong("synset_id"),
+                    resultSet.getLong("w_num")));
         }
         return answer;
     }
@@ -43,7 +45,7 @@ public class UsersDataQueryHandler {
      * Function to get user's wordlist data.
      *
      * @param connection the database connection
-     * @param userID the user's userID
+     * @param userID     the user's userID
      * @return a list of wordlist which is
      * @throws SQLException a SQLException if the query can not be performed
      */
@@ -64,18 +66,20 @@ public class UsersDataQueryHandler {
         }
 
         sql = """
-                SELECT word_list_id, word_id
-                FROM user_word_list_data
-                WHERE user_id = ?
-        """;
+                        SELECT word_list_id, synset_id, w_num
+                        FROM user_word_list_data
+                        WHERE user_id = ?
+                """;
         statement = connection.prepareStatement(sql);
         statement.setString(1, userID);
         resultSet = statement.executeQuery();
         try {
             while (resultSet.next()) {
                 wordLists.get(resultSet.getInt("word_list_id"))
-                        .addWord(WordDataQueryHandler
-                                .getWordData(connection, resultSet.getString("word_id")));
+                        .addWord(Database.
+                                getWordData(Database.getWordFromSynsetIDAndWordNum(
+                                        resultSet.getLong("synset_id"),
+                                        resultSet.getLong("w_num"))));
             }
         } catch (IndexOutOfBoundsException e) {
             System.out.println("Something is wrong with the database construction!");
@@ -89,7 +93,7 @@ public class UsersDataQueryHandler {
     public static List<UserWord> getUserWordReview(Connection connection, String userID)
             throws SQLException {
         String sql = """
-                SELECT word_id, timestamp, fluency_level, review_times
+                SELECT synset_id, w_num, timestamp, fluency_level, review_times
                 FROM user_word_review_data
                 WHERE user_id = ?
                 """;

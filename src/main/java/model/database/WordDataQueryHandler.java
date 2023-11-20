@@ -4,9 +4,6 @@ import javafx.util.Pair;
 import model.util.Algorithm;
 import model.util.ComparablePair;
 import model.util.Converter;
-import model.word.Meaning;
-import model.word.Phonetic;
-import model.word.Word;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,18 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WordDataQueryHandler {
-    /**
-     * Function to get the word's data from the database.
-     *
-     * @param connection the database connection
-     * @param wordID the word's wordID we want to get data
-     * @return a Word object which describe the word information, null if the word does not exist
-     * @throws SQLException throw if the query can not be executed
-     */
-    public static Word getWordData(Connection connection, String wordID) throws SQLException {
-        return null;
-    }
-
     /**
      * Function to get all the word from the database.
      *
@@ -230,5 +215,30 @@ public class WordDataQueryHandler {
                     resultSet.getLong("w_num")));
         }
         return result;
+    }
+
+    public static String getPartOfSpeech(Connection connection,
+                                         Long synsetID, Long wordNum) {
+        String sql;
+        sql = """
+        SELECT ss_type
+        FROM wn_synset
+        WHERE synset_id = ? AND w_num = ?;
+        """;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setLong(1, synsetID);
+            preparedStatement.setLong(2, wordNum);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getString("ss_type");
+            }
+        } catch (SQLException e) {
+            System.out.println("Something is not right with database when get part of speech");
+            System.out.printf("SynsetID: %d, WordNum: %d\n", synsetID, wordNum);
+            e.printStackTrace();
+        }
+
+        return "";
     }
 }

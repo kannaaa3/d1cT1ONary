@@ -1,6 +1,9 @@
 package model.database;
 import javafx.util.Pair;
 import model.user.User;
+import model.word.Meaning;
+import model.word.Phonetic;
+import model.word.Word;
 
 import java.sql.*;
 import java.util.List;
@@ -231,5 +234,48 @@ public class Database {
         }
 
         return null;
+    }
+
+    public static Word getWordData(String word) {
+        Pair<Long, Long> wordKey = getWordInformation(word);
+        if (wordKey == null) {
+            return null;
+        }
+        return new Word(
+                wordKey.getKey(),
+                wordKey.getValue(),
+                word,
+                new Phonetic(
+                        "",
+                        ""
+                ),
+                new Meaning(
+                        WordDataQueryHandler
+                                .getPartOfSpeech(connection, wordKey.getKey(), wordKey.getValue()),
+                        getWordMeaning(word),
+                        "",
+                        getSynonym(word),
+                        getAntonym(word)
+                )
+        );
+    }
+
+    public static String getWordFromSynsetIDAndWordNum(Long synsetID, Long wordNum) {
+        String sql = """
+                SELECT word
+                FROM wn_synset
+                WHERE synset_id = ? AND w_num = ?;
+                """;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setLong(1, synsetID);
+            preparedStatement.setLong(2, wordNum);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            return resultSet.getString("word");
+        } catch (SQLException e) {
+            System.out.println("Something went wrong when extracting word!");
+            e.printStackTrace();
+        }
+        return "";
     }
 }

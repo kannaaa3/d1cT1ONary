@@ -2,6 +2,7 @@ module java {
     // API dependencies
     requires org.json;
     requires org.apache.commons.io;
+    requires freetts;
 
     // Unit test dependencies
     requires junit;
@@ -17,8 +18,5 @@ module java {
     requires aws.iot.device.sdk;
 
     opens unittest to org.junit.jupiter.api, org.slf4j.simple;
-    opens model to org.slf4j.simple;
-
-    exports model;
     exports unittest;
 }

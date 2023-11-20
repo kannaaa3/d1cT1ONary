@@ -9,6 +9,6 @@ public class LocalDictionary extends Dictionary {
     }
 
     public Word getWordData(String word) {
-        return null;
+        return Database.getWordData(word);
     }
 }
