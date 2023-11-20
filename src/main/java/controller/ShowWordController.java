@@ -4,7 +4,12 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.SetChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.media.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -37,11 +42,24 @@ public class ShowWordController implements Initializable {
     public Label synonyms;
     @FXML
     public Label antonyms;
+    @FXML
+    public Button add;
+    @FXML
+    private ImageView addWordlistBG;
+    @FXML
+    private Dialog<ImageView> addWordlistWindow;
+    Media media;
+    MediaPlayer mediaPlayer;
+    @FXML
+    Button audio;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         displayWord();
+        audio.setOnAction(e -> {
+            mediaPlayer.play();
+        });
     }
 
 
@@ -64,7 +82,12 @@ public class ShowWordController implements Initializable {
         example.setText("Example:\n" + myWord.getMeaning().example());
         synonyms.setText(s1);
         antonyms.setText(s2);
+        media = new Media(myWord.getPhonetic().audio());
+        mediaPlayer = new MediaPlayer(media);
         System.out.println("Het ham");
     }
+    @FXML
+    public void displayDialog() {
 
+    }
 }

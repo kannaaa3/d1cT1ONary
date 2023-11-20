@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="800.0" prefWidth="320.0" style="-fx-background-color: #9747FF;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SlideMenuController">
+<AnchorPane prefHeight="800.0" prefWidth="316.0" style="-fx-background-color: #9747FF;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SlideMenuController">
    <children>
       <BorderPane prefHeight="800.0" prefWidth="320.0" style="-fx-background-color: #483D8B;">
          <bottom>
-            <AnchorPane prefHeight="59.0" prefWidth="322.0" style="-fx-background-color: #2C2F48;" BorderPane.alignment="CENTER">
+            <AnchorPane prefHeight="60.0" prefWidth="330.0" style="-fx-background-color: #2C2F48;" BorderPane.alignment="CENTER">
                <children>
                   <Button fx:id="settingButton" layoutX="280.0" layoutY="12.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27" prefWidth="27" style="-fx-background-radius: 13.5; -fx-background-color: #2C2F48;">
                      <graphic>
@@ -22,22 +22,14 @@
                </children></AnchorPane>
          </bottom>
          <left>
-            <AnchorPane fx:id="slideMenu" prefHeight="740.0" prefWidth="54.0" style="-fx-background-color: #6A5ACD;" BorderPane.alignment="CENTER">
+            <AnchorPane fx:id="slideMenu" prefHeight="740.0" prefWidth="64.0" style="-fx-background-color: #6A5ACD;" BorderPane.alignment="CENTER">
                <children>
                   <ImageView fitHeight="740.0" fitWidth="85.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../assets/SideMenu/SideBar.png" />
                      </image></ImageView>
-                  <VBox layoutX="7.0" layoutY="5.0" prefHeight="105.0" prefWidth="50.0">
-                     <children>
-                        <Button fx:id="logoButton" centerShape="false" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER" textFill="#d42626" textOverrun="CLIP">
-                           <cursor>
-                              <Cursor fx:constant="DEFAULT" />
-                           </cursor>
-                        </Button>
-                     </children>
-                  </VBox>
-                  <ImageView fitHeight="68.0" fitWidth="72.0">
+                  <VBox layoutX="7.0" layoutY="5.0" prefHeight="105.0" prefWidth="50.0" />
+                  <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="4.0">
 
                         <Image url="@../assets/SideMenu/Logo.png" />
 
@@ -46,6 +38,9 @@
                      <image>
                         <Image url="@../assets/SideMenu/Review.png" />
                      </image>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
                   </ImageView>
                   <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="22.0" layoutY="287.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -61,7 +56,7 @@
             </AnchorPane>
          </left>
          <right>
-            <AnchorPane fx:id="searchView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="249.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+            <AnchorPane fx:id="searchView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
                <children>
                   <TextField fx:id="searchBar" layoutX="13.0" layoutY="43.0" opacity="0.5" prefHeight="40.0" prefWidth="212.0" />
                   <VBox layoutX="12.0" layoutY="86.0" prefHeight="359.0" prefWidth="213.0">

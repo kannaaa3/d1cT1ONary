@@ -7,6 +7,7 @@ module java {
     requires javafx.controls;
     requires javafx.fxml;
     requires de.jensd.fx.glyphs.commons;
+    requires javafx.media;
 
     opens unittest to org.junit.jupiter.api, org.slf4j.simple;
     opens model to org.slf4j.simple;

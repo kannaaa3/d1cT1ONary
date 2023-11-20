@@ -93,9 +93,8 @@ public void initialize(URL location, ResourceBundle resources) {
         wordlistPane = controller.getKey();
         wordlistController = (WordlistController) controller.getValue();
 
-
-        renderSlideMenuScreen();
         renderShowWordScreen();
+        renderSlideMenuScreen();
 
         mainPane.getChildren().add(showWordButton);
         mainPane.getChildren().add(reviewButton);
