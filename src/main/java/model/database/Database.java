@@ -4,8 +4,10 @@ import model.user.User;
 import model.word.Meaning;
 import model.word.Phonetic;
 import model.word.Word;
+import model.word.WordList;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -309,5 +311,25 @@ public class Database {
     public static void removeWordFromWordList(String userID,
                                               int wordListID, Word word) {
         UsersDataQueryHandler.removeWordFromWordList(connection, userID, wordListID, word);
+    }
+
+    public static List<WordList> getUserWordLists(String userID) {
+        try {
+            return UsersDataQueryHandler.getUserWordLists(connection, userID);
+        } catch (SQLException e) {
+            System.out.println("Can not get user's word list?");
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
+
+    public static List<String> getUserSearchHistory(String userID) {
+        try {
+            return UsersDataQueryHandler.getUserSearchHistory(connection, userID);
+        } catch (SQLException e) {
+            System.out.println("Can not get user's search history?");
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
     }
 }

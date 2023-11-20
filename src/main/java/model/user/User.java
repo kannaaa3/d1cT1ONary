@@ -4,6 +4,7 @@ import model.database.Database;
 import model.word.UserWord;
 import model.word.Word;
 import model.word.WordList;
+import unittest.Main;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +23,11 @@ public class User {
      */
     public User(String userID) {
         this.userID = userID;
-        this.searchHistory = new ArrayList<>();
-        this.wordLists = new ArrayList<>();
+        this.searchHistory = Database.getUserSearchHistory(userID);
+        this.wordLists = Database.getUserWordLists(userID);
+        for (WordList wordList : wordLists) {
+            index = Math.max(index, wordList.getWordListID() + 1);
+        }
         this.reviewWordlist = new ArrayList<>();
     }
 
@@ -81,8 +85,9 @@ public class User {
      */
     public void addWordToWordList(Word word, int wordListID) {
         if (wordListID < 0 || wordListID >= wordLists.size()) {
-            throw new IndexOutOfBoundsException("Word list ID out of bound "
+            System.out.println("Word list ID out of bound "
                     + "when adding word to word list!");
+            return;
         }
         for (Word reviewWord : reviewWordlist) {
             if (reviewWord.equals(word)) {
@@ -107,6 +112,12 @@ public class User {
         wordLists.remove(wordListID);
     }
 
+    /**
+     * Function is used when user want to remove word from word list.
+     *
+     * @param wordListID the word list id
+     * @param wordID the word id
+     */
     public void removeWordFromWordList(int wordListID, int wordID) {
         if (wordListID < 0 || wordListID >= wordLists.size()) {
             System.out.println("WordListID invalid while remove word from wordlist!");
@@ -132,5 +143,9 @@ public class User {
 
     public String getUserID() {
         return this.userID;
+    }
+
+    public List<String> getSearchHistory() {
+        return this.searchHistory;
     }
 }
