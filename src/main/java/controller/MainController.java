@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Pair;
 import model.dictionary.Dictionary;
@@ -126,6 +127,9 @@ public void initialize(URL location, ResourceBundle resources) {
                 showWordPane.setLayoutX(320);
                 showWordPane.setLayoutY(0);
                 mainPane.getChildren().add(showWordPane);
+                hoverButton(slideMenuController.translate, slideMenuController.translateSelected);
+                hoverButton(slideMenuController.reviewSelected, slideMenuController.review);
+                hoverButton(slideMenuController.gameSelected, slideMenuController.game);
         }
 
 
@@ -134,6 +138,9 @@ public void initialize(URL location, ResourceBundle resources) {
                 reviewPane.setLayoutX(320);
                 reviewPane.setLayoutY(0);
                 mainPane.getChildren().add(reviewPane);
+                hoverButton(slideMenuController.translateSelected, slideMenuController.translate);
+                hoverButton(slideMenuController.review, slideMenuController.reviewSelected);
+                hoverButton(slideMenuController.gameSelected, slideMenuController.game);
         }
 
         public void renderGameScreen() {
@@ -141,6 +148,9 @@ public void initialize(URL location, ResourceBundle resources) {
                 gamePane.setLayoutX(320);
                 gamePane.setLayoutY(0);
                 mainPane.getChildren().add(gamePane);
+                hoverButton(slideMenuController.translateSelected, slideMenuController.translate);
+                hoverButton(slideMenuController.reviewSelected, slideMenuController.review);
+                hoverButton(slideMenuController.game, slideMenuController.gameSelected);
         }
 
         public void renderWordlistScreen() {
@@ -148,5 +158,10 @@ public void initialize(URL location, ResourceBundle resources) {
                 wordlistPane.setLayoutX(320);
                 wordlistPane.setLayoutY(0);
                 mainPane.getChildren().add(wordlistPane);
+        }
+
+        public void hoverButton(ImageView imageView, ImageView imageViewSelected) {
+                imageView.setVisible(false);
+                imageViewSelected.setVisible(true);
         }
 }

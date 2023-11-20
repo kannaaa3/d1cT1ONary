@@ -34,7 +34,7 @@
                         <Image url="@../assets/SideMenu/Logo.png" />
 
                   </ImageView>
-                  <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="22.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="22.0" layoutY="207.0" pickOnBounds="true" preserveRatio="true" fx:id="review">
                      <image>
                         <Image url="@../assets/SideMenu/Review.png" />
                      </image>
@@ -42,16 +42,28 @@
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
                   </ImageView>
-                  <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="22.0" layoutY="287.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="22.0" layoutY="287.0" pickOnBounds="true" preserveRatio="true" fx:id="game">
                      <image>
                         <Image url="@../assets/SideMenu/Game.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="22.0" layoutY="207.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="22.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true" fx:id="translate">
                      <image>
                         <Image url="@../assets/SideMenu/Translate.png" />
                      </image>
                   </ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="22.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true" visible="false" fx:id="translateSelected">
+                     <image>
+                        <Image url="@../assets/SideMenu/TranslateSelected.png" />
+                     </image></ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="22.0" layoutY="207.0" pickOnBounds="true" preserveRatio="true" visible="false" fx:id="reviewSelected">
+                     <image>
+                        <Image url="@../assets/SideMenu/ReviewSelected.png" />
+                     </image></ImageView>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="22.0" layoutY="287.0" pickOnBounds="true" preserveRatio="true" visible="false" fx:id="gameSelected">
+                     <image>
+                        <Image url="@../assets/SideMenu/GameSelected.png" />
+                     </image></ImageView>
                </children>
             </AnchorPane>
          </left>

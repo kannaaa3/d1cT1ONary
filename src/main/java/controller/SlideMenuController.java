@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -83,6 +84,18 @@ public class SlideMenuController implements Initializable {
     public ListView<String> myListView;
     @FXML
     public TextField searchBar;
+    @FXML
+    public ImageView translate;
+    @FXML
+    public ImageView translateSelected;
+    @FXML
+    public ImageView review;
+    @FXML
+    public ImageView reviewSelected;
+    @FXML
+    public ImageView game;
+    @FXML
+    public ImageView gameSelected;
 
 
     public void displayRecommendedWordByPrefix(List<String> words) {
