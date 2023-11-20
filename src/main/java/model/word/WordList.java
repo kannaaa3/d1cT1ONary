@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WordList {
+    private int wordListID;
     private String name;
     private final List<Word> words;
 
@@ -54,6 +55,19 @@ public class WordList {
     }
 
     /**
+     * Function to get word with index,
+     *
+     * @param index the index of the word
+     * @return a word object
+     */
+    public Word getWord(int index) {
+        if (index < 0 || index >= words.size()) {
+            return null;
+        }
+        return words.get(index);
+    }
+
+    /**
      * Function to remove a word from the word list.
      *
      * @param word the word user want to remove from the list.
@@ -67,6 +81,18 @@ public class WordList {
         }
     }
 
+    /**
+     * Function to remove word from word list with word id.
+     *
+     * @param wordID the index of the removed word
+     */
+    public void removeWord(int wordID) {
+        if (wordID >= words.size() || wordID < 0) {
+            return;
+        }
+        words.remove(wordID);
+    }
+
     public String getName() {
         return name;
     }
@@ -77,5 +103,13 @@ public class WordList {
 
     public List<Word> getWords() {
         return words;
+    }
+
+    public int getWordListID() {
+        return wordListID;
+    }
+
+    public void setWordListID(int wordListID) {
+        this.wordListID = wordListID;
     }
 }

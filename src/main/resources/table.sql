@@ -81,9 +81,9 @@ CREATE TABLE IF NOT EXISTS user_word_list_data(
     synset_id DECIMAL(10,0) NOT NULL default '0',
     w_num DECIMAL(10,0) NOT NULL default '0',
     CONSTRAINT user_word_list_data_pk PRIMARY KEY (user_id, word_list_id, synset_id, w_num),
-    CONSTRAINT user_word_list_data_user_id
-        FOREIGN KEY (user_id)
-            REFERENCES users (user_id)
+    CONSTRAINT user_word_list_data_word_list_id
+        FOREIGN KEY (user_id, word_list_id)
+            REFERENCES user_word_list_name_data (user_id, word_list_id)
                 ON DELETE CASCADE
                 ON UPDATE NO ACTION,
     CONSTRAINT user_word_list_data_synset_id

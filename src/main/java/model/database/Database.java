@@ -237,6 +237,7 @@ public class Database {
     }
 
     public static Word getWordData(String word) {
+        init();
         Pair<Long, Long> wordKey = getWordInformation(word);
         if (wordKey == null) {
             return null;
@@ -261,6 +262,7 @@ public class Database {
     }
 
     public static String getWordFromSynsetIDAndWordNum(Long synsetID, Long wordNum) {
+        init();
         String sql = """
                 SELECT word
                 FROM wn_synset
@@ -277,5 +279,35 @@ public class Database {
             e.printStackTrace();
         }
         return "";
+    }
+
+    public static void addWordToUserSearchHistory(String userID, String word) {
+        init();
+        UsersDataQueryHandler.addWordToUserSearchHistory(connection, userID, word);
+    }
+
+    public static void deleteWordFromUserHistory(String userID, String word) {
+        init();
+        UsersDataQueryHandler.deleteWordFromUserHistory(connection, userID, word);
+    }
+
+    public static void createNewWordList(String userID, int wordListID, String wordListName) {
+        init();
+        UsersDataQueryHandler.createNewWordList(connection, userID, wordListID, wordListName);
+    }
+
+    public static void removeWordList(String userID, int wordListID) {
+        init();
+        UsersDataQueryHandler.removeWordList(connection, userID, wordListID);
+    }
+
+    public static void addWordToWordList(String userID, int wordListID, Word word) {
+        init();
+        UsersDataQueryHandler.addWordToWordList(connection, userID, wordListID, word);
+    }
+
+    public static void removeWordFromWordList(String userID,
+                                              int wordListID, Word word) {
+        UsersDataQueryHandler.removeWordFromWordList(connection, userID, wordListID, word);
     }
 }
