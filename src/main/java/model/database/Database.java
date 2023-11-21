@@ -1,18 +1,25 @@
 package model.database;
-
+import javafx.util.Pair;
 import model.user.User;
+import model.word.Meaning;
+import model.word.Phonetic;
+import model.word.Word;
 
 import java.sql.*;
+import java.util.List;
 import java.util.Random;
 
 public class Database {
-    private Connection connection = null;
-    private Statement statement = null;
+    private static Connection connection = null;
+    private static Statement statement = null;
 
     /**
      * Constructor for a new database object.
      */
-    public Database() {
+    public static void init() {
+        if (connection != null) {
+            return;
+        }
         try {
             Class.forName("org.sqlite.JDBC");
             connection = DriverManager.getConnection("jdbc:sqlite:"
@@ -33,18 +40,19 @@ public class Database {
     /**
      * Function to create all essential tables.
      */
-    private void createTables() {
+    private static void createTables() {
         try {
-            TableCreator.createUserTable(statement);
-            TableCreator.createWordDatabase(statement);
-            TableCreator.createSynonymDatabase(statement);
-            TableCreator.createAntonymDatabase(statement);
-            TableCreator.createUserWordListDataTable(statement);
-            TableCreator.createUserWordListNameDataTable(statement);
-            TableCreator.createUserWordReviewDataTable(statement);
-            TableCreator.createUserSearchHistoryDataTable(statement);
+            TableCreator.createTable(connection, "src/main/resources/table.sql");
         } catch (SQLException e) {
             System.out.println("Something is wrong when creating tables!");
+            e.printStackTrace();
+            System.exit(-1);
+        }
+
+        try {
+            TableCreator.loadDictionaryData(connection, "src/main/resources/data.sql");
+        } catch (SQLException e) {
+            System.out.println("Something is wrong when loading tables!");
             e.printStackTrace();
             System.exit(-1);
         }
@@ -53,10 +61,13 @@ public class Database {
     /**
      * Function to close connection, use when the application is closed.
      */
-    public void closeConnection() {
+    public static void closeConnection() {
+        init();
         try {
             statement.close();
             connection.close();
+            statement = null;
+            connection = null;
         } catch (SQLException e) {
             System.out.println("Can not close SQLite connection!");
             e.printStackTrace();
@@ -71,7 +82,8 @@ public class Database {
      * @param password the new user's password
      * @return a string which is the user's id, adding user to database if needed
      */
-    public String register(String username, String password) {
+    public static String register(String username, String password) {
+        init();
         Random ran = new Random();
         while (true) {
             StringBuilder userID = new StringBuilder();
@@ -106,7 +118,8 @@ public class Database {
      * @return a string which is the user's id if the pair (username, password) matches a user or
      * null if it's not
      */
-    public String login(String username, String password) {
+    public static String login(String username, String password) {
+        init();
         try {
             return UsersQueryHandler.getUserID(connection, username, password);
         } catch (SQLException e) {
@@ -123,7 +136,8 @@ public class Database {
      * @param username the username we want to check
      * @return true if the username is already existed, false if otherwise
      */
-    public boolean containsUsername(String username) {
+    public static boolean containsUsername(String username) {
+        init();
         try {
             return UsersQueryHandler.containsUsername(connection, username);
         } catch (SQLException e) {
@@ -134,22 +148,166 @@ public class Database {
     }
 
     /**
-     * Please note that this function is only used when testing.
+     * Function to get all the word from the database.
+     *
+     * @return an array which are the word in the list
      */
-    public void removeAllTables() {
+    public static String[] getAllWordFromDatabase() {
+        init();
+        return WordDataQueryHandler.getWordListFromDatabase(connection);
+    }
+
+    /**
+     * Function to remove all user's record from the database.
+     */
+    public static void removeAllUserRecord() {
+        init();
         try {
-            statement.executeUpdate("DROP TABLE IF EXISTS users;");
-            statement.executeUpdate("DROP TABLE IF EXISTS words;");
-            statement.executeUpdate("DROP TABLE IF EXISTS word_synonym");
-            statement.executeUpdate("DROP TABLE IF EXISTS word_antonym");
-            statement.executeUpdate("DROP TABLE IF EXISTS user_word_review_data;");
-            statement.executeUpdate("DROP TABLE IF EXISTS user_word_list_data;");
-            statement.executeUpdate("DROP TABLE IF EXISTS user_search_history_data;");
-            statement.executeUpdate("DROP TABLE IF EXISTS user_word_list_name_data");
+            statement.execute("DELETE FROM user_word_list_name_data");
+            statement.execute("DELETE FROM user_search_history_data");
+            statement.execute("DELETE FROM user_word_list_data");
+            statement.execute("DELETE FROM user_word_review_data");
+            statement.execute("DELETE FROM users");
         } catch (SQLException e) {
-            System.out.println("Error while removing all tables!");
             e.printStackTrace();
-            System.exit(-1);
         }
+    }
+
+    public static String getWordMeaning(String word) {
+        init();
+        try {
+            String[] meaning = WordDataQueryHandler.getWordMeaning(connection, word);
+            if (meaning.length > 0) {
+                return meaning[0];
+            } else {
+                return null;
+            }
+        } catch (SQLException e) {
+            System.out.println("Something went wrong while getting word's data!");
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static String[] getSynonym(String word) {
+        init();
+        Pair<Long, Long> wordKey = getWordInformation(word);
+        if (wordKey == null) {
+            return new String[0];
+        }
+        try {
+            return WordDataQueryHandler.getWordSynonym(connection, wordKey.getKey());
+        } catch (SQLException e) {
+            System.out.println("Something went wrong while querying!");
+            e.printStackTrace();
+        }
+        return new String[0];
+    }
+
+    public static String[] getAntonym(String word) {
+        init();
+        Pair<Long, Long> wordKey = getWordInformation(word);
+        if (wordKey == null) {
+            return new String[0];
+        }
+        try {
+            return WordDataQueryHandler.getWordAntonym(connection,
+                    wordKey.getKey(), wordKey.getValue());
+        } catch (SQLException e) {
+            System.out.println("Something went wrong while querying!");
+            e.printStackTrace();
+        }
+        return new String[0];
+    }
+
+    public static Pair<Long, Long> getWordInformation(String word) {
+        init();
+        try {
+            List<Pair<Long, Long>> result = WordDataQueryHandler.getWordKey(connection, word);
+            if (result.isEmpty()) {
+                return null;
+            }
+            return result.get(0);
+        } catch (SQLException e) {
+            System.out.println("Something is wrong when fetching word data!");
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public static Word getWordData(String word) {
+        init();
+        Pair<Long, Long> wordKey = getWordInformation(word);
+        if (wordKey == null) {
+            return null;
+        }
+        return new Word(
+                wordKey.getKey(),
+                wordKey.getValue(),
+                word,
+                new Phonetic(
+                        "",
+                        ""
+                ),
+                new Meaning(
+                        WordDataQueryHandler
+                                .getPartOfSpeech(connection, wordKey.getKey(), wordKey.getValue()),
+                        getWordMeaning(word),
+                        "",
+                        getSynonym(word),
+                        getAntonym(word)
+                )
+        );
+    }
+
+    public static String getWordFromSynsetIDAndWordNum(Long synsetID, Long wordNum) {
+        init();
+        String sql = """
+                SELECT word
+                FROM wn_synset
+                WHERE synset_id = ? AND w_num = ?;
+                """;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setLong(1, synsetID);
+            preparedStatement.setLong(2, wordNum);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            return resultSet.getString("word");
+        } catch (SQLException e) {
+            System.out.println("Something went wrong when extracting word!");
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    public static void addWordToUserSearchHistory(String userID, String word) {
+        init();
+        UsersDataQueryHandler.addWordToUserSearchHistory(connection, userID, word);
+    }
+
+    public static void deleteWordFromUserHistory(String userID, String word) {
+        init();
+        UsersDataQueryHandler.deleteWordFromUserHistory(connection, userID, word);
+    }
+
+    public static void createNewWordList(String userID, int wordListID, String wordListName) {
+        init();
+        UsersDataQueryHandler.createNewWordList(connection, userID, wordListID, wordListName);
+    }
+
+    public static void removeWordList(String userID, int wordListID) {
+        init();
+        UsersDataQueryHandler.removeWordList(connection, userID, wordListID);
+    }
+
+    public static void addWordToWordList(String userID, int wordListID, Word word) {
+        init();
+        UsersDataQueryHandler.addWordToWordList(connection, userID, wordListID, word);
+    }
+
+    public static void removeWordFromWordList(String userID,
+                                              int wordListID, Word word) {
+        UsersDataQueryHandler.removeWordFromWordList(connection, userID, wordListID, word);
     }
 }

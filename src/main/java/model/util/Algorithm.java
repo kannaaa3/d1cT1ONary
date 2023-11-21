@@ -25,4 +25,33 @@ public class Algorithm {
         T[] aux = (T[]) new Comparable[a.length];
         mergeSort(a, aux, 0, a.length - 1);
     }
+
+    /**
+     * Function to check if an object in the array of sorted object.
+     *
+     * @param a the array of object
+     * @param target the object we want to check
+     * @return true if the object in the array
+     * @param <T> comparable object
+     */
+    public static <T extends Comparable<T> > boolean contains(T[] a, T target) {
+        if (a.length == 0) {
+            return false;
+        }
+        int l = 0;
+        int r = a.length - 1;
+        while (l < r) {
+            int mid = (l + r) >> 1;
+            int compare = a[mid].compareTo(target);
+            if (compare == 0) {
+                return true;
+            }
+            if (compare < 0) {
+                l = mid + 1;
+            } else {
+                r = mid - 1;
+            }
+        }
+        return a[l].compareTo(target) == 0;
+    }
 }

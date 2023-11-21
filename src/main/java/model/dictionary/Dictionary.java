@@ -1,5 +1,7 @@
 package model.dictionary;
 
+import model.database.Database;
+import model.database.WordDataQueryHandler;
 import model.datastructure.RadixTree;
 import model.util.APIHandler;
 import model.util.Algorithm;
@@ -18,8 +20,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Dictionary {
-    private String[] words;
+public abstract class Dictionary {
+    protected String[] words;
     private final RadixTree tree;
 
     /**
@@ -49,6 +51,20 @@ public class Dictionary {
     }
 
     /**
+     * Function to add a word list to the dictionary.
+     *
+     * @param words the words in the dictionary
+     */
+    public Dictionary(String[] words) {
+        this.words = words;
+        tree = new RadixTree();
+        for (String word : words) {
+            tree.add(Converter.convertStringToBinaryArray(word));
+        }
+        Algorithm.sort(words);
+    }
+
+    /**
      * This function is used to recommend the word that have matched prefix by lexicography order.
      *
      * @param word                    the word we want to recommend
@@ -69,21 +85,18 @@ public class Dictionary {
         return ans;
     }
 
+    /**
+     * Function to check if a word present in the dictionary.
+     *
+     * @param word the word we want to check
+     * @return true if the dictionary contains word
+     */
     public boolean contains(String word) {
-        int l = 0, r = words.length - 1;
-        while (l < r) {
-            int mid = (l + r) >> 1;
-            int compare = words[mid].compareTo(word);
-            if (compare == 0) {
-                return true;
-            }
-            if (compare < 0) {
-                l = mid + 1;
-            } else {
-                r = mid - 1;
-            }
+        if (word == null) {
+            throw new IllegalArgumentException("Can not check if null word exists!");
         }
-        return words[l].compareTo(word) == 0;
+        Integer[] convertedWord = Converter.convertStringToBinaryArray(word);
+        return tree.contains(convertedWord);
     }
 
     /**
@@ -92,134 +105,5 @@ public class Dictionary {
      * @param word the word we want to translate
      * @return a Word object for the translation of the word (english - english)
      */
-    public Word getWordData(String word) {
-        if (word == null) {
-            throw new IllegalArgumentException("Can not get word data on null object!");
-        }
-
-        JSONArray jsonArray;
-
-        try {
-            URL url = new URL(APIHandler.DICTIONARY_API_DEV + word);
-            jsonArray = APIHandler.getJsonArrayDataFromURL(url);
-        } catch (MalformedURLException e) {
-            throw new IllegalArgumentException("Can not get word data from: "
-                    + APIHandler.DICTIONARY_API_DEV + word);
-        }
-
-        if (jsonArray == null) {
-            return null;
-        }
-
-        if (jsonArray.isEmpty()) {
-            return null;
-        }
-
-        JSONObject jsonObject = jsonArray.getJSONObject(0);
-        String wd = (String) jsonObject.get("word");
-
-        JSONArray phoneticObjects = jsonObject.getJSONArray("phonetics");
-        JSONObject phoneticObject = null;
-        for (int i = 0; i < phoneticObjects.length(); i++) {
-            JSONObject phoneticObjectAtI = phoneticObjects.getJSONObject(i);
-            if (phoneticObjectAtI.keySet().contains("text")) {
-                phoneticObject = phoneticObjectAtI;
-                if (phoneticObjectAtI.keySet().contains("audio")) {
-                    break;
-                }
-            }
-        }
-
-        JSONObject meaningObject;
-        try {
-            meaningObject = jsonObject.getJSONArray("meanings").getJSONObject(0);
-        } catch (Exception e) {
-            meaningObject = null;
-        }
-
-        return new Word(wd, extractPhonetic(phoneticObject), extractMeaning(meaningObject));
-    }
-
-    /**
-     * This function is used to extract phonetic data from the json object.
-     *
-     * @param object a json object
-     * @return a phonetic object that extract "text" and "audio" data from the json object
-     */
-    private static Phonetic extractPhonetic(JSONObject object) {
-        if (object == null) {
-            return new Phonetic("", "");
-        }
-        String text;
-        String audio;
-
-        try {
-            text = object.getString("text");
-        } catch (Exception e) {
-            text = "";
-            e.printStackTrace();
-        }
-        try {
-            audio = object.getString("audio");
-        } catch (Exception e) {
-            audio = "";
-        }
-
-        return new Phonetic(text, audio);
-    }
-
-    /**
-     * This function is used to extract the meaning from the json object.
-     *
-     * @param object the json object
-     * @return a meaning object with "definition", "example", "synonyms", "antonyms"
-     */
-    private static Meaning extractMeaning(JSONObject object) {
-        String partOfSpeech;
-        String definition;
-        String example;
-        String[] synonyms;
-        String[] antonyms;
-
-        System.out.println(object);
-
-        try {
-            partOfSpeech = object.getString("partOfSpeech");
-        } catch (Exception e) {
-            partOfSpeech = "";
-        }
-
-        JSONObject def;
-        try {
-            def = object.getJSONArray("definitions").getJSONObject(0);
-        } catch (Exception e) {
-            definition = "";
-            example = "";
-            synonyms = new String[0];
-            antonyms = new String[0];
-            return new Meaning(partOfSpeech, definition, example, synonyms, antonyms);
-        }
-
-        try {
-            definition = def.getString("definition");
-        } catch (Exception e) {
-            definition = "";
-        }
-        try {
-            example = def.getString("example");
-        } catch (Exception e) {
-            example = "";
-        }
-        try {
-            synonyms = (String[]) def.get("synonyms");
-        } catch (Exception e) {
-            synonyms = new String[0];
-        }
-        try {
-            antonyms = (String[]) def.get("antonyms");
-        } catch (Exception e) {
-            antonyms = new String[0];
-        }
-        return new Meaning(partOfSpeech, definition, example, synonyms, antonyms);
-    }
+    public abstract Word getWordData(String word);
 }

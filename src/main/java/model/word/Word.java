@@ -1,6 +1,8 @@
 package model.word;
 
 public class Word {
+    private final Long wordID;
+    private final Long wordNum;
     private final String word;
     private final Phonetic phonetic;
     private final Meaning meaning;
@@ -14,6 +16,25 @@ public class Word {
      * @param meaning meaning of the word
      */
     public Word(String word, Phonetic phonetic, Meaning meaning) {
+        this.wordID = 0L;
+        this.wordNum = 0L;
+        this.word = word;
+        this.phonetic = phonetic;
+        this.meaning = meaning;
+    }
+
+    /**
+     * Constructor with 5 parameter for local usage.
+     *
+     * @param wordID the word's id
+     * @param wordNum the word's number
+     * @param word the word
+     * @param phonetic word's phonetic
+     * @param meaning word's meaning
+     */
+    public Word(Long wordID, Long wordNum, String word, Phonetic phonetic, Meaning meaning) {
+        this.wordID = wordID;
+        this.wordNum = wordNum;
         this.word = word;
         this.phonetic = phonetic;
         this.meaning = meaning;
@@ -29,6 +50,14 @@ public class Word {
 
     public Meaning getMeaning() {
         return meaning;
+    }
+
+    public Long getWordID() {
+        return wordID;
+    }
+
+    public Long getWordNum() {
+        return wordNum;
     }
 
     /**

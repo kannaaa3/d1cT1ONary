@@ -1,5 +1,6 @@
 package model.user;
 
+import model.database.Database;
 import model.word.UserWord;
 import model.word.Word;
 import model.word.WordList;
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class User {
+    private int index = 0;
     private final String userID;
     private final List<String> searchHistory;
     private final List<WordList> wordLists;
@@ -37,6 +39,7 @@ public class User {
         }
         removeWordFromSearchHistory(word);
         searchHistory.add(word);
+        Database.addWordToUserSearchHistory(userID, word);
     }
 
     /**
@@ -52,9 +55,22 @@ public class User {
         for (int i = 0; i < searchHistory.size(); i++) {
             if (searchHistory.get(i).equals(word)) {
                 searchHistory.remove(i);
+                Database.deleteWordFromUserHistory(userID, word);
                 break;
             }
         }
+    }
+
+    /**
+     * Function to create new word list with the corresponding name.
+     *
+     * @param wordListName the new wordlist name
+     */
+    public void createNewWordList(String wordListName) {
+        wordLists.add(new WordList(wordListName));
+        wordLists.get(wordLists.size() - 1).setWordListID(index);
+        Database.createNewWordList(userID, index, wordListName);
+        index++;
     }
 
     /**
@@ -68,13 +84,13 @@ public class User {
             throw new IndexOutOfBoundsException("Word list ID out of bound "
                     + "when adding word to word list!");
         }
-        wordLists.get(wordListID).addWord(word);
         for (Word reviewWord : reviewWordlist) {
             if (reviewWord.equals(word)) {
                 return;
             }
         }
-
+        Database.addWordToWordList(userID, wordListID, word);
+        wordLists.get(wordListID).addWord(word);
     }
 
     /**
@@ -84,10 +100,25 @@ public class User {
      */
     public void removeWordList(int wordListID) {
         if (wordListID < 0 || wordListID >= wordLists.size()) {
-            throw new IndexOutOfBoundsException("Word list ID out of bound "
-                    + "when removing wordlist!");
+            System.out.println("WordListID out of bound when removing wordlist!");
+            return;
         }
+        Database.removeWordList(userID, wordLists.get(wordListID).getWordListID());
         wordLists.remove(wordListID);
+    }
+
+    public void removeWordFromWordList(int wordListID, int wordID) {
+        if (wordListID < 0 || wordListID >= wordLists.size()) {
+            System.out.println("WordListID invalid while remove word from wordlist!");
+            return;
+        }
+        Word currentWord = wordLists.get(wordListID).getWord(wordID);
+        if (currentWord == null) {
+            return;
+        }
+        Database.removeWordFromWordList(userID,
+                wordLists.get(wordListID).getWordListID(), currentWord);
+        wordLists.get(wordListID).removeWord(wordID);
     }
 
     /**

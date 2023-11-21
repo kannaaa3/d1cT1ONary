@@ -35,5 +35,7 @@ build/
 .DS_Store
 
 ### Data file ###
+src/main/resources/SqliteJavaDB.db
 src/main/resources/words.txt
-SqliteJavaDB.db
+src/main/resources/device_cert/*
+src/main/resources/data.sql

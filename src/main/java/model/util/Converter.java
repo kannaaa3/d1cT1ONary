@@ -1,5 +1,8 @@
 package model.util;
 
+import java.lang.reflect.Array;
+import java.util.List;
+
 public class Converter {
     public static int NUMBER_BIT_OF_CHAR = 8;
 
@@ -39,5 +42,15 @@ public class Converter {
             ans.append((char) currentChar);
         }
         return ans.toString();
+    }
+
+    public static <K extends Comparable<K>, V extends Comparable<V> > ComparablePair<K, V>[]
+        convertFromListToArray(List<ComparablePair<K, V>> list) {
+        ComparablePair<K, V>[] ans =
+                (ComparablePair<K, V>[]) Array.newInstance(ComparablePair.class, list.size());
+        for (int i = 0; i < list.size(); i++) {
+            ans[i] = list.get(i);
+        }
+        return ans;
     }
 }

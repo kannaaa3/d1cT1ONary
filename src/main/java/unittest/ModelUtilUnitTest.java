@@ -157,4 +157,39 @@ public class ModelUtilUnitTest {
                 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
         });
     }
+
+    @Test
+    public void containsTest1() {
+        Assert.assertFalse(Algorithm.contains(new Integer[]{
+                1, 3, 5, 7, 9
+        }, 4));
+    }
+
+    @Test
+    public void containsTest2() {
+        Assert.assertTrue(Algorithm.contains(new Integer[]{
+                1, 3, 5, 7, 9
+        }, 5));
+    }
+
+    @Test
+    public void containsTest3() {
+        Assert.assertTrue(Algorithm.contains(new Integer[]{
+                1, 3, 5, 7, 9, 11
+        }, 1));
+    }
+
+    @Test
+    public void containsTest4() {
+        Assert.assertTrue(Algorithm.contains(new Integer[]{
+                1, 3, 5, 7, 9, 11
+        }, 11));
+    }
+
+    @Test
+    public void containsTest5() {
+        Assert.assertFalse(Algorithm.contains(new Integer[]{
+                1, 3, 5, 7, 9, 11
+        }, -3));
+    }
 }
