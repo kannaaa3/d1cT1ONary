@@ -58,7 +58,7 @@ public class MainController implements Initializable {
         Button reviewButton = new Button();
         Button playButton = new Button();
         public static User user = new User("123");
-        static int i = 0;
+        static int j = 0;
 
         /**
          * Function to init translate button.
@@ -159,7 +159,11 @@ public class MainController implements Initializable {
                                 }
                         }
                 });
-        }
+        
+        slideMenuController.showWordButton.setOnAction(e -> renderShowWordScreen());
+        slideMenuController.reviewButton.setOnAction(e -> renderReviewScreen());
+        slideMenuController.gameButton.setOnAction(e -> renderGameScreen());
+}
 
         /**
          * Function to get controller from file.
@@ -228,7 +232,6 @@ public class MainController implements Initializable {
          */
         public void renderWordlistScreen() {
                 mainPane.getChildren().remove(wordlistPane);
-                wordlistController.nameofWordlist.setText(user.getAllWordLists().get(i).getName());
                 wordlistPane.setLayoutX(320);
                 wordlistPane.setLayoutY(0);
                 mainPane.getChildren().add(wordlistPane);
@@ -275,6 +278,7 @@ public class MainController implements Initializable {
                         reviewController.anchorPane.getChildren().add(button);
                         reviewController.anchorPane.getChildren().add(getWordListLabelObject(user.getAllWordLists().get(i).getName()));
                         reviewController.buttons.add(button);
+                        wordlistController.nameofWordlist.setText(user.getAllWordLists().get(j).getName());
                         button.setOnAction(e -> renderWordlistScreen());
                         reviewController.w++;
                         if (reviewController.w % 3 == 0) reviewController.h++;
