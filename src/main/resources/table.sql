@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS wn_synset (
     synset_id DECIMAL(10,0) NOT NULL default '0',
     w_num DECIMAL(10,0) NOT NULL default '0',
     word VARCHAR(50) default NULL,
+    phonetic VARCHAR(50) default NULL,
     ss_type char(2) default NULL,
     sense_number DECIMAL(10,0) NOT NULL default '0',
     tag_count DECIMAL(10,0) default NULL,

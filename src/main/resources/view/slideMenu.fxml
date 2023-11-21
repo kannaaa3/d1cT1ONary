@@ -29,12 +29,15 @@
                         <Image url="@../assets/SideMenu/SideBar.png" />
                      </image></ImageView>
                   <VBox layoutX="7.0" layoutY="5.0" prefHeight="105.0" prefWidth="50.0" />
-                  <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="4.0">
-
+                  <ImageView fitHeight="52.0" fitWidth="52.0" layoutX="10.0" layoutY="10.0">
                         <Image url="@../assets/SideMenu/Logo.png" />
-
                   </ImageView>
-                  <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="22.0" layoutY="207.0" pickOnBounds="true" preserveRatio="true" fx:id="review">
+                  <ImageView fx:id="translate" fitHeight="45.0" fitWidth="45.0" layoutX="15.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/SideMenu/Translate.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="review" fitHeight="45.0" fitWidth="45.0" layoutX="15.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../assets/SideMenu/Review.png" />
                      </image>
@@ -42,25 +45,20 @@
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
                   </ImageView>
-                  <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="22.0" layoutY="287.0" pickOnBounds="true" preserveRatio="true" fx:id="game">
+                  <ImageView fx:id="game" fitHeight="45.0" fitWidth="45.0" layoutX="15.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../assets/SideMenu/Game.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="22.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true" fx:id="translate">
-                     <image>
-                        <Image url="@../assets/SideMenu/Translate.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="22.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true" visible="false" fx:id="translateSelected">
+                  <ImageView fx:id="translateSelected" fitHeight="55.0" fitWidth="55.0" layoutX="9.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../assets/SideMenu/TranslateSelected.png" />
                      </image></ImageView>
-                  <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="22.0" layoutY="207.0" pickOnBounds="true" preserveRatio="true" visible="false" fx:id="reviewSelected">
+                  <ImageView fx:id="reviewSelected" fitHeight="55.0" fitWidth="55.0" layoutX="9.0" layoutY="183.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../assets/SideMenu/ReviewSelected.png" />
                      </image></ImageView>
-                  <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="22.0" layoutY="287.0" pickOnBounds="true" preserveRatio="true" visible="false" fx:id="gameSelected">
+                  <ImageView fx:id="gameSelected" fitHeight="55.0" fitWidth="55.0" layoutX="9.0" layoutY="253.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../assets/SideMenu/GameSelected.png" />
                      </image></ImageView>

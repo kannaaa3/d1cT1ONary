@@ -135,6 +135,12 @@ public void initialize(URL location, ResourceBundle resources) {
         });
 }
 
+        /**
+         * Function to get controller from file.
+         *
+         * @param path the path to the fxml file
+         * @return a pair of main AnchorPane and controller
+         */
         public Pair<AnchorPane, Initializable> getController(String path) {
                 try {
                         FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
@@ -155,6 +161,9 @@ public void initialize(URL location, ResourceBundle resources) {
                 playButton.setDisable(false);
         }
 
+        /**
+         * Function to render show word screen.
+         */
         public void renderShowWordScreen() {
                 mainPane.getChildren().remove(showWordPane);
                 showWordPane.setLayoutX(320);
@@ -165,7 +174,9 @@ public void initialize(URL location, ResourceBundle resources) {
                 hoverButton(slideMenuController.gameSelected, slideMenuController.game);
         }
 
-
+        /**
+         * Function to render review screen.
+         */
         public void renderReviewScreen() {
                 mainPane.getChildren().remove(reviewPane);
                 reviewPane.setLayoutX(320);
@@ -176,6 +187,9 @@ public void initialize(URL location, ResourceBundle resources) {
                 hoverButton(slideMenuController.gameSelected, slideMenuController.game);
         }
 
+        /**
+         * Function to render game screen.
+         */
         public void renderGameScreen() {
                 mainPane.getChildren().remove(gamePane);
                 gamePane.setLayoutX(320);
@@ -186,6 +200,9 @@ public void initialize(URL location, ResourceBundle resources) {
                 hoverButton(slideMenuController.game, slideMenuController.gameSelected);
         }
 
+        /**
+         * Function to render word list screen.
+         */
         public void renderWordlistScreen() {
                 mainPane.getChildren().remove(wordlistPane);
                 wordlistController.nameofWordlist.setText(user.getAllWordLists().get(i).getName());

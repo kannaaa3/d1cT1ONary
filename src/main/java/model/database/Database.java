@@ -173,22 +173,6 @@ public class Database {
         }
     }
 
-    public static String getWordMeaning(String word) {
-        init();
-        try {
-            String[] meaning = WordDataQueryHandler.getWordMeaning(connection, word);
-            if (meaning.length > 0) {
-                return meaning[0];
-            } else {
-                return null;
-            }
-        } catch (SQLException e) {
-            System.out.println("Something went wrong while getting word's data!");
-            e.printStackTrace();
-        }
-        return null;
-    }
-
     public static String[] getSynonym(String word) {
         init();
         Pair<Long, Long> wordKey = getWordInformation(word);
@@ -220,6 +204,22 @@ public class Database {
         return new String[0];
     }
 
+    public static String getWordMeaning(String word) {
+        init();
+        try {
+            String[] meaning = WordDataQueryHandler.getWordMeaning(connection, word);
+            if (meaning.length > 0) {
+                return meaning[0];
+            } else {
+                return null;
+            }
+        } catch (SQLException e) {
+            System.out.println("Something went wrong while getting word's data!");
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public static Pair<Long, Long> getWordInformation(String word) {
         init();
         try {
@@ -242,6 +242,38 @@ public class Database {
         if (wordKey == null) {
             return null;
         }
+        String sql = """
+                SELECT *
+                FROM wn_synset
+                WHERE synset_id = ? AND w_num = ?;
+                """;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setLong(1, wordKey.getKey());
+            preparedStatement.setLong(2, wordKey.getValue());
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return new Word(
+                        wordKey.getKey(),
+                        wordKey.getValue(),
+                        word,
+                        new Phonetic(
+                                resultSet.getString("phonetic"),
+                                ""
+                        ),
+                        new Meaning(
+                                resultSet.getString("ss_type"),
+                                getWordMeaning(word),
+                                "",
+                                getSynonym(word),
+                                getAntonym(word)
+                        ));
+            }
+        } catch (SQLException e) {
+            System.out.println("Can not perform SQL query to get word data!");
+            e.printStackTrace();
+        }
+
         return new Word(
                 wordKey.getKey(),
                 wordKey.getValue(),
@@ -251,9 +283,8 @@ public class Database {
                         ""
                 ),
                 new Meaning(
-                        WordDataQueryHandler
-                                .getPartOfSpeech(connection, wordKey.getKey(), wordKey.getValue()),
-                        getWordMeaning(word),
+                        "",
+                        "",
                         "",
                         getSynonym(word),
                         getAntonym(word)

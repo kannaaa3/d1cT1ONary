@@ -9,6 +9,7 @@ public class LocalDictionary extends Dictionary {
     }
 
     public Word getWordData(String word) {
+        System.out.println(word);
         return Database.getWordData(word);
     }
 }

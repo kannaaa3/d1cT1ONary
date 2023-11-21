@@ -17,12 +17,12 @@ public class TableCreator {
     };
     public static final String[] statements = new String[]{
             "INSERT INTO `wn_gloss` VALUES (?,?);",
-            "INSERT INTO `wn_synset` VALUES (?,?,?,?,?,?);",
+            "INSERT INTO `wn_synset` VALUES (?,?,?,?,?,?,?);",
             "INSERT INTO `wn_antonym` VALUES (?,?,?,?);",
             "INSERT INTO `wn_similar` VALUES (?,?);"
     };
     public static final Integer[] numberOfArguments = new Integer[]{
-            2, 6, 4, 2
+            2, 7, 4, 2
     };
 
     /**

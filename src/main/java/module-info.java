@@ -13,7 +13,6 @@ module java {
     // Local database dependencies
     requires org.xerial.sqlitejdbc;
     requires javafx.controls;
-    requires javafx.fxml;
     requires de.jensd.fx.glyphs.commons;
     requires javafx.media;
 

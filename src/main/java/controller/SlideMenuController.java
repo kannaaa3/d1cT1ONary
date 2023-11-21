@@ -1,12 +1,7 @@
 package controller;
 
-import javafx.beans.InvalidationListener;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
@@ -21,11 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import controller.MainController;
 import javafx.util.Callback;
 import model.dictionary.Dictionary;
-import model.word.Meaning;
-import model.word.Phonetic;
+import model.dictionary.LocalDictionary;
 import model.word.Word;
 
 
@@ -46,7 +39,7 @@ public class SlideMenuController implements Initializable {
     @FXML
     private Button playButton;
     public String currentWord = "";
-    public static String showWord = "Hello";
+    public static String showWord = "transpire";
 
     @FXML
     public ListView<String> myListView;
@@ -67,7 +60,7 @@ public class SlideMenuController implements Initializable {
 
 
     public List<String> words = new ArrayList<String>();
-    static Dictionary dictionary = new Dictionary("src/main/resources/words.txt");
+    static Dictionary dictionary = new LocalDictionary();
 
     public static Word myWord;
 
@@ -77,6 +70,7 @@ public class SlideMenuController implements Initializable {
             currentWord = newValue;
             System.out.println(currentWord);
             words = dictionary.getRecommendedWordByPrefix(currentWord, 10);
+            words.replaceAll(s -> s.replace("_", " "));
             displayRecommendedWordByPrefix(words);
         });
         searchBar.setOnKeyPressed(new EventHandler<KeyEvent>() {
@@ -94,10 +88,7 @@ public class SlideMenuController implements Initializable {
             showWordController.displayWord();
             System.out.println(showWordController);
         });
-
     }
-
-
 
     public void displayRecommendedWordByPrefix(List<String> words) {
 

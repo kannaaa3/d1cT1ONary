@@ -23,7 +23,7 @@ public class WordlistController implements Initializable {
     private AnchorPane wordlistView;
     @FXML
     public Label nameofWordlist;
-    static int numberofWord = 15;
+    static int numberOfWord = 15;
     static List<String> wordsofWordlist = new ArrayList<String>();
     List<Label> labels = new ArrayList<Label>();
     int h = 0;
@@ -31,7 +31,7 @@ public class WordlistController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //nameofWordlist.setText(user.getAllWordLists().get(i).getName());
-        for (int i = 0; i < numberofWord; i++) {
+        for (int i = 0; i < numberOfWord; i++) {
             Label label = new Label();
             label.setText("newwwww");
             label.setBackground(new Background(
