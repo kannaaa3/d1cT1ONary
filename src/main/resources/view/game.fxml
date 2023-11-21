@@ -1,18 +1,112 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1266.0" style="-fx-background-color: #2C2F48;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GameController">
+<AnchorPane prefHeight="800.0" prefWidth="946.0" style="-fx-background-color: #2C2F48;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GameController">
    <children>
-      <Label layoutX="23.0" layoutY="25.0" prefHeight="42.0" prefWidth="180.0" text="Game Center" textFill="WHITE">
+      <ImageView fitHeight="800.0" fitWidth="946.0" pickOnBounds="true">
+         <image>
+            <Image url="@../assets/Game/Elevate%20Agility/Background.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="109.0" fitWidth="104.0" layoutX="816.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Game/Elevate%20Agility/planet_00.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="196.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Game/Elevate%20Agility/planet_02.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="91.0" fitWidth="112.0" layoutX="32.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Game/Elevate%20Agility/planet_01.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="125.0" fitWidth="160.0" layoutX="333.0" layoutY="490.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Game/Elevate%20Agility/planet_03.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="70.0" fitWidth="69.0" layoutX="747.0" layoutY="-17.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Game/Elevate%20Agility/planet_04.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="125.0" fitWidth="131.0" layoutX="815.0" layoutY="674.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Game/Elevate%20Agility/planet_06.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="83.0" fitWidth="79.0" layoutX="634.0" layoutY="308.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Game/Elevate%20Agility/planet_08.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="74.0" fitWidth="946.0" layoutY="30.0" pickOnBounds="true">
+         <image>
+            <Image url="@../assets/Game/Elevate%20Agility/RectangleBehind.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutX="181.0" layoutY="40.0" prefHeight="53.0" prefWidth="584.0" text="extraordinary" textFill="WHITE">
          <font>
-            <Font name="Century Gothic" size="23.0" />
+            <Font name="Century Gothic Bold" size="40.0" />
          </font>
       </Label>
-      <Button layoutX="35.0" layoutY="100.0" mnemonicParsing="false" prefHeight="120.0" prefWidth="450.0" text="Button" />
-      <Button layoutX="35.0" layoutY="270.0" mnemonicParsing="false" prefHeight="120.0" prefWidth="450.0" text="Button" />
-      <Button layoutX="35.0" layoutY="440.0" mnemonicParsing="false" prefHeight="120.0" prefWidth="450.0" text="Button" />
+      <Label layoutX="868.0" layoutY="38.0" text="30" textFill="WHITE">
+         <font>
+            <Font name="Century Gothic Bold" size="40.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="227.0" fitWidth="308.0" layoutX="19.0" layoutY="302.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Game/Elevate%20Agility/rocket.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="80.0" fitWidth="350.0" layoutX="499.0" layoutY="584.0" pickOnBounds="true">
+         <image>
+            <Image url="@../assets/Game/Elevate%20Agility/ChoiceCorrect.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="80.0" fitWidth="350.0" layoutX="100.0" layoutY="589.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Game/Elevate%20Agility/Choice.png" />
+         </image></ImageView>
+      <ImageView fitHeight="80.0" fitWidth="350.0" layoutX="100.0" layoutY="704.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Game/Elevate%20Agility/Choice.png" />
+         </image></ImageView>
+      <ImageView fitHeight="80.0" fitWidth="350.0" layoutX="498.0" layoutY="704.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Game/Elevate%20Agility/Choice.png" />
+         </image></ImageView>
+      <Label alignment="CENTER" layoutX="111.0" layoutY="604.0" prefHeight="39.0" prefWidth="322.0" text="Label" textFill="WHITE">
+         <font>
+            <Font name="Century Gothic" size="25.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="513.0" layoutY="604.0" prefHeight="39.0" prefWidth="322.0" text="Label" textFill="WHITE">
+         <font>
+            <Font name="Century Gothic" size="25.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="114.0" layoutY="719.0" prefHeight="39.0" prefWidth="322.0" text="Label" textFill="WHITE">
+         <font>
+            <Font name="Century Gothic" size="25.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="513.0" layoutY="719.0" prefHeight="39.0" prefWidth="322.0" text="Label" textFill="WHITE">
+         <font>
+            <Font name="Century Gothic" size="25.0" />
+         </font>
+      </Label>
+      <Button layoutX="100.0" layoutY="699.0" mnemonicParsing="false" opacity="0.0" prefHeight="80.0" prefWidth="350.0" />
+      <Button layoutX="498.0" layoutY="699.0" mnemonicParsing="false" opacity="0.0" prefHeight="80.0" prefWidth="350.0" />
+      <Button layoutX="100.0" layoutY="584.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" opacity="0.0" prefHeight="80.0" prefWidth="350.0" style="-fx-background-radius: 16;" />
+      <Button layoutX="498.0" layoutY="584.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" opacity="0.0" prefHeight="80.0" prefWidth="350.0" />
    </children>
 </AnchorPane>
