@@ -109,8 +109,4 @@ public class ShowWordController implements Initializable {
         definition.setText("Definition:\n" + myWord.getMeaning().definition());
         example.setText("Example:\n" + myWord.getMeaning().example());
     }
-    @FXML
-    public void displayDialog() {
-
-    }
 }

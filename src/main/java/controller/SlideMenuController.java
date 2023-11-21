@@ -31,13 +31,13 @@ public class SlideMenuController implements Initializable {
     public AnchorPane mainScreen;
 
     @FXML
-    private Button logoButton;
+    public Button logoButton;
     @FXML
-    private Button showWordButton;
+    public Button showWordButton;
     @FXML
-    private Button reviewButton;
+    public Button reviewButton;
     @FXML
-    private Button playButton;
+    public Button gameButton;
     public String currentWord = "";
     public static String showWord = "transpire";
 
@@ -57,7 +57,6 @@ public class SlideMenuController implements Initializable {
     public ImageView game;
     @FXML
     public ImageView gameSelected;
-
 
     public List<String> words = new ArrayList<String>();
     static Dictionary dictionary = new LocalDictionary();

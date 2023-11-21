@@ -57,34 +57,10 @@ public class MainController implements Initializable {
         Button reviewButton = new Button();
         Button playButton = new Button();
         public static User user = new User("123");
-        static int i = 0;
+        static int j = 0;
 
 @Override
 public void initialize(URL location, ResourceBundle resources) {
-        showWordButton.setPrefWidth(40);
-        showWordButton.setPrefHeight(40);
-        showWordButton.setLayoutX(22);
-        showWordButton.setLayoutY(127);
-        showWordButton.setOnAction(event -> renderShowWordScreen());
-        showWordButton.setDisable(true);
-        showWordButton.setOpacity(0);
-
-        reviewButton.setPrefWidth(40);
-        reviewButton.setPrefHeight(40);
-        reviewButton.setLayoutX(22);
-        reviewButton.setLayoutY(207);
-        reviewButton.setOnAction(event -> renderReviewScreen());
-        reviewButton.setDisable(true);
-        reviewButton.setOpacity(0);
-
-        playButton.setPrefWidth(40);
-        playButton.setPrefHeight(40);
-        playButton.setLayoutX(22);
-        playButton.setLayoutY(287);
-        playButton.setOnAction(event -> renderGameScreen());
-        playButton.setDisable(true);
-        playButton.setOpacity(0);
-
         Pair<AnchorPane, Initializable> controller;
         controller = getController("/view/slideMenu.fxml");
         slideMenuPane = controller.getKey();
@@ -133,6 +109,10 @@ public void initialize(URL location, ResourceBundle resources) {
                         }
                 }
         });
+
+        slideMenuController.showWordButton.setOnAction(e -> renderShowWordScreen());
+        slideMenuController.reviewButton.setOnAction(e -> renderReviewScreen());
+        slideMenuController.gameButton.setOnAction(e -> renderGameScreen());
 }
 
         /**
@@ -205,7 +185,7 @@ public void initialize(URL location, ResourceBundle resources) {
          */
         public void renderWordlistScreen() {
                 mainPane.getChildren().remove(wordlistPane);
-                wordlistController.nameofWordlist.setText(user.getAllWordLists().get(i).getName());
+                wordlistController.nameofWordlist.setText(user.getAllWordLists().get(j).getName());
                 wordlistPane.setLayoutX(320);
                 wordlistPane.setLayoutY(0);
                 mainPane.getChildren().add(wordlistPane);
@@ -218,15 +198,15 @@ public void initialize(URL location, ResourceBundle resources) {
 
         @FXML
         public void createWordlist(int numberofWordlist) {
-                while (i < numberofWordlist) {
-                        ImageView imageView = new ImageView(reviewController.images[i % 5]);
+                while (j < numberofWordlist) {
+                        ImageView imageView = new ImageView(reviewController.images[j % 5]);
                         Button button = new Button();
                         button.setGraphic(imageView);
                         button.setContentDisplay(ContentDisplay.BOTTOM);
                         button.setPrefWidth(200);
                         button.setPrefHeight(200);
                         Label label = new Label();
-                        label.setText(user.getAllWordLists().get(i).getName());
+                        label.setText(user.getAllWordLists().get(j).getName());
                         label.setFont(new Font("Century Gothic", 20));
                         label.setTextFill(Color.WHITE);
                         label.setPrefWidth(180);
@@ -246,7 +226,7 @@ public void initialize(URL location, ResourceBundle resources) {
                         reviewController.anchorPane.getChildren().add(label);
                         reviewController.buttons.add(button);
                         button.setOnAction(e -> renderWordlistScreen());
-                        i++;
+                        j++;
                 }
         }
 }
