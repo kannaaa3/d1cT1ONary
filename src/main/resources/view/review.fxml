@@ -7,10 +7,10 @@
 
 <AnchorPane prefHeight="800.0" prefWidth="946.0" style="-fx-background-color: #2C2F48;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReviewController">
    <children>
-      <ScrollPane layoutX="19.0" layoutY="143.0" prefHeight="571.0" prefWidth="680.0" style="-fx-background-color: #2C2F48;">
+      <ScrollPane layoutX="19.0" layoutY="143.0" prefHeight="571.0" prefWidth="680.0" style="-fx-background-color: #2C2F48;" hbarPolicy="NEVER" vbarPolicy="NEVER" >
          <content>
-          <AnchorPane fx:id="anchorPane" minHeight="570.0" minWidth="0.0" prefWidth="660.0" style="-fx-background-color: #2C2F48;">
-          </AnchorPane>
+            <AnchorPane fx:id="anchorPane" minHeight="570.0" minWidth="0.0" prefWidth="680.0" style="-fx-background-color: #2C2F48;">
+            </AnchorPane>
          </content>
       </ScrollPane>
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="25.0" prefHeight="42.0" prefWidth="204.0" text="Recent wordlist" textAlignment="CENTER" textFill="WHITE">
@@ -18,23 +18,20 @@
             <Font name="Century Gothic" size="23.0" />
          </font>
       </Label>
-      <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="593.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../assets/TranslateScreen/Icon%20Add.png" />
-         </image>
+      <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="593.0" layoutY="35.0" pickOnBounds="true"
+                 preserveRatio="true">
+         <Image url="@../assets/TranslateScreen/Icon Add.png"/>
       </ImageView>
       <Button fx:id="addNewWordlist" layoutX="593.0" layoutY="35.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#displayAddNewWordlistWindow" opacity="0.0" prefHeight="40.0" prefWidth="40.0" />
       <ImageView fx:id="blurBG" fitHeight="800.0" fitWidth="946.0" pickOnBounds="true" visible="false">
          <image>
-            <Image url="@../assets/TranslateScreen/Blur%20Background.png" />
+            <Image url="@../assets/TranslateScreen/Blur Background.png" />
          </image>
       </ImageView>
       <AnchorPane fx:id="addNewWordlistWindow" layoutX="192.0" layoutY="360.0" prefHeight="89.0" prefWidth="562.0" visible="false">
          <children>
             <ImageView fitHeight="176.0" fitWidth="562.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/WordlistScreen/NewWordlistPopup.png" />
-               </image>
+               <Image url="@../assets/WordlistScreen/NewWordlistPopup.png"/>
             </ImageView>
             <Label layoutX="30.0" layoutY="27.0" prefHeight="42.0" prefWidth="157.0" text="Creating wordlist: " textFill="WHITE">
                <font>

@@ -3,10 +3,7 @@ package controller;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -16,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.scene.text.Font;
 import javafx.util.Callback;
 import model.dictionary.Dictionary;
 import model.dictionary.LocalDictionary;
@@ -24,6 +22,7 @@ import model.word.Word;
 
 
 import static controller.MainController.showWordController;
+import static controller.ShowWordController.POPPINS_BOLD;
 
 
 public class SlideMenuController implements Initializable {
@@ -57,6 +56,8 @@ public class SlideMenuController implements Initializable {
     public ImageView game;
     @FXML
     public ImageView gameSelected;
+    @FXML
+    public Label sideBarTitle;
 
 
     public List<String> words = new ArrayList<String>();
@@ -66,6 +67,8 @@ public class SlideMenuController implements Initializable {
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
+        sideBarTitle.setFont(Font.loadFont(SlideMenuController.class.getResource(POPPINS_BOLD)
+                .toExternalForm(), 16));
         searchBar.textProperty().addListener((observable, oldValue, newValue) -> {
             currentWord = newValue;
             System.out.println(currentWord);
@@ -118,4 +121,12 @@ public class SlideMenuController implements Initializable {
 
     }
 
+    /**
+     * Function to reset all slide menu button states.
+     */
+    public void resetButtonState() {
+        translateSelected.setVisible(false);
+        reviewSelected.setVisible(false);
+        gameSelected.setVisible(false);
+    }
 }

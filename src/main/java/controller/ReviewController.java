@@ -28,7 +28,7 @@ public class ReviewController implements Initializable  {
     @FXML
     TextField creatingWordlist;
     String nameofNewWordlist;
-    static int numberofWordlist = 0;
+    static int numberOfWordlist = 0;
     List<Button> buttons = new ArrayList<Button>();
     int h = 0;
     int w = 0;
@@ -41,7 +41,7 @@ public class ReviewController implements Initializable  {
             Image image = new Image("file:src\\main\\resources\\assets\\TranslateScreen\\WordlistDescription" + i + ".png");
             images[i] = image;
         }
-        numberofWordlist = user.getAllWordLists().size();
+        numberOfWordlist = user.getAllWordLists().size();
         //createWordlist(numberofWordlist);
 
 //        creatingWordlist.setOnKeyPressed(new EventHandler<KeyEvent>() {
