@@ -159,11 +159,10 @@ public class MainController implements Initializable {
                                 }
                         }
                 });
-        
-        slideMenuController.showWordButton.setOnAction(e -> renderShowWordScreen());
-        slideMenuController.reviewButton.setOnAction(e -> renderReviewScreen());
-        slideMenuController.gameButton.setOnAction(e -> renderGameScreen());
-}
+                showWordButton.setOnAction(e -> renderShowWordScreen());
+                reviewButton.setOnAction(e -> renderReviewScreen());
+                playButton.setOnAction(e -> renderGameScreen());
+        }
 
         /**
          * Function to get controller from file.
@@ -253,7 +252,7 @@ public class MainController implements Initializable {
         }
 
         private Button getWordListButtonObject() {
-                ImageView imageView = new ImageView(reviewController.images[i % 5]);
+                ImageView imageView = new ImageView(reviewController.images[j % 5]);
                 Button button = new Button();
                 button.setGraphic(imageView);
                 button.setContentDisplay(ContentDisplay.BOTTOM);
@@ -273,16 +272,16 @@ public class MainController implements Initializable {
          */
         @FXML
         public void createWordlist(int numberOfWordlist) {
-                while (i < numberOfWordlist) {
+                while (j < numberOfWordlist) {
                         Button button = getWordListButtonObject();
                         reviewController.anchorPane.getChildren().add(button);
-                        reviewController.anchorPane.getChildren().add(getWordListLabelObject(user.getAllWordLists().get(i).getName()));
+                        reviewController.anchorPane.getChildren().add(getWordListLabelObject(user.getAllWordLists().get(j).getName()));
                         reviewController.buttons.add(button);
                         wordlistController.nameofWordlist.setText(user.getAllWordLists().get(j).getName());
                         button.setOnAction(e -> renderWordlistScreen());
                         reviewController.w++;
                         if (reviewController.w % 3 == 0) reviewController.h++;
-                        i++;
+                        j++;
                 }
         }
 }

@@ -41,7 +41,7 @@ public class ReviewController implements Initializable  {
             Image image = new Image("file:src\\main\\resources\\assets\\TranslateScreen\\WordlistDescription" + i + ".png");
             images[i] = image;
         }
-        numberofWordlist = user.getAllWordLists().size();
+        numberOfWordlist = user.getAllWordLists().size();
     }
 
     @FXML

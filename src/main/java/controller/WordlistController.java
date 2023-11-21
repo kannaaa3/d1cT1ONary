@@ -15,6 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import static controller.MainController.j;
+import static controller.MainController.user;
+
 public class WordlistController implements Initializable {
     @FXML
     private AnchorPane wordlistView;
