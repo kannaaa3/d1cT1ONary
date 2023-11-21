@@ -62,8 +62,6 @@ public class ShowWordController implements Initializable {
         });
     }
 
-
-
     @FXML
     public void displayWord() {
         myWord = dictionary.getWordData(showWord);

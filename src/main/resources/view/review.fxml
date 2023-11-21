@@ -13,7 +13,7 @@
           </AnchorPane>
          </content>
       </ScrollPane>
-      <Label layoutX="23.0" layoutY="25.0" prefHeight="42.0" prefWidth="180.0" text="Recent wordlist" textFill="WHITE">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="25.0" prefHeight="42.0" prefWidth="204.0" text="Recent wordlist" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="Century Gothic" size="23.0" />
          </font>

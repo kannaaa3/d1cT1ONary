@@ -48,6 +48,23 @@ public class SlideMenuController implements Initializable {
     public String currentWord = "";
     public static String showWord = "Hello";
 
+    @FXML
+    public ListView<String> myListView;
+    @FXML
+    public TextField searchBar;
+    @FXML
+    public ImageView translate;
+    @FXML
+    public ImageView translateSelected;
+    @FXML
+    public ImageView review;
+    @FXML
+    public ImageView reviewSelected;
+    @FXML
+    public ImageView game;
+    @FXML
+    public ImageView gameSelected;
+
 
     public List<String> words = new ArrayList<String>();
     static Dictionary dictionary = new Dictionary("src/main/resources/words.txt");
@@ -80,22 +97,6 @@ public class SlideMenuController implements Initializable {
 
     }
 
-    @FXML
-    public ListView<String> myListView;
-    @FXML
-    public TextField searchBar;
-    @FXML
-    public ImageView translate;
-    @FXML
-    public ImageView translateSelected;
-    @FXML
-    public ImageView review;
-    @FXML
-    public ImageView reviewSelected;
-    @FXML
-    public ImageView game;
-    @FXML
-    public ImageView gameSelected;
 
 
     public void displayRecommendedWordByPrefix(List<String> words) {
