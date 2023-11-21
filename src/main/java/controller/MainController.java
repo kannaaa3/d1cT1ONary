@@ -185,7 +185,6 @@ public void initialize(URL location, ResourceBundle resources) {
          */
         public void renderWordlistScreen() {
                 mainPane.getChildren().remove(wordlistPane);
-                wordlistController.nameofWordlist.setText(user.getAllWordLists().get(j).getName());
                 wordlistPane.setLayoutX(320);
                 wordlistPane.setLayoutY(0);
                 mainPane.getChildren().add(wordlistPane);
@@ -225,6 +224,7 @@ public void initialize(URL location, ResourceBundle resources) {
                         reviewController.anchorPane.getChildren().add(button);
                         reviewController.anchorPane.getChildren().add(label);
                         reviewController.buttons.add(button);
+                        wordlistController.nameofWordlist.setText(user.getAllWordLists().get(j).getName());
                         button.setOnAction(e -> renderWordlistScreen());
                         j++;
                 }

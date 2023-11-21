@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<?import javafx.geometry.Insets?>
 <AnchorPane fx:id="showWordScreen" prefHeight="800.0" prefWidth="946.0" style="-fx-background-color: #705CAC; -fx-background-color: #2C2F48;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ShowWordController">
             <children>
       <ImageView fitHeight="469.0" fitWidth="445.0" layoutX="525.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
@@ -20,10 +20,10 @@
                     <center>
                         <VBox prefHeight="399.0" prefWidth="810.0" spacing="10">
                             <BorderPane.margin>
-                                <Insets bottom="25.0" left="25.0" right="25.0"/>
+                                <Insets bottom="25.0" left="25.0" right="25.0" />
                             </BorderPane.margin>
                             <children>
-                                <HBox prefWidth="400.0" spacing="10" maxWidth="650" BorderPane.alignment="CENTER_LEFT">
+                                <HBox maxWidth="650" prefWidth="400.0" spacing="10" BorderPane.alignment="CENTER_LEFT">
                                     <Label fx:id="word" text="Welcome" textFill="WHITE" wrapText="True">
                                     </Label>
                                     <Label fx:id="phoneticText" prefHeight="56.0" text="Hellooooo" textFill="#fffefe" wrapText="true">
@@ -44,11 +44,11 @@
                      <font>
                         <Font name="Century Gothic" size="15.0" />
                      </font></Label>
-                  <Label fx:id="definition" text="Definition" maxWidth="650"  textFill="WHITE" wrapText="true">
+                  <Label fx:id="definition" maxWidth="650" text="Definition" textFill="WHITE" wrapText="true">
                      <font>
                         <Font name="Century Gothic" size="17.0" />
                      </font></Label>
-                  <Label fx:id="example" alignment="TOP_LEFT" maxWidth="650"  text="Example" textFill="WHITE" wrapText="true">
+                  <Label fx:id="example" alignment="TOP_LEFT" maxWidth="650" text="Example" textFill="WHITE" wrapText="true">
                      <font>
                         <Font size="17.0" />
                      </font>
@@ -128,13 +128,22 @@
             <Image url="@../assets/TranslateScreen/Blur%20Background.png" />
          </image>
       </ImageView>
-      <BorderPane layoutX="228.0" layoutY="250.0" prefHeight="293.0" prefWidth="460.0" visible="false">
+      <BorderPane layoutX="228.0" layoutY="250.0" prefHeight="293.0" prefWidth="460.0">
          <center>
-            <ImageView fitHeight="315.0" fitWidth="626.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-               <image>
-                  <Image url="@../assets/TranslateScreen/Popup%20Window.png" />
-               </image>
-            </ImageView>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="315.0" fitWidth="626.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/TranslateScreen/Popup%20Window.png" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" layoutX="101.0" layoutY="32.0" prefHeight="56.0" prefWidth="273.0" text="Select a wordlist" textFill="#fffdfd">
+                     <font>
+                        <Font name="Century Gothic Bold" size="21.0" />
+                     </font></Label>
+                  <BorderPane layoutX="93.0" layoutY="125.0" prefHeight="176.0" prefWidth="318.0" />
+               </children>
+            </AnchorPane>
          </center>
       </BorderPane>
             </children>
