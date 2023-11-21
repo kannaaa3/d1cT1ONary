@@ -188,7 +188,7 @@ public void initialize(URL location, ResourceBundle resources) {
 
         public void renderWordlistScreen() {
                 mainPane.getChildren().remove(wordlistPane);
-                wordlistController.nameofWordlist.setText(user.getAllWordLists().get(i).getName()); 
+                wordlistController.nameofWordlist.setText(user.getAllWordLists().get(i).getName());
                 wordlistPane.setLayoutX(320);
                 wordlistPane.setLayoutY(0);
                 mainPane.getChildren().add(wordlistPane);
