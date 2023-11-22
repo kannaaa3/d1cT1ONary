@@ -158,7 +158,7 @@
                 <Image url="@../assets/TranslateScreen/Blur Background.png" />
             </image>
         </ImageView>
-        <AnchorPane fx:id="popupWindow" layoutX="244.0" layoutY="230.0" prefHeight="316.0" prefWidth="468.0" visible="false">
+        <AnchorPane fx:id="popupWindow" layoutX="244.0" layoutY="230.0" prefHeight="316.0" prefWidth="468.0">
             <children>
                 <ImageView fitHeight="315.0" fitWidth="626.0" pickOnBounds="true" preserveRatio="true">
                     <image>
@@ -172,15 +172,7 @@
                 </Label>
                 <ScrollPane layoutX="36.0" layoutY="135.0" prefHeight="158.0" prefWidth="403.0" style="-fx-background-color: #2C2F48;">
                     <content>
-                        <AnchorPane fx:id="showWordlist" minHeight="0.0" minWidth="0.0" prefHeight="157.0" prefWidth="387.0" style="-fx-background-color: #2C2F48;">
-                            <children>
-                                <ImageView fitHeight="158.0" fitWidth="388.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../assets/TranslateScreen/BGWordlist.png" />
-                                    </image>
-                                </ImageView>
-                            </children>
-                        </AnchorPane>
+                        <AnchorPane fx:id="showWordlist" minHeight="0.0" minWidth="0.0" prefWidth="387.0" style="-fx-background-color: #340077;" />
                     </content>
                 </ScrollPane>
             </children>
