@@ -99,6 +99,32 @@ public class User {
     }
 
     /**
+     * Function to get wordlist name with wordlist ID.
+     *
+     * @param wordListID the wordlist ID
+     * @return the word list name
+     */
+    public String getWordListName(int wordListID) {
+        if (wordListID < 0 || wordListID >= wordLists.size()) {
+            return null;
+        }
+        return wordLists.get(wordListID).getName();
+    }
+
+    /**
+     * Function to get wordlist with wordlist id.
+     *
+     * @param wordListID the wordlistID
+     * @return a word list
+     */
+    public WordList getWordList(int wordListID) {
+        if (wordListID < 0 || wordListID >= wordLists.size()) {
+            return null;
+        }
+        return wordLists.get(wordListID);
+    }
+
+    /**
      * Function is used when user want to remove a wordlist.
      *
      * @param wordListID id of the wordlist we want to remove
@@ -139,6 +165,15 @@ public class User {
      */
     public List<WordList> getAllWordLists() {
         return this.wordLists;
+    }
+
+    /**
+     * Function to get number of wordlist.
+     *
+     * @return a number which is the number of wordlist
+     */
+    public int getNumberOfWordList() {
+        return this.wordLists.size();
     }
 
     public String getUserID() {

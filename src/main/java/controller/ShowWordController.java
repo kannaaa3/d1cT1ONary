@@ -51,26 +51,47 @@ public class ShowWordController implements Initializable {
     @FXML
     AnchorPane popupWindow;
     @FXML
-    Button wordlist1;
+    Button wordList1;
     @FXML
-    Button wordlist2;
+    Button wordList2;
     @FXML
-    Button wordlist3;
+    Button wordList3;
+    @FXML
+    public Label label1;
+    @FXML
+    public Label label2;
+    @FXML
+    public Label label3;
+    @FXML
+    public ImageView backgroundImage1;
+    @FXML
+    public ImageView backgroundImage2;
+    @FXML
+    public ImageView backgroundImage3;
+
+    public Label[] labels;
+    public ImageView[] backgroundImages;
+    public Button[] buttons;
     int h = 0;
     Image image = new Image("file:src\\main\\resources\\assets\\TranslateScreen\\BGForButton.png");
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        setFont();
-        displayWord();
         audio.setOnAction(e -> {
             TTSHandler.playTTSOfWord(showWord);
         });
         add.setOnAction(e -> {
             popupWindow.setVisible(true);
         });
-        if (user.getAllWordLists().size() == 1) {
-
-        }
+        buttons = new Button[]{
+                wordList1, wordList2, wordList3
+        };
+        labels = new Label[]{
+                label1, label2, label3
+        };
+        backgroundImages = new ImageView[]{
+                backgroundImage1, backgroundImage2, backgroundImage3
+        };
+        setFont();
     }
 
     /**
@@ -91,6 +112,30 @@ public class ShowWordController implements Initializable {
                 .getResource(ShowWordController.POPPINS_REGULAR).toExternalForm(), 16));
         antonyms.setFont(Font.loadFont(ShowWordController.class
                 .getResource(ShowWordController.POPPINS_REGULAR).toExternalForm(), 16));
+        for (int i = 0; i < 3; i++) {
+            labels[i].setFont(Font.loadFont(ShowWordController.class
+                    .getResource(ShowWordController.POPPINS_REGULAR).toExternalForm(), 20));
+        }
+    }
+
+    public void clearObject() {
+        for (int i = 0; i < 3; i++) {
+            labels[i].setVisible(false);
+            backgroundImages[i].setVisible(false);
+            buttons[i].setVisible(false);
+            buttons[i].setDisable(true);
+        }
+    }
+
+    public void displayWordList() {
+        clearObject();
+        for (int i = 0; i < Math.min(3, user.getNumberOfWordList()); i++) {
+            labels[i].setVisible(true);
+            labels[i].setText(user.getWordListName(i));
+            backgroundImages[i].setVisible(true);
+            buttons[i].setVisible(true);
+            buttons[i].setDisable(false);
+        }
     }
 
     /**
@@ -134,6 +179,6 @@ public class ShowWordController implements Initializable {
         phoneticText.setText("/" + myWord.getPhonetic().text() + "/");
         partOfSpeech.setText("(" + myWord.getMeaning().partOfSpeech().toUpperCase() + ")");
         definition.setText("Definition:\n" + myWord.getMeaning().definition());
-        example.setText("" + myWord.getMeaning().example());
+        example.setText(myWord.getMeaning().example());
     }
 }

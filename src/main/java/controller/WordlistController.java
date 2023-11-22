@@ -28,9 +28,6 @@ public class WordlistController implements Initializable {
     private AnchorPane wordlistView;
     @FXML
     public Label nameofWordlist;
-    static int numberOfWord;
-    static List<String> wordsofWordlist = new ArrayList<String>();
-    List<Label> labels = new ArrayList<Label>();
     Image image = new Image("file:src\\main\\resources\\assets\\WordlistScreen\\NewWordlistPopup.png");
     static int h = 0;
     static int w = 0;
@@ -55,7 +52,6 @@ public class WordlistController implements Initializable {
             label.setFont(Font.loadFont(ShowWordController.
                     class.getResource(ShowWordController.POPPINS_REGULAR).toExternalForm(), 16));
             label.setText(wordList.getWord(i).getWord());
-            label.setFont(new Font("Century Gothic", 17));
             label.setPrefWidth(250);
             label.setPrefHeight(35);
             label.setAlignment(Pos.BASELINE_CENTER);
