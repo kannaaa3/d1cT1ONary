@@ -69,11 +69,13 @@ public class AgilityGame extends Game {
         List<Integer> antonym = getRandomKValue(0,
                 antonyms.get(questionSet).length, 1);
         int resultPosition = random.nextInt(0, numberOfChoices) + 1;
-        for (int i = 0; i < numberOfChoices; i++) {
-            if (i + 1 == resultPosition) {
-                result.add(antonyms.get(questionSet)[0]);
+        for (int i = 0; i <= numberOfChoices; i++) {
+            if (i == resultPosition) {
+                result.add(antonyms.get(questionSet)[antonym.get(0)]);
             }
-            result.add(synonyms.get(questionSet)[i]);
+            if (i < numberOfChoices) {
+                result.add(synonyms.get(questionSet)[synonym.get(i)]);
+            }
         }
         questionData = result;
         questionAnswer = resultPosition;
