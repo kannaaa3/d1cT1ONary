@@ -5,6 +5,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.net.URL;
@@ -14,6 +15,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import model.util.TTSHandler;
 
+import static controller.MainController.user;
 import static controller.SlideMenuController.*;
 
 
@@ -44,7 +46,18 @@ public class ShowWordController implements Initializable {
     private Dialog<ImageView> addWordlistWindow;
     @FXML
     Button audio;
-
+    @FXML
+    AnchorPane showWordlist;
+    @FXML
+    AnchorPane popupWindow;
+    @FXML
+    Button wordlist1;
+    @FXML
+    Button wordlist2;
+    @FXML
+    Button wordlist3;
+    int h = 0;
+    Image image = new Image("file:src\\main\\resources\\assets\\TranslateScreen\\BGForButton.png");
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setFont();
@@ -52,6 +65,12 @@ public class ShowWordController implements Initializable {
         audio.setOnAction(e -> {
             TTSHandler.playTTSOfWord(showWord);
         });
+        add.setOnAction(e -> {
+            popupWindow.setVisible(true);
+        });
+        if (user.getAllWordLists().size() == 1) {
+
+        }
     }
 
     /**

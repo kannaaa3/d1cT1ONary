@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1266.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+   <children>
+      <ImageView fitHeight="800.0" fitWidth="1266.0" pickOnBounds="true">
+         <image>
+            <Image url="@../assets/LoginScreen/Background.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="70.0" fitWidth="446.0" layoutX="95.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/LoginScreen/D1CTATORSZ.png" />
+         </image>
+      </ImageView>
+      <AnchorPane fx:id="loginWindow" layoutX="95.0" layoutY="258.0" prefHeight="362.0" prefWidth="446.0" style="-fx-background-color: #2C2F48; -fx-background-radius: 20;">
+         <children>
+            <ImageView fitHeight="66.0" fitWidth="408.0" layoutX="21.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/LoginScreen/WelcomeLogin.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="12.0" fitWidth="135.0" layoutX="46.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/LoginScreen/USERNAME.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="userNameField" layoutX="46.0" layoutY="118.0" prefHeight="43.0" prefWidth="347.0">
+               <font>
+                  <Font name="Century Gothic Bold" size="17.0" />
+               </font></TextField>
+            <ImageView fitHeight="12.0" fitWidth="306.0" layoutX="46.0" layoutY="184.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/LoginScreen/PASSWORD.png" />
+               </image>
+            </ImageView>
+            <PasswordField fx:id="passwordField" layoutX="46.0" layoutY="206.0" prefHeight="43.0" prefWidth="347.0" />
+            <Button fx:id="login" layoutX="45.0" layoutY="279.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="347.0" style="-fx-background-color: #606AD0; -fx-background-radius: 10;" />
+            <ImageView disable="true" fitHeight="20.0" fitWidth="57.0" layoutX="199.0" layoutY="291.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/LoginScreen/Login.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="47.0" layoutY="330.0" text="Need an account?" textFill="#c9c0c0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+            <Hyperlink fx:id="registerLink" layoutX="127.0" layoutY="328.0" text="Register">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Hyperlink>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="registerWindow" layoutX="95.0" layoutY="258.0" prefHeight="362.0" prefWidth="446.0" style="-fx-background-color: #2C2F48; -fx-background-radius: 20;" visible="false">
+         <children>
+            <ImageView fitHeight="84.0" fitWidth="365.0" layoutX="41.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/LoginScreen/WelcomeRegister.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="userNameRegister" layoutX="46.0" layoutY="118.0" prefHeight="43.0" prefWidth="347.0">
+               <font>
+                  <Font name="Century Gothic Bold" size="17.0" />
+               </font></TextField>
+            <PasswordField fx:id="passwordRegister" layoutX="46.0" layoutY="206.0" prefHeight="43.0" prefWidth="347.0" />
+            <ImageView fitHeight="12.0" fitWidth="135.0" layoutX="46.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/LoginScreen/USERNAME.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="12.0" fitWidth="306.0" layoutX="46.0" layoutY="184.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/LoginScreen/PASSWORD.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="register" layoutX="45.0" layoutY="279.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="347.0" style="-fx-background-color: #606AD0; -fx-background-radius: 10;" />
+            <ImageView disable="true" fitHeight="20.0" fitWidth="200.0" layoutX="177.0" layoutY="291.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/LoginScreen/Register.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

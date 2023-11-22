@@ -7,6 +7,6 @@ import java.sql.*;
 
 public class Main {
     public static void main(String[] args) {
-        Database database = new Database();
+        Database.register("giangvien01", "abc123");
     }
 }

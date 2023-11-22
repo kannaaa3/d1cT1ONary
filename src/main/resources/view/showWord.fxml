@@ -66,7 +66,7 @@
                                                 <Font name="Century Gothic Bold" size="26.0" />
                                             </font>
                                         </Label>
-                                        <Button layoutX="20.0" layoutY="85.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" style="-fx-background-radius: 20;">
+                                        <Button fx:id="wordlist1" layoutX="20.0" layoutY="85.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" style="-fx-background-radius: 20;">
                            <graphic>
                               <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -123,28 +123,37 @@
                                     </children></AnchorPane>
                             </right></BorderPane>
                     </bottom></BorderPane>
+      <AnchorPane fx:id="popupWindow" layoutX="244.0" layoutY="230.0" prefHeight="316.0" prefWidth="468.0" visible="false">
+         <children>
+            <ImageView fitHeight="315.0" fitWidth="626.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/TranslateScreen/Popup%20Window.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" layoutX="101.0" layoutY="32.0" prefHeight="56.0" prefWidth="273.0" text="Select a wordlist" textFill="#fffdfd">
+               <font>
+                  <Font name="Century Gothic Bold" size="21.0" />
+               </font>
+            </Label>
+            <ScrollPane layoutX="36.0" layoutY="135.0" prefHeight="158.0" prefWidth="403.0" style="-fx-background-color: #2C2F48;">
+              <content>
+                <AnchorPane fx:id="showWordlist" minHeight="0.0" minWidth="0.0" prefHeight="157.0" prefWidth="387.0" style="-fx-background-color: #2C2F48;">
+                     <children>
+                        <ImageView fitHeight="158.0" fitWidth="388.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/TranslateScreen/BGWordlist.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
+         </children>
+      </AnchorPane>
       <ImageView fx:id="addWordlistBG" fitHeight="807.0" fitWidth="946.0" layoutX="-1.0" pickOnBounds="true" visible="false">
          <image>
             <Image url="@../assets/TranslateScreen/Blur Background.png" />
          </image>
       </ImageView>
-      <BorderPane layoutX="228.0" layoutY="250.0" prefHeight="293.0" prefWidth="460.0" visible="false">
-         <center>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-               <children>
-                  <ImageView fitHeight="315.0" fitWidth="626.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../assets/TranslateScreen/Popup%20Window.png" />
-                     </image>
-                  </ImageView>
-                  <Label alignment="CENTER" layoutX="101.0" layoutY="32.0" prefHeight="56.0" prefWidth="273.0" text="Select a wordlist" textFill="#fffdfd">
-                     <font>
-                        <Font name="Century Gothic Bold" size="21.0" />
-                     </font></Label>
-                  <BorderPane layoutX="93.0" layoutY="125.0" prefHeight="176.0" prefWidth="318.0" />
-               </children>
-            </AnchorPane>
-         </center>
-      </BorderPane>
             </children>
 </AnchorPane>
