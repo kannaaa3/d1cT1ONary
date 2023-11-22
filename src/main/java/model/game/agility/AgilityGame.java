@@ -33,8 +33,8 @@ public class AgilityGame extends Game {
     /**
      * Function to get k random value.
      *
-     * @param origin the lower bound
-     * @param bound the upper bound
+     * @param origin        the lower bound
+     * @param bound         the upper bound
      * @param numberOfValue the number of value
      * @return numberOfValue number in range [origin, bound)
      */

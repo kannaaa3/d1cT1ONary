@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 public class GameController implements Initializable {
     @FXML
     Button agilityGame;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 

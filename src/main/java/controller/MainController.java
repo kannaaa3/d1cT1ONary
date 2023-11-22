@@ -27,40 +27,38 @@ import static controller.SlideMenuController.*;
 
 
 public class MainController implements Initializable {
-        @FXML
-        public GameAgilityController gameAgilityController;
-        @FXML
-        public ReviewController reviewController;
-        @FXML
-        public static ShowWordController showWordController;
-        @FXML
-        public SlideMenuController slideMenuController;
-        @FXML
-        public WordlistController wordlistController;
-        @FXML
-        public LoginController loginController;
-        @FXML
-        public GameController gameController;
+    @FXML
+    public GameAgilityController gameAgilityController;
+    @FXML
+    public ReviewController reviewController;
+    @FXML
+    public static ShowWordController showWordController;
+    @FXML
+    public SlideMenuController slideMenuController;
+    @FXML
+    public WordlistController wordlistController;
+    @FXML
+    public LoginController loginController;
+    @FXML
+    public GameController gameController;
 
-        @FXML
-        private AnchorPane showWordPane;
-        @FXML
-        private AnchorPane reviewPane;
-        @FXML
-        private AnchorPane gameAgilityPane;
-        @FXML
-        private AnchorPane slideMenuPane;
-        @FXML
-        private AnchorPane wordlistPane;
-        @FXML
-        private AnchorPane loginPane;
-        @FXML
-        private AnchorPane gamePane;
-        @FXML
-        public AnchorPane mainPane;
-        public static User user;
-
-
+    @FXML
+    private AnchorPane showWordPane;
+    @FXML
+    private AnchorPane reviewPane;
+    @FXML
+    private AnchorPane gameAgilityPane;
+    @FXML
+    private AnchorPane slideMenuPane;
+    @FXML
+    private AnchorPane wordlistPane;
+    @FXML
+    private AnchorPane loginPane;
+    @FXML
+    private AnchorPane gamePane;
+    @FXML
+    public AnchorPane mainPane;
+    public static User user;
     Button showWordButton = new Button();
     Button reviewButton = new Button();
     Button playButton = new Button();
@@ -128,25 +126,21 @@ public class MainController implements Initializable {
         reviewPane = controller.getKey();
         reviewController = (ReviewController) controller.getValue();
 
-                controller = getController("/view/gameAgility.fxml");
-                gameAgilityPane = controller.getKey();
-                gameAgilityController = (GameAgilityController) controller.getValue();
+        controller = getController("/view/gameAgility.fxml");
+        gameAgilityPane = controller.getKey();
+        gameAgilityController = (GameAgilityController) controller.getValue();
 
         controller = getController("/view/wordlist.fxml");
         wordlistPane = controller.getKey();
         wordlistController = (WordlistController) controller.getValue();
 
-                controller = getController("/view/game.fxml");
-                gamePane = controller.getKey();
-                gameController = (GameController) controller.getValue();
-        }
+        controller = getController("/view/game.fxml");
+        gamePane = controller.getKey();
+        gameController = (GameController) controller.getValue();
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-
-//                renderShowWordScreen();
-//                renderSlideMenuScreen();
         Pair<AnchorPane, Initializable> controller;
         controller = getController("/view/login.fxml");
         loginPane = controller.getKey();
@@ -171,56 +165,56 @@ public class MainController implements Initializable {
                 mainPane.getChildren().add(playButton);
 
 
-                createWordlist(reviewController.numberOfWordlist);
-                creatChoicesOfWordlist(reviewController.numberOfWordlist);
+                createWordlist(ReviewController.numberOfWordlist);
+                creatChoicesOfWordlist(ReviewController.numberOfWordlist);
 
-                               reviewController.creatingWordlist.setOnKeyPressed(new EventHandler<KeyEvent>() {
-                                       @Override
-                                       public void handle(KeyEvent keyEvent) {
-                                               if (keyEvent.getCode() == KeyCode.ENTER) {
-                                                       if (!reviewController.creatingWordlist.getText().isEmpty()) {
-                                                               reviewController.nameofNewWordlist = reviewController.creatingWordlist.getText();
-                                                       } else {
-                                                               return;
-                                                       }
-                                                       reviewController.creatingWordlist.clear();
-                                                       reviewController.blurBG.setVisible(false);
-                                                       reviewController.addNewWordlistWindow.setVisible(false);
-                                                       System.out.println(reviewController.nameofNewWordlist);
-                                                       user.createNewWordList(reviewController.nameofNewWordlist);
-                                                       reviewController.numberOfWordlist = user.getAllWordLists().size();
-                                                       createWordlist(reviewController.numberOfWordlist);
-                                                       creatChoicesOfWordlist(reviewController.numberOfWordlist);
-                                               }
-                                       }
-                               });
-                               gameController.agilityGame.setOnAction(e -> renderGameAgilityScreen());
-                               showWordButton.setOnAction(e -> renderShowWordScreen());
-                               reviewButton.setOnAction(e -> renderReviewScreen());
-                               playButton.setOnAction(e -> renderGameScreen());
+                reviewController.creatingWordlist.setOnKeyPressed(new EventHandler<KeyEvent>() {
+                    @Override
+                    public void handle(KeyEvent keyEvent) {
+                        if (keyEvent.getCode() == KeyCode.ENTER) {
+                            if (!reviewController.creatingWordlist.getText().isEmpty()) {
+                                reviewController.nameofNewWordlist = reviewController.creatingWordlist.getText();
+                            } else {
+                                return;
+                            }
+                            reviewController.creatingWordlist.clear();
+                            reviewController.blurBG.setVisible(false);
+                            reviewController.addNewWordlistWindow.setVisible(false);
+                            System.out.println(reviewController.nameofNewWordlist);
+                            user.createNewWordList(reviewController.nameofNewWordlist);
+                            ReviewController.numberOfWordlist = user.getAllWordLists().size();
+                            createWordlist(ReviewController.numberOfWordlist);
+                            creatChoicesOfWordlist(ReviewController.numberOfWordlist);
                         }
+                    }
                 });
-                loginController.registerLink.setOnAction(ee -> {
-                        loginController.loginWindow.setVisible(false);
-                        loginController.loginWindow.setDisable(true);
-                        loginController.registerWindow.setVisible(true);
-                        loginController.registerWindow.setDisable(false);
-                });
-                loginController.register.setOnAction(ee -> {
-                        if (!loginController.userNameRegister.getText().isEmpty()
-                                && !loginController.passwordRegister.getText().isEmpty()) {
-                                Database.register(loginController.userNameRegister.getText(),
-                                        loginController.passwordRegister.getText());
-                                loginController.loginWindow.setVisible(true);
-                                loginController.loginWindow.setDisable(false);
-                                loginController.registerWindow.setVisible(false);
-                                loginController.registerWindow.setDisable(true);
-                        } else {
-                                loginController.userNameRegister.clear();
-                                loginController.passwordRegister.clear();
-                        }
-                });
-        }
+                gameController.agilityGame.setOnAction(e -> renderGameAgilityScreen());
+                showWordButton.setOnAction(e -> renderShowWordScreen());
+                reviewButton.setOnAction(e -> renderReviewScreen());
+                playButton.setOnAction(e -> renderGameScreen());
+            }
+        });
+        loginController.registerLink.setOnAction(ee -> {
+            loginController.loginWindow.setVisible(false);
+            loginController.loginWindow.setDisable(true);
+            loginController.registerWindow.setVisible(true);
+            loginController.registerWindow.setDisable(false);
+        });
+        loginController.register.setOnAction(ee -> {
+            if (!loginController.userNameRegister.getText().isEmpty()
+                    && !loginController.passwordRegister.getText().isEmpty()) {
+                Database.register(loginController.userNameRegister.getText(),
+                        loginController.passwordRegister.getText());
+                loginController.loginWindow.setVisible(true);
+                loginController.loginWindow.setDisable(false);
+                loginController.registerWindow.setVisible(false);
+                loginController.registerWindow.setDisable(true);
+            } else {
+                loginController.userNameRegister.clear();
+                loginController.passwordRegister.clear();
+            }
+        });
+    }
 
     /**
      * Function to get controller from file.
@@ -273,17 +267,15 @@ public class MainController implements Initializable {
         slideMenuController.reviewSelected.setVisible(true);
     }
 
-        /**
-         * Function to render game screen.
-         */
-        public void renderGameAgilityScreen() {
-                mainPane.getChildren().remove(gameAgilityPane);
-                gameAgilityPane.setLayoutX(320);
-                gameAgilityPane.setLayoutY(0);
-                mainPane.getChildren().add(gameAgilityPane);
-                slideMenuController.resetButtonState();
-                slideMenuController.gameSelected.setVisible(true);
-        }
+    /**
+     * Function to render game screen.
+     */
+    public void renderGameAgilityScreen() {
+        mainPane.getChildren().remove(gameAgilityPane);
+        gameAgilityPane.setLayoutX(320);
+        gameAgilityPane.setLayoutY(0);
+        mainPane.getChildren().add(gameAgilityPane);
+    }
 
     /**
      * Function to render word list screen.
@@ -299,19 +291,21 @@ public class MainController implements Initializable {
         wordlistController.nameofWordlist.setText(wordList.getName());
     }
 
-        public void renderLoginScreen() {
-                mainPane.getChildren().remove(loginPane);
-                loginPane.setLayoutX(0);
-                loginPane.setLayoutY(0);
-                mainPane.getChildren().add(loginPane);
-        }
+    public void renderLoginScreen() {
+        mainPane.getChildren().remove(loginPane);
+        loginPane.setLayoutX(0);
+        loginPane.setLayoutY(0);
+        mainPane.getChildren().add(loginPane);
+    }
 
-        public void renderGameScreen() {
-                mainPane.getChildren().remove(gamePane);
-                gamePane.setLayoutX(320);
-                gamePane.setLayoutY(0);
-                mainPane.getChildren().add(gamePane);
-        }
+    public void renderGameScreen() {
+        mainPane.getChildren().remove(gamePane);
+        gamePane.setLayoutX(320);
+        gamePane.setLayoutY(0);
+        mainPane.getChildren().add(gamePane);
+        slideMenuController.resetButtonState();
+        slideMenuController.gameSelected.setVisible(true);
+    }
 
     private Label getWordListLabelObject(String wordListName) {
         Label label = new Label();

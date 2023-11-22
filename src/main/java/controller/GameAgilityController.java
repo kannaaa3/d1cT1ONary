@@ -76,11 +76,11 @@ public class GameAgilityController implements Initializable {
         game.startGame();
         updateGameState();
         replayButton.setOnAction(e -> {
-                endView.setVisible(false);
-                endView.setDisable(true);
-                game.startGame();
-                updateGameState();
-                currentScore.setText(game.getGameScore()+ "");
+            endView.setVisible(false);
+            endView.setDisable(true);
+            game.startGame();
+            updateGameState();
+            currentScore.setText(game.getGameScore() + "");
         });
     }
 
@@ -154,7 +154,7 @@ public class GameAgilityController implements Initializable {
         } else {
             try {
                 Thread.sleep(200);
-                currentScore.setText(""+ game.getGameScore());
+                currentScore.setText("" + game.getGameScore());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -166,18 +166,18 @@ public class GameAgilityController implements Initializable {
     private void createButtonHoverEvent(Button button, int option, BorderPane borderPane) {
         button.hoverProperty().addListener((ChangeListener<Boolean>)
                 (observable, oldValue, newValue) -> {
-            if (borderPane.getCenter().equals(correctChoice[option])) {
-                return;
-            }
-            if (borderPane.getCenter().equals(wrongChoice[option])) {
-                return;
-            }
-            if (newValue) {
-                showChoice(option, hoverChoice[option]);
-            } else {
-                showChoice(option, choice[option]);
-            }
-        });
+                    if (borderPane.getCenter().equals(correctChoice[option])) {
+                        return;
+                    }
+                    if (borderPane.getCenter().equals(wrongChoice[option])) {
+                        return;
+                    }
+                    if (newValue) {
+                        showChoice(option, hoverChoice[option]);
+                    } else {
+                        showChoice(option, choice[option]);
+                    }
+                });
     }
 
     public void createButtonEvent() {

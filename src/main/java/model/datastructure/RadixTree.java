@@ -49,7 +49,7 @@ public class RadixTree {
     /**
      * This function will return best match word that match the prefix in lexico order.
      *
-     * @param prefix the prefix we want to match
+     * @param prefix             the prefix we want to match
      * @param numberOfNeededWord the number of needed word
      * @return numberOfNeededWord word that match the prefix in the ascending lexico order
      */

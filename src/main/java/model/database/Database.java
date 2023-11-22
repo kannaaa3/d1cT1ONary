@@ -1,4 +1,5 @@
 package model.database;
+
 import javafx.util.Pair;
 import model.user.User;
 import model.word.Meaning;
@@ -92,9 +93,9 @@ public class Database {
             for (int i = 0; i < 64; i++) {
                 int randomInteger = ran.nextInt(16);
                 if (randomInteger < 10) {
-                    userID.append((char)(48 + randomInteger));
+                    userID.append((char) (48 + randomInteger));
                 } else {
-                    userID.append((char)(97 + randomInteger - 10));
+                    userID.append((char) (97 + randomInteger - 10));
                 }
             }
             try {

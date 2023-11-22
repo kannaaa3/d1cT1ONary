@@ -29,12 +29,12 @@ public class Algorithm {
     /**
      * Function to check if an object in the array of sorted object.
      *
-     * @param a the array of object
+     * @param a      the array of object
      * @param target the object we want to check
+     * @param <T>    comparable object
      * @return true if the object in the array
-     * @param <T> comparable object
      */
-    public static <T extends Comparable<T> > boolean contains(T[] a, T target) {
+    public static <T extends Comparable<T>> boolean contains(T[] a, T target) {
         if (a.length == 0) {
             return false;
         }

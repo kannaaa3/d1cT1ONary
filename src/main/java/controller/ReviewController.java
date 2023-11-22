@@ -16,7 +16,7 @@ import java.util.ResourceBundle;
 
 import static controller.MainController.user;
 
-public class ReviewController implements Initializable  {
+public class ReviewController implements Initializable {
     @FXML
     AnchorPane anchorPane;
     @FXML
@@ -34,6 +34,7 @@ public class ReviewController implements Initializable  {
     int w = 0;
     List<String> buttonNames = new ArrayList<String>();
     Image[] images = new Image[6];
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         for (int i = 0; i < 5; i++) {

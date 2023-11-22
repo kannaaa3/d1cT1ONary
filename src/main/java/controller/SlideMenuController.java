@@ -8,6 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,6 @@ import javafx.util.Callback;
 import model.dictionary.Dictionary;
 import model.dictionary.LocalDictionary;
 import model.word.Word;
-
 
 
 import static controller.MainController.showWordController;

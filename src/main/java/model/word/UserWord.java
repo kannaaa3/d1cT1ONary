@@ -12,10 +12,10 @@ public class UserWord extends Word {
     /**
      * Constructor for the user's word data.
      *
-     * @param word the word we want to save
-     * @param fluencyLevel the fluency level
+     * @param word                the word we want to save
+     * @param fluencyLevel        the fluency level
      * @param lastReviewTimestamp the last timestamp
-     * @param reviewTimes the number of review time
+     * @param reviewTimes         the number of review time
      */
     public UserWord(Word word, int fluencyLevel, int lastReviewTimestamp, int reviewTimes) {
         super(word.getWord(), word.getPhonetic(), word.getMeaning());
@@ -40,7 +40,7 @@ public class UserWord extends Word {
      * Function to update when user review the word.
      */
     public void review() {
-        this.lastReviewTimestamp = (int)(System.currentTimeMillis() / 1000);
+        this.lastReviewTimestamp = (int) (System.currentTimeMillis() / 1000);
         reviewTimes++;
     }
 

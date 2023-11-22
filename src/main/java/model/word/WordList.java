@@ -25,7 +25,7 @@ public class WordList {
     /**
      * This function is used when you want to load a word list. Please do not pass a null word list.
      *
-     * @param name the name of the word list (i.e: fruit, health)
+     * @param name  the name of the word list (i.e: fruit, health)
      * @param words the wordlist that we want to load
      */
     public WordList(String name, List<Word> words) {

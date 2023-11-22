@@ -52,7 +52,7 @@ public class TableCreator {
      * Function to load table's data from file.
      *
      * @param connection the database connection
-     * @param filePath the table's queries filepath
+     * @param filePath   the table's queries filepath
      * @throws SQLException throw new SQLException if the query can not be performed
      */
     public static void createTable(Connection connection, String filePath) throws SQLException {
@@ -67,7 +67,7 @@ public class TableCreator {
      * Function to load dictionary data
      *
      * @param connection the database connection
-     * @param filePath the filepath of the dictionary data
+     * @param filePath   the filepath of the dictionary data
      * @throws SQLException if the query can not be done
      */
     public static void loadDictionaryData(Connection connection,

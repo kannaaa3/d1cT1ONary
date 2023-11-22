@@ -44,8 +44,8 @@ public class Converter {
         return ans.toString();
     }
 
-    public static <K extends Comparable<K>, V extends Comparable<V> > ComparablePair<K, V>[]
-        convertFromListToArray(List<ComparablePair<K, V>> list) {
+    public static <K extends Comparable<K>, V extends Comparable<V>> ComparablePair<K, V>[]
+    convertFromListToArray(List<ComparablePair<K, V>> list) {
         ComparablePair<K, V>[] ans =
                 (ComparablePair<K, V>[]) Array.newInstance(ComparablePair.class, list.size());
         for (int i = 0; i < list.size(); i++) {

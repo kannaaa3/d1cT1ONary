@@ -1,4 +1,5 @@
 package model.user;
+
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import java.security.NoSuchAlgorithmException;
@@ -8,7 +9,6 @@ import java.security.spec.KeySpec;
 
 public class CredentialManager {
     /**
-     *
      * @param username
      * @param password
      * @return
@@ -28,7 +28,6 @@ public class CredentialManager {
     }
 
     /**
-     *
      * @param username
      * @param password
      */

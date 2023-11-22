@@ -142,7 +142,7 @@ public class User {
      * Function is used when user want to remove word from word list.
      *
      * @param wordListID the word list id
-     * @param wordID the word id
+     * @param wordID     the word id
      */
     public void removeWordFromWordList(int wordListID, int wordID) {
         if (wordListID < 0 || wordListID >= wordLists.size()) {

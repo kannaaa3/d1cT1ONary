@@ -22,10 +22,13 @@
                  preserveRatio="true">
          <Image url="@../assets/TranslateScreen/Icon Add.png"/>
       </ImageView>
-      <Button fx:id="addNewWordlist" layoutX="593.0" layoutY="35.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#displayAddNewWordlistWindow" opacity="0.0" prefHeight="40.0" prefWidth="40.0" />
-      <ImageView fx:id="blurBG" fitHeight="800.0" fitWidth="946.0" pickOnBounds="true" visible="false">
+      <Button fx:id="addNewWordlist" layoutX="593.0" layoutY="35.0" minHeight="-Infinity"
+              minWidth="-Infinity" mnemonicParsing="false" onAction="#displayAddNewWordlistWindow"
+              opacity="0.0" prefHeight="40.0" prefWidth="40.0"/>
+      <ImageView fx:id="blurBG" fitHeight="800.0" fitWidth="946.0" pickOnBounds="true"
+                 visible="false">
          <image>
-            <Image url="@../assets/TranslateScreen/Blur Background.png" />
+            <Image url="@../assets/TranslateScreen/Blur Background.png"/>
          </image>
       </ImageView>
       <AnchorPane fx:id="addNewWordlistWindow" layoutX="192.0" layoutY="360.0" prefHeight="89.0" prefWidth="562.0" visible="false">

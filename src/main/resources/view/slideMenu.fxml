@@ -6,76 +6,94 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="800.0" prefWidth="316.0" style="-fx-background-color: #9747FF;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SlideMenuController">
-   <children>
-      <BorderPane prefHeight="800.0" prefWidth="320.0" style="-fx-background-color: #483D8B;">
-         <bottom>
-            <AnchorPane prefHeight="60.0" prefWidth="330.0" style="-fx-background-color: #2C2F48;" BorderPane.alignment="CENTER">
-               <children>
-                  <Button fx:id="settingButton" layoutX="280.0" layoutY="12.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27" prefWidth="27" style="-fx-background-radius: 13.5; -fx-background-color: #2C2F48;">
-                     <graphic>
-                        <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true"
+<AnchorPane prefHeight="800.0" prefWidth="316.0" style="-fx-background-color: #9747FF;"
+            xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.SlideMenuController">
+    <children>
+        <BorderPane prefHeight="800.0" prefWidth="320.0" style="-fx-background-color: #483D8B;">
+            <bottom>
+                <AnchorPane prefHeight="60.0" prefWidth="330.0"
+                            style="-fx-background-color: #2C2F48;" BorderPane.alignment="CENTER">
+                    <children>
+                        <Button fx:id="settingButton" layoutX="280.0" layoutY="12.0"
+                                minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false"
+                                prefHeight="27" prefWidth="27"
+                                style="-fx-background-radius: 13.5; -fx-background-color: #2C2F48;">
+                            <graphic>
+                                <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true"
+                                           preserveRatio="true">
+                                    <Image url="@../assets/SideMenu/Setting.png"/>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                    </children>
+                </AnchorPane>
+            </bottom>
+            <left>
+                <AnchorPane fx:id="slideMenu" prefHeight="740.0" prefWidth="64.0"
+                            style="-fx-background-color: #6A5ACD;" BorderPane.alignment="CENTER">
+                    <children>
+                        <ImageView fitHeight="740.0" fitWidth="85.0" pickOnBounds="true"
                                    preserveRatio="true">
-                           <Image url="@../assets/SideMenu/Setting.png"/>
+                            <Image url="@../assets/SideMenu/SideBar.png"/>
                         </ImageView>
-                     </graphic></Button>
-               </children></AnchorPane>
-         </bottom>
-         <left>
-            <AnchorPane fx:id="slideMenu" prefHeight="740.0" prefWidth="64.0" style="-fx-background-color: #6A5ACD;" BorderPane.alignment="CENTER">
-               <children>
-                  <ImageView fitHeight="740.0" fitWidth="85.0" pickOnBounds="true"
-                             preserveRatio="true">
-                     <Image url="@../assets/SideMenu/SideBar.png"/>
-                  </ImageView>
-                  <VBox layoutX="7.0" layoutY="5.0" prefHeight="105.0" prefWidth="50.0" />
-                  <ImageView fitHeight="52.0" fitWidth="52.0" layoutX="10.0" layoutY="10.0">
-                        <Image url="@../assets/SideMenu/Logo.png" />
-                  </ImageView>
-                  <ImageView fx:id="translate" fitHeight="40.0" fitWidth="40.0" layoutX="20.0"
-                             layoutY="120.0" pickOnBounds="true" preserveRatio="true">
-                     <Image url="@../assets/SideMenu/Translate.png"/>
-                  </ImageView>
-                  <ImageView fx:id="review" fitHeight="40.0" fitWidth="40.0" layoutX="20.0"
-                             layoutY="180.0" pickOnBounds="true" preserveRatio="true">
-                     <cursor>
-                        <Cursor fx:constant="DEFAULT"/>
-                     </cursor>
-                     <Image url="@../assets/SideMenu/Review.png"/>
-                  </ImageView>
-                  <ImageView fx:id="game" fitHeight="40.0" fitWidth="40.0" layoutX="20.0"
-                             layoutY="240.0" pickOnBounds="true" preserveRatio="true">
-                     <Image url="@../assets/SideMenu/Game.png"/>
-                  </ImageView>
-                  <ImageView fx:id="translateSelected" fitHeight="60" fitWidth="60" scaleX="2" scaleY="2" layoutX="19" layoutY="110" preserveRatio="true">
-                     <Image url="@../assets/SideMenu/SelectedEffect.png"/>
-                  </ImageView>
-                  <ImageView fx:id="reviewSelected" fitHeight="60" fitWidth="60" scaleX="2" scaleY="2" layoutX="19" layoutY="170" preserveRatio="true">
-                     <Image url="@../assets/SideMenu/SelectedEffect.png"/>
-                  </ImageView>
-                  <ImageView fx:id="gameSelected" fitHeight="60" fitWidth="60" scaleX="2" scaleY="2" layoutX="19" layoutY="230" preserveRatio="true">
-                     <Image url="@../assets/SideMenu/SelectedEffect.png"/>
-                  </ImageView>
-               </children>
-            </AnchorPane>
-         </left>
-         <right>
-            <AnchorPane fx:id="searchView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
-               <children>
-                  <TextField fx:id="searchBar" layoutX="13.0" layoutY="43.0" opacity="0.5" prefHeight="40.0" prefWidth="212.0" />
-                  <VBox layoutX="12.0" layoutY="86.0" prefHeight="359.0" prefWidth="213.0">
-                     <children>
-                        <ListView fx:id="myListView" prefHeight="236.0" prefWidth="184.0" style="-fx-background-color: #483D8B;" />
-                     </children>
-                  </VBox>
-                  <Label fx:id="sideBarTitle" layoutX="13.0" layoutY="9.0" prefHeight="30.0" prefWidth="96.0" text="Dictionary" textFill="#fffdfd">
-                     <font>
-                        <Font name="Century Gothic Bold" size="16.0" />
-                     </font>
-                  </Label>
-               </children>
-            </AnchorPane>
-         </right>
-      </BorderPane>
-   </children>
+                        <VBox layoutX="7.0" layoutY="5.0" prefHeight="105.0" prefWidth="50.0"/>
+                        <ImageView fitHeight="52.0" fitWidth="52.0" layoutX="10.0" layoutY="10.0">
+                            <Image url="@../assets/SideMenu/Logo.png"/>
+                        </ImageView>
+                        <ImageView fx:id="translate" fitHeight="40.0" fitWidth="40.0" layoutX="20.0"
+                                   layoutY="120.0" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@../assets/SideMenu/Translate.png"/>
+                        </ImageView>
+                        <ImageView fx:id="review" fitHeight="40.0" fitWidth="40.0" layoutX="20.0"
+                                   layoutY="180.0" pickOnBounds="true" preserveRatio="true">
+                            <cursor>
+                                <Cursor fx:constant="DEFAULT"/>
+                            </cursor>
+                            <Image url="@../assets/SideMenu/Review.png"/>
+                        </ImageView>
+                        <ImageView fx:id="game" fitHeight="40.0" fitWidth="40.0" layoutX="20.0"
+                                   layoutY="240.0" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@../assets/SideMenu/Game.png"/>
+                        </ImageView>
+                        <ImageView fx:id="translateSelected" fitHeight="60" fitWidth="60" scaleX="2"
+                                   scaleY="2" layoutX="19" layoutY="110" preserveRatio="true">
+                            <Image url="@../assets/SideMenu/SelectedEffect.png"/>
+                        </ImageView>
+                        <ImageView fx:id="reviewSelected" fitHeight="60" fitWidth="60" scaleX="2"
+                                   scaleY="2" layoutX="19" layoutY="170" preserveRatio="true">
+                            <Image url="@../assets/SideMenu/SelectedEffect.png"/>
+                        </ImageView>
+                        <ImageView fx:id="gameSelected" fitHeight="60" fitWidth="60" scaleX="2"
+                                   scaleY="2" layoutX="19" layoutY="230" preserveRatio="true">
+                            <Image url="@../assets/SideMenu/SelectedEffect.png"/>
+                        </ImageView>
+                    </children>
+                </AnchorPane>
+            </left>
+            <right>
+                <AnchorPane fx:id="searchView" maxHeight="-Infinity" maxWidth="-Infinity"
+                            minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0"
+                            prefWidth="250.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
+                            xmlns:fx="http://javafx.com/fxml/1">
+                    <children>
+                        <TextField fx:id="searchBar" layoutX="13.0" layoutY="43.0" opacity="0.5"
+                                   prefHeight="40.0" prefWidth="212.0"/>
+                        <VBox layoutX="12.0" layoutY="86.0" prefHeight="359.0" prefWidth="213.0">
+                            <children>
+                                <ListView fx:id="myListView" prefHeight="236.0" prefWidth="184.0"
+                                          style="-fx-background-color: #483D8B;"/>
+                            </children>
+                        </VBox>
+                        <Label fx:id="sideBarTitle" layoutX="13.0" layoutY="9.0" prefHeight="30.0"
+                               prefWidth="96.0" text="Dictionary" textFill="#fffdfd">
+                            <font>
+                                <Font name="Century Gothic Bold" size="16.0"/>
+                            </font>
+                        </Label>
+                    </children>
+                </AnchorPane>
+            </right>
+        </BorderPane>
+    </children>
 </AnchorPane>

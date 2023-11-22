@@ -96,7 +96,7 @@ public class UsersDataQueryHandler {
      * Function to get user's word review data.
      *
      * @param connection the database connection
-     * @param userID the user's id
+     * @param userID     the user's id
      * @return a list of user's word
      * @throws SQLException if the query can not be performed
      */
@@ -116,8 +116,8 @@ public class UsersDataQueryHandler {
      * Function to add word to user's search history.
      *
      * @param connection the database connection
-     * @param userID the user's id
-     * @param word the word
+     * @param userID     the user's id
+     * @param word       the word
      */
     public static void addWordToUserSearchHistory(Connection connection,
                                                   String userID, String word) {
@@ -144,8 +144,8 @@ public class UsersDataQueryHandler {
      * Function to delete word from user's search history
      *
      * @param connection the database connection
-     * @param userID user's id
-     * @param word the word
+     * @param userID     user's id
+     * @param word       the word
      */
     public static void deleteWordFromUserHistory(Connection connection,
                                                  String userID, String word) {
@@ -189,7 +189,7 @@ public class UsersDataQueryHandler {
      * Function to remove word list.
      *
      * @param connection the connection to database
-     * @param userID the user's ID
+     * @param userID     the user's ID
      * @param wordListID the id of the wordlist
      */
     public static void removeWordList(Connection connection, String userID,
@@ -213,9 +213,9 @@ public class UsersDataQueryHandler {
      * Function to add word to wordlist.
      *
      * @param connection the connection to the database
-     * @param userID the user's id
+     * @param userID     the user's id
      * @param wordListID the id of the word list
-     * @param word the word
+     * @param word       the word
      */
     public static void addWordToWordList(Connection connection, String userID,
                                          int wordListID, Word word) {
@@ -241,9 +241,9 @@ public class UsersDataQueryHandler {
      * Function to remove word from wordlist.
      *
      * @param connection the connection to the database
-     * @param userID the user's id
+     * @param userID     the user's id
      * @param wordListID the wordlist id
-     * @param word the word we want to delete
+     * @param word       the word we want to delete
      */
     public static void removeWordFromWordList(Connection connection, String userID,
                                               int wordListID, Word word) {

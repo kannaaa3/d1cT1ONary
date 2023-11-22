@@ -7,11 +7,20 @@
 
 <AnchorPane prefHeight="800.0" prefWidth="946.0" style="-fx-background-color: #2C2F48;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WordlistController">
    <children>
-      <Label fx:id="nameofWordlist" layoutX="38.0" layoutY="45.0" prefHeight="59.0" prefWidth="332.0" text="Name of wordlist" textFill="WHITE">
+       <HBox layoutX="38.0" layoutY="45.0" spacing="20">
+      <Label fx:id="nameofWordlist"  wrapText="true" text="Name of wordlist" textFill="WHITE">
          <font>
             <Font name="Century Gothic Bold" size="24.0" />
          </font>
       </Label>
+           <Button fx:id="save" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="56.0" prefWidth="24.0" style="-fx-background-color: #2C2F48;">
+               <graphic>
+                   <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                       <Image url="@../assets/WordlistScreen/SaveButton.png" />
+                   </ImageView>
+               </graphic>
+           </Button>
+       </HBox>
       <ScrollPane layoutX="37.0" layoutY="124.0" prefHeight="632.0" prefWidth="642.0" style="-fx-background-color: #2C2F48;">
          <content>
             <AnchorPane fx:id="wordlistView" prefHeight="675.0" prefWidth="626.0" style="-fx-background-color: #2C2F48;" />

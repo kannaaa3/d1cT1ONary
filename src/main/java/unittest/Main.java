@@ -15,6 +15,7 @@ public class Main {
     public static User user = null;
     public static Dictionary dictionary;
     public static Scanner scanner = new Scanner(System.in);
+
     public static void printMenu() {
         System.out.print("""
                 1. Register

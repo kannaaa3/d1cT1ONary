@@ -14,6 +14,7 @@ import java.util.ResourceBundle;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import model.util.TTSHandler;
+import model.word.Word;
 
 import static controller.MainController.user;
 import static controller.SlideMenuController.*;
@@ -74,6 +75,7 @@ public class ShowWordController implements Initializable {
     public Button[] buttons;
     int h = 0;
     Image image = new Image("file:src\\main\\resources\\assets\\TranslateScreen\\BGForButton.png");
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         audio.setOnAction(e -> {
@@ -92,6 +94,7 @@ public class ShowWordController implements Initializable {
                 backgroundImage1, backgroundImage2, backgroundImage3
         };
         setFont();
+        displayWord();
     }
 
     /**
@@ -133,8 +136,40 @@ public class ShowWordController implements Initializable {
             labels[i].setVisible(true);
             labels[i].setText(user.getWordListName(i));
             backgroundImages[i].setVisible(true);
+            buttons[i].setId(String.valueOf(i));
             buttons[i].setVisible(true);
             buttons[i].setDisable(false);
+            System.out.println("Haha" + i);
+            switch (i) {
+                case 0: {
+                    buttons[0].setOnAction(e -> {
+                        System.out.println("Hullo0");
+                        Word word = dictionary.getWordData(showWord);
+                        if (word != null) {
+                            user.addWordToWordList(word, 0);
+                        }
+                    });
+                }
+                case 1: {
+                    buttons[1].setOnAction(e -> {
+                        System.out.println("Hullo1");
+                        Word word = dictionary.getWordData(showWord);
+                        if (word != null) {
+                            user.addWordToWordList(word, 1);
+                        }
+                    });
+                }
+                case 2: {
+                    buttons[2].setOnAction(e -> {
+                        System.out.println("Hullo2");
+                        System.out.println(buttons[2].getLayoutX());
+                        Word word = dictionary.getWordData(showWord);
+                        if (word != null) {
+                            user.addWordToWordList(word, 2);
+                        }
+                    });
+                }
+            }
         }
     }
 

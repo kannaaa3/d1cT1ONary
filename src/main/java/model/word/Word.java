@@ -11,9 +11,9 @@ public class Word {
      * Public constructor for a word. Note that meaning contains definition, part of speech, example
      * of the word, synonyms and antonyms.
      *
-     * @param word text representation of the word
+     * @param word     text representation of the word
      * @param phonetic phonetic of the word
-     * @param meaning meaning of the word
+     * @param meaning  meaning of the word
      */
     public Word(String word, Phonetic phonetic, Meaning meaning) {
         this.wordID = 0L;
@@ -26,11 +26,11 @@ public class Word {
     /**
      * Constructor with 5 parameter for local usage.
      *
-     * @param wordID the word's id
-     * @param wordNum the word's number
-     * @param word the word
+     * @param wordID   the word's id
+     * @param wordNum  the word's number
+     * @param word     the word
      * @param phonetic word's phonetic
-     * @param meaning word's meaning
+     * @param meaning  word's meaning
      */
     public Word(Long wordID, Long wordNum, String word, Phonetic phonetic, Meaning meaning) {
         this.wordID = wordID;

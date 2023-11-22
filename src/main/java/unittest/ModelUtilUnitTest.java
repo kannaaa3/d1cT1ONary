@@ -27,7 +27,7 @@ public class ModelUtilUnitTest {
     @Test
     public void convertBinaryArrayToStringTest3() {
         Assert.assertEquals(Converter.convertBinaryArrayToString(new Integer[]{
-                0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0 ,0, 0, 0, 0, 0,
+                0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0,
                 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0,
                 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0,
                 0, 1, 1, 1, 0, 1, 1, 0
@@ -76,7 +76,7 @@ public class ModelUtilUnitTest {
     public void convertStringToArrayTest3() {
         Assert.assertArrayEquals(Converter.convertStringToBinaryArray("A@50G^v"),
                 new Integer[]{
-                        0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0 ,0, 0, 0, 0, 0,
+                        0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0,
                         0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0,
                         0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0,
                         0, 1, 1, 1, 0, 1, 1, 0

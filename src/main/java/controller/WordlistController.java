@@ -31,6 +31,7 @@ public class WordlistController implements Initializable {
     Image image = new Image("file:src\\main\\resources\\assets\\WordlistScreen\\NewWordlistPopup.png");
     static int h = 0;
     static int w = 0;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         nameofWordlist.setFont(Font.loadFont(ShowWordController.
