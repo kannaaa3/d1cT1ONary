@@ -126,6 +126,6 @@ public class ShowWordController implements Initializable {
         phoneticText.setText("/" + myWord.getPhonetic().text() + "/");
         partOfSpeech.setText("(" + myWord.getMeaning().partOfSpeech().toUpperCase() + ")");
         definition.setText("Definition:\n" + myWord.getMeaning().definition());
-        example.setText("Example:\n" + myWord.getMeaning().example());
+        example.setText("" + myWord.getMeaning().example());
     }
 }

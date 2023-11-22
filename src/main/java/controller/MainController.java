@@ -202,8 +202,8 @@ public class MainController implements Initializable {
                         loginController.registerWindow.setDisable(false);
                 });
                 loginController.register.setOnAction(ee -> {
-                        if (loginController.userNameRegister.getText().isEmpty()
-                                && loginController.passwordRegister.getText().isEmpty()) {
+                        if (!loginController.userNameRegister.getText().isEmpty()
+                                && !loginController.passwordRegister.getText().isEmpty()) {
                                 Database.register(loginController.userNameRegister.getText(),
                                         loginController.passwordRegister.getText());
                                 loginController.loginWindow.setVisible(true);
