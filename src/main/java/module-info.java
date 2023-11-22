@@ -29,6 +29,8 @@ module java {
     exports model.user;
     exports model.util;
     exports model.word;
+    exports model.game.agility;
+    exports model.game;
 
     exports unittest;
     exports controller;

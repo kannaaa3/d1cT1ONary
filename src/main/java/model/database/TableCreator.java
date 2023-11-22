@@ -31,7 +31,7 @@ public class TableCreator {
      * @param filePath the path to the file
      * @return an array of string which are the sql queries
      */
-    private static String[] getQueryData(String filePath, String seperate) {
+    public static String[] getQueryData(String filePath, String seperate) {
         try {
             File file = new File(filePath);
             if (file.exists()) {
