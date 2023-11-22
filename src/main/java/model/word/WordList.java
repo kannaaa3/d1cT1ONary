@@ -93,6 +93,10 @@ public class WordList {
         words.remove(wordID);
     }
 
+    public int size() {
+        return words.size();
+    }
+
     public String getName() {
         return name;
     }

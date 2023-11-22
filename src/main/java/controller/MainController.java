@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
@@ -12,8 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Region;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.util.Pair;
@@ -57,8 +57,6 @@ public class MainController implements Initializable {
         private AnchorPane loginPane;
         @FXML
         public AnchorPane mainPane;
-        int[] choiceofWordlist = {0,0,0,0,0,0,0,0,0};
-        int j0 = 0;
         public static User user;
 
 
@@ -170,7 +168,7 @@ public class MainController implements Initializable {
 
 
                                createWordlist(reviewController.numberOfWordlist);
-                               creatChoicesofWordlist(reviewController.numberOfWordlist);
+                               creatChoicesOfWordlist(reviewController.numberOfWordlist);
 
                                reviewController.creatingWordlist.setOnKeyPressed(new EventHandler<KeyEvent>() {
                                        @Override
@@ -188,7 +186,7 @@ public class MainController implements Initializable {
                                                        user.createNewWordList(reviewController.nameofNewWordlist);
                                                        reviewController.numberOfWordlist = user.getAllWordLists().size();
                                                        createWordlist(reviewController.numberOfWordlist);
-                                                       creatChoicesofWordlist(reviewController.numberOfWordlist);
+                                                       creatChoicesOfWordlist(reviewController.numberOfWordlist);
                                                }
                                        }
                                });
@@ -204,8 +202,8 @@ public class MainController implements Initializable {
                         loginController.registerWindow.setDisable(false);
                 });
                 loginController.register.setOnAction(ee -> {
-                        if (loginController.userNameRegister.getText() != ""
-                                && loginController.passwordRegister.getText() != "") {
+                        if (loginController.userNameRegister.getText().isEmpty()
+                                && loginController.passwordRegister.getText().isEmpty()) {
                                 Database.register(loginController.userNameRegister.getText(),
                                         loginController.passwordRegister.getText());
                                 loginController.loginWindow.setVisible(true);
@@ -217,40 +215,6 @@ public class MainController implements Initializable {
                                 loginController.passwordRegister.clear();
                         }
                 });
-
-//                initController();
-//                initTranslateButton();
-//                initReviewButton();
-//                initPlayButton();
-//                mainPane.getChildren().add(showWordButton);
-//                mainPane.getChildren().add(reviewButton);
-//                mainPane.getChildren().add(playButton);
-//
-//                createWordlist(reviewController.numberOfWordlist);
-//                creatChoicesofWordlist(reviewController.numberOfWordlist);
-//
-//                reviewController.creatingWordlist.setOnKeyPressed(new EventHandler<KeyEvent>() {
-//                        @Override
-//                        public void handle(KeyEvent keyEvent) {
-//                                if (keyEvent.getCode() == KeyCode.ENTER) {
-//                                        if (reviewController.creatingWordlist.getText() != null) {
-//                                                reviewController.nameofNewWordlist = reviewController.creatingWordlist.getText();
-//                                        }
-//                                        reviewController.creatingWordlist.clear();
-//                                        reviewController.blurBG.setVisible(false);
-//                                        reviewController.addNewWordlistWindow.setVisible(false);
-//                                        reviewController.newWordlist = new WordList(reviewController.nameofNewWordlist);
-//                                        System.out.println(reviewController.nameofNewWordlist);
-//                                        user.getAllWordLists().add(reviewController.newWordlist);
-//                                        reviewController.numberOfWordlist = user.getAllWordLists().size();
-//                                        createWordlist(reviewController.numberOfWordlist);
-//                                        creatChoicesofWordlist(reviewController.numberOfWordlist);
-//                                }
-//                        }
-//                });
-//                showWordButton.setOnAction(e -> renderShowWordScreen());
-//                reviewButton.setOnAction(e -> renderReviewScreen());
-//                playButton.setOnAction(e -> renderGameScreen());
         }
 
         /**
@@ -318,11 +282,14 @@ public class MainController implements Initializable {
         /**
          * Function to render word list screen.
          */
-        public void renderWordlistScreen() {
+        public void renderWordlistScreen(int wordListID) {
+                WordList wordList = user.getAllWordLists().get(wordListID);
                 mainPane.getChildren().remove(wordlistPane);
+                wordlistController.displayWordList(wordList);
                 wordlistPane.setLayoutX(320);
                 wordlistPane.setLayoutY(0);
                 mainPane.getChildren().add(wordlistPane);
+                wordlistController.nameofWordlist.setText(wordList.getName());
         }
 
         public void renderLoginScreen() {
@@ -371,16 +338,11 @@ public class MainController implements Initializable {
                 while (j < numberOfWordlist) {
                         Button button = getWordListButtonObject();
                         reviewController.anchorPane.getChildren().add(button);
-                        reviewController.anchorPane.getChildren().add(getWordListLabelObject(user.getAllWordLists().get(j).getName()));
+                        reviewController.anchorPane.getChildren()
+                                .add(getWordListLabelObject(user.
+                                        getAllWordLists().get(j).getName()));
                         reviewController.buttons.add(button);
-                        //wordlistController.nameofWordlist.setText(user.getAllWordLists().get(j).getName());
-                        //button.setOnAction(e -> renderWordlistScreen());
-                        button.setOnAction(e -> {
-                                choiceofWordlist[j0] = 0;
-                                choiceofWordlist[j] = 1;
-                                j0 = j;
-                                renderWordlistScreen();
-                        });
+                        button.setOnAction(e -> renderWordlistScreen(j - 1));
                         reviewController.w++;
                         if (reviewController.w % 3 == 0) reviewController.h++;
                         j++;
@@ -388,8 +350,8 @@ public class MainController implements Initializable {
         }
 
         @FXML
-        public void creatChoicesofWordlist(int numberofWordlist) {
-                while (k < numberofWordlist) {
+        public void creatChoicesOfWordlist(int numberOfWordlist) {
+                while (k < numberOfWordlist) {
                         Button button = new Button();
                         ImageView imageView = new ImageView(showWordController.image);
                         button.setGraphic(imageView);
@@ -420,5 +382,9 @@ public class MainController implements Initializable {
                         showWordController.showWordlist.getChildren().add(button);
                         showWordController.showWordlist.getChildren().add(label);
                 }
+        }
+
+        private void getWordListLabel() {
+
         }
 }
