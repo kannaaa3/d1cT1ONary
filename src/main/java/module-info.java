@@ -21,7 +21,6 @@ module java {
     requires aws.iot.device.sdk;
 
     opens unittest to org.junit.jupiter.api, org.slf4j.simple;
-    opens model to org.slf4j.simple;
     opens view to javafx.fxml;
 
     exports model.datastructure;
