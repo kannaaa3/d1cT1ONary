@@ -283,6 +283,7 @@ public class MainController implements Initializable {
          * Function to render word list screen.
          */
         public void renderWordlistScreen(int wordListID) {
+                System.out.println(wordListID);
                 WordList wordList = user.getAllWordLists().get(wordListID);
                 mainPane.getChildren().remove(wordlistPane);
                 wordlistController.displayWordList(wordList);
@@ -337,12 +338,16 @@ public class MainController implements Initializable {
         public void createWordlist(int numberOfWordlist) {
                 while (j < numberOfWordlist) {
                         Button button = getWordListButtonObject();
+                        System.out.println(j);
                         reviewController.anchorPane.getChildren().add(button);
                         reviewController.anchorPane.getChildren()
                                 .add(getWordListLabelObject(user.
                                         getAllWordLists().get(j).getName()));
                         reviewController.buttons.add(button);
-                        button.setOnAction(e -> renderWordlistScreen(j - 1));
+                        button.setId(String.valueOf(j));
+                        button.setOnAction(e -> {
+                                renderWordlistScreen(Integer.parseInt(button.getId()));
+                        });
                         reviewController.w++;
                         if (reviewController.w % 3 == 0) reviewController.h++;
                         j++;

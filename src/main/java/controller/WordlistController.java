@@ -37,6 +37,7 @@ public class WordlistController implements Initializable {
     public void displayWordList(WordList wordList) {
         w = 0;
         h = 0;
+        wordlistView.getChildren().clear();
         for (int i = 0; i < wordList.size(); i++) {
             Label label = new Label();
             label.setText(wordList.getWord(i).getWord());
