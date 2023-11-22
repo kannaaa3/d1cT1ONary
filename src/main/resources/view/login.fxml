@@ -50,7 +50,7 @@
                   <Font size="10.0" />
                </font>
             </Label>
-            <Hyperlink fx:id="registerLink" layoutX="127.0" layoutY="328.0" text="Register">
+            <Hyperlink fx:id="registerLink" layoutX="127.0" layoutY="328.0" text="Register" textFill="#0089ff">
                <font>
                   <Font size="10.0" />
                </font>

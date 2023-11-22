@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import model.game.Game;
 import model.game.agility.AgilityGame;
@@ -25,6 +26,8 @@ public class GameController implements Initializable {
     public static final int TOP_RIGHT = 2;
     public static final int BOTTOM_LEFT = 3;
     public static final int BOTTOM_RIGHT = 4;
+    @FXML
+    public Label score;
     @FXML
     public Label questionWord;
     @FXML
@@ -51,6 +54,10 @@ public class GameController implements Initializable {
     public Button choiceBottomLeftButton;
     @FXML
     public Button choiceBottomRightButton;
+    @FXML
+    public Button replayButton;
+    @FXML
+    public AnchorPane endView;
     public Game game;
     public ImageView[] choice = new ImageView[5];
     public ImageView[] correctChoice = new ImageView[5];
@@ -65,6 +72,12 @@ public class GameController implements Initializable {
         game = new AgilityGame();
         game.startGame();
         updateGameState();
+        replayButton.setOnAction(e -> {
+                endView.setVisible(false);
+                endView.setDisable(true);
+                game.startGame();
+                updateGameState();
+        });
     }
 
     private void initSpecialImageView() {
@@ -122,6 +135,9 @@ public class GameController implements Initializable {
         int questionAnswer = response.getInt("questionAnswer");
         if (questionAnswer != option) {
             showChoice(option, wrongChoice[option]);
+            endView.setDisable(false);
+            endView.setVisible(true);
+            score.setText("Score: " + game.getGameScore());
         } else {
             try {
                 Thread.sleep(200);
