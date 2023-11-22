@@ -111,17 +111,45 @@ public class GameAgilityController implements Initializable {
         }
     }
 
+    private void createMovingMotion(ImageView imageView) {
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                Platform.runLater(() -> {
+                    double currentX = imageView.getX();
+                    if (currentX < 20) {
+                        main.getChildren().remove(imageView);
+                        timer.cancel();
+                    }
+                    currentX -= 20;
+                    imageView.setX(currentX);
+                });
+            }
+        }, 0, 500);
+    }
+
     private void createNewPlanet() {
-        int planetID = random.nextInt(0, 9);
-        System.out.println(String.format("/assets/Game/Elevate Agility/planet_0%d.png", planetID));
-        Image image = new Image(Objects.requireNonNull(GameAgilityController.class
-                .getResourceAsStream(String.format("/assets/Game/Elevate Agility/planet_0%d.png", planetID))));
-        ImageView imageView = new ImageView(image);
-        imageView.setFitHeight(50);
-        imageView.setFitWidth(50);
-        imageView.setX(800);
-        imageView.setY(200);
-        main.getChildren().add(imageView);
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                Platform.runLater(() -> {
+                    int planetID = random.nextInt(0, 9);
+                    System.out.println(String.format("/assets/Game/Elevate Agility/planet_0%d.png", planetID));
+                    Image image = new Image(Objects.requireNonNull(GameAgilityController.class
+                            .getResourceAsStream(String.format("/assets/Game/Elevate Agility/planet_0%d.png", planetID))));
+                    ImageView imageView = new ImageView(image);
+                    imageView.setFitHeight(100);
+                    imageView.setFitWidth(100);
+                    imageView.setX(1000);
+                    imageView.setY(random.nextInt(100, 200));
+                    createMovingMotion(imageView);
+                    main.getChildren().add(imageView);
+                });
+
+            }
+        }, 0, 4000);
     }
 
     public void setFont() {

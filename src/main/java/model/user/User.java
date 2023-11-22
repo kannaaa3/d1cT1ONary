@@ -29,6 +29,7 @@ public class User {
             index = Math.max(index, wordList.getWordListID() + 1);
         }
         this.reviewWordlist = new ArrayList<>();
+        System.out.println(this.index);
     }
 
     /**

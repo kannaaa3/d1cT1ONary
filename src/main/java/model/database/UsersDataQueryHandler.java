@@ -54,7 +54,7 @@ public class UsersDataQueryHandler {
     public static List<WordList> getUserWordLists(Connection connection, String userID)
             throws SQLException {
         String sql = """
-                SELECT word_list_name
+                SELECT word_list_name, word_list_id
                 FROM user_word_list_name_data
                 WHERE user_id = ?
                 ORDER BY word_list_id
@@ -65,6 +65,8 @@ public class UsersDataQueryHandler {
         List<WordList> wordLists = new ArrayList<>();
         while (resultSet.next()) {
             wordLists.add(new WordList(resultSet.getString("word_list_name")));
+            wordLists.get(wordLists.size() - 1).setWordListID(resultSet
+                    .getInt("word_list_id"));
         }
 
         sql = """
