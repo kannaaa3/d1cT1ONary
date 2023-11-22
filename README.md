@@ -58,5 +58,5 @@ This app is designed to be able to extend many functionalities. Since we've got 
 - [JavaFX](https://openjfx.io/), a Java Framework for developing UI.
 
 # Note
-- Controller UML: https://imgur.com/a/r5QELBx.
+- Controller UML: ![ScreenShot](controller_diagram.png)
 - txt file can be used for remoteDictionary.
