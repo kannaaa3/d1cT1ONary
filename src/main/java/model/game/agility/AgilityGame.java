@@ -83,6 +83,7 @@ public class AgilityGame extends Game {
 
     public void startGame() {
         gameScore = 0;
+        gameState = GAME_RUNNING;
         createQuestion(4);
     }
 

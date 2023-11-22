@@ -35,6 +35,10 @@ public abstract class Game {
      */
     public abstract JSONObject submitData(JSONObject jsonObject);
 
+    public void setGameState(int state) {
+        gameState = state;
+    }
+
     /**
      * Check if the game is won.
      *

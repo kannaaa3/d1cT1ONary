@@ -118,7 +118,7 @@ public class GameAgilityController implements Initializable {
             public void run() {
                 Platform.runLater(() -> {
                     double currentX = imageView.getX();
-                    if (currentX < 20) {
+                    if (currentX < 20 || game.lose()) {
                         main.getChildren().remove(imageView);
                         timer.cancel();
                     }
@@ -193,6 +193,7 @@ public class GameAgilityController implements Initializable {
         }
         showChoice(questionAnswer, correctChoice[questionAnswer]);
         if (questionAnswer != option) {
+            game.setGameState(Game.GAME_LOSE);
             lose();
         }
         updateGameState();
