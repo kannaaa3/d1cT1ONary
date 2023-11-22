@@ -378,7 +378,8 @@ public class MainController implements Initializable {
             Label label = new Label();
             label.setText(user.getAllWordLists().get(k).getName());
             label.setFont(new Font("Century Gothic", 20));
-            label.setTextFill(Color.WHITE);
+            label.setTextFill(Color.BLACK);
+            label.setFont(Font.font(POPPINS_BOLD, 20));
             label.setPrefWidth(300);
             label.setPrefHeight(40);
             label.setDisable(true);

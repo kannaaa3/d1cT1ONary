@@ -74,7 +74,7 @@ public class ShowWordController implements Initializable {
     public ImageView[] backgroundImages;
     public Button[] buttons;
     int h = 0;
-    Image image = new Image("file:src\\main\\resources\\assets\\TranslateScreen\\BGForButton.png");
+    Image image = new Image("file:src\\main\\resources\\assets\\SlideMenu\\HoverWordEffect.png");
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
