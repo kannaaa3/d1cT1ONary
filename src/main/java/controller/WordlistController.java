@@ -36,7 +36,8 @@ public class WordlistController implements Initializable {
     static int w = 0;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //if (user.getAllWordLists().size() > 0) numberOfWord = user.getAllWordLists().get(k).getWords().size();
+        nameofWordlist.setFont(Font.loadFont(ShowWordController.
+                class.getResource(ShowWordController.POPPINS_REGULAR).toExternalForm(), 30));
     }
 
     public void displayWordList(WordList wordList) {
@@ -51,6 +52,8 @@ public class WordlistController implements Initializable {
             ImageView imageView = new ImageView(image);
             imageView.setFitWidth(250);
             imageView.setFitHeight(35);
+            label.setFont(Font.loadFont(ShowWordController.
+                    class.getResource(ShowWordController.POPPINS_REGULAR).toExternalForm(), 16));
             label.setText(wordList.getWord(i).getWord());
             label.setFont(new Font("Century Gothic", 17));
             label.setPrefWidth(250);

@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.text.Font;
 import model.game.Game;
 import model.game.agility.AgilityGame;
 import org.json.JSONArray;
@@ -111,7 +112,16 @@ public class GameController implements Initializable {
     }
 
     public void setFont() {
-
+        choiceTopLeftLabel.setFont(Font.loadFont(ShowWordController.class
+                .getResource(ShowWordController.POPPINS_REGULAR).toExternalForm(), 30));
+        choiceBottomLeftLabel.setFont(Font.loadFont(ShowWordController.class
+                .getResource(ShowWordController.POPPINS_REGULAR).toExternalForm(), 30));
+        choiceTopRightLabel.setFont(Font.loadFont(ShowWordController.class
+                .getResource(ShowWordController.POPPINS_REGULAR).toExternalForm(), 30));
+        choiceBottomRightLabel.setFont(Font.loadFont(ShowWordController.class
+                .getResource(ShowWordController.POPPINS_REGULAR).toExternalForm(), 30));
+        score.setFont(Font.loadFont(ShowWordController.class
+                .getResource(ShowWordController.POPPINS_REGULAR).toExternalForm(), 30));
     }
 
     private void resetAllButton() {

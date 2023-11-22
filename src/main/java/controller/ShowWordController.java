@@ -83,6 +83,14 @@ public class ShowWordController implements Initializable {
         partOfSpeech.setFont(Font.loadFont(ShowWordController.class.getResource(POPPINS_REGULAR)
                 .toExternalForm(), 30));
         phoneticText.setOpacity(0.7);
+        definition.setFont(Font.loadFont(ShowWordController.class
+                .getResource(ShowWordController.POPPINS_REGULAR).toExternalForm(), 20));
+        example.setFont(Font.loadFont(ShowWordController.class
+                .getResource(ShowWordController.POPPINS_REGULAR).toExternalForm(), 20));
+        synonyms.setFont(Font.loadFont(ShowWordController.class
+                .getResource(ShowWordController.POPPINS_REGULAR).toExternalForm(), 16));
+        antonyms.setFont(Font.loadFont(ShowWordController.class
+                .getResource(ShowWordController.POPPINS_REGULAR).toExternalForm(), 16));
     }
 
     /**
