@@ -92,6 +92,14 @@ public class UsersDataQueryHandler {
         return wordLists;
     }
 
+    /**
+     * Function to get user's word review data.
+     *
+     * @param connection the database connection
+     * @param userID the user's id
+     * @return a list of user's word
+     * @throws SQLException if the query can not be performed
+     */
     public static List<UserWord> getUserWordReview(Connection connection, String userID)
             throws SQLException {
         String sql = """
@@ -222,6 +230,7 @@ public class UsersDataQueryHandler {
             preparedStatement.setInt(2, wordListID);
             preparedStatement.setLong(3, word.getWordID());
             preparedStatement.setLong(4, word.getWordNum());
+            preparedStatement.execute();
         } catch (SQLException e) {
             System.out.println("Something is wrong when adding word to wordlist!");
             e.printStackTrace();
@@ -248,6 +257,7 @@ public class UsersDataQueryHandler {
             preparedStatement.setInt(2, wordListID);
             preparedStatement.setLong(3, word.getWordID());
             preparedStatement.setLong(4, word.getWordNum());
+            preparedStatement.execute();
         } catch (SQLException e) {
             System.out.println("Something is wrong when remove word from wordlist!");
             e.printStackTrace();

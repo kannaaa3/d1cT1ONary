@@ -31,6 +31,7 @@ module java {
     exports model.word;
     exports model.game.agility;
     exports model.game;
+    exports model.database;
 
     exports unittest;
     exports controller;

@@ -17,6 +17,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.util.Pair;
+import model.database.Database;
 import model.dictionary.Dictionary;
 import model.user.User;
 import model.word.WordList;
@@ -39,6 +40,8 @@ public class MainController implements Initializable {
         public SlideMenuController slideMenuController;
         @FXML
         public WordlistController wordlistController;
+        @FXML
+        public LoginController loginController;
 
         @FXML
         private AnchorPane showWordPane;
@@ -51,14 +54,20 @@ public class MainController implements Initializable {
         @FXML
         private AnchorPane wordlistPane;
         @FXML
+        private AnchorPane loginPane;
+        @FXML
         public AnchorPane mainPane;
+        int[] choiceofWordlist = {0,0,0,0,0,0,0,0,0};
+        int j0 = 0;
+        public static User user;
 
 
         Button showWordButton = new Button();
         Button reviewButton = new Button();
         Button playButton = new Button();
-        public static User user = new User("123");
+
         static int j = 0;
+        static int k = 0;
 
         /**
          * Function to init translate button.
@@ -104,6 +113,10 @@ public class MainController implements Initializable {
          */
         public void initController() {
                 Pair<AnchorPane, Initializable> controller;
+                controller = getController("/view/login.fxml");
+                loginPane = controller.getKey();
+                loginController = (LoginController) controller.getValue();
+
                 controller = getController("/view/slideMenu.fxml");
                 slideMenuPane = controller.getKey();
                 slideMenuController = (SlideMenuController) controller.getValue();
@@ -123,45 +136,121 @@ public class MainController implements Initializable {
                 controller = getController("/view/wordlist.fxml");
                 wordlistPane = controller.getKey();
                 wordlistController = (WordlistController) controller.getValue();
+
         }
 
         @Override
         public void initialize(URL location, ResourceBundle resources) {
-                initController();
-                initTranslateButton();
-                initReviewButton();
-                initPlayButton();
 
-                renderShowWordScreen();
-                renderSlideMenuScreen();
 
-                mainPane.getChildren().add(showWordButton);
-                mainPane.getChildren().add(reviewButton);
-                mainPane.getChildren().add(playButton);
+//                renderShowWordScreen();
+//                renderSlideMenuScreen();
+                Pair<AnchorPane, Initializable> controller;
+                controller = getController("/view/login.fxml");
+                loginPane = controller.getKey();
+                loginController = (LoginController) controller.getValue();
+                renderLoginScreen();
+                loginController.login.setOnAction(i -> {
+                       if (Database.login(loginController.userNameField.getText(), loginController.passwordField.getText()) == null) {
+                                loginController.userNameField.clear();
+                                loginController.passwordField.clear();
+                       } else {
+                               user = new User(Database.login(loginController.userNameField.getText(), loginController.passwordField.getText()));
+                               initController();
+                               initTranslateButton();
+                               initReviewButton();
+                               initPlayButton();
 
-                createWordlist(reviewController.numberOfWordlist);
+                               renderSlideMenuScreen();
+                               renderShowWordScreen();
 
-                reviewController.creatingWordlist.setOnKeyPressed(new EventHandler<KeyEvent>() {
-                        @Override
-                        public void handle(KeyEvent keyEvent) {
-                                if (keyEvent.getCode() == KeyCode.ENTER) {
-                                        if (reviewController.creatingWordlist.getText() != null) {
-                                                reviewController.nameofNewWordlist = reviewController.creatingWordlist.getText();
-                                        }
-                                        reviewController.creatingWordlist.clear();
-                                        reviewController.blurBG.setVisible(false);
-                                        reviewController.addNewWordlistWindow.setVisible(false);
-                                        reviewController.newWordlist = new WordList(reviewController.nameofNewWordlist);
-                                        System.out.println(reviewController.nameofNewWordlist);
-                                        user.getAllWordLists().add(reviewController.newWordlist);
-                                        reviewController.numberOfWordlist = user.getAllWordLists().size();
-                                        createWordlist(reviewController.numberOfWordlist);
-                                }
+                               mainPane.getChildren().add(showWordButton);
+                               mainPane.getChildren().add(reviewButton);
+                               mainPane.getChildren().add(playButton);
+
+
+                               createWordlist(reviewController.numberOfWordlist);
+                               creatChoicesofWordlist(reviewController.numberOfWordlist);
+
+                               reviewController.creatingWordlist.setOnKeyPressed(new EventHandler<KeyEvent>() {
+                                       @Override
+                                       public void handle(KeyEvent keyEvent) {
+                                               if (keyEvent.getCode() == KeyCode.ENTER) {
+                                                       if (!reviewController.creatingWordlist.getText().isEmpty()) {
+                                                               reviewController.nameofNewWordlist = reviewController.creatingWordlist.getText();
+                                                       } else {
+                                                               return;
+                                                       }
+                                                       reviewController.creatingWordlist.clear();
+                                                       reviewController.blurBG.setVisible(false);
+                                                       reviewController.addNewWordlistWindow.setVisible(false);
+                                                       System.out.println(reviewController.nameofNewWordlist);
+                                                       user.createNewWordList(reviewController.nameofNewWordlist);
+                                                       reviewController.numberOfWordlist = user.getAllWordLists().size();
+                                                       createWordlist(reviewController.numberOfWordlist);
+                                                       creatChoicesofWordlist(reviewController.numberOfWordlist);
+                                               }
+                                       }
+                               });
+                               showWordButton.setOnAction(e -> renderShowWordScreen());
+                               reviewButton.setOnAction(e -> renderReviewScreen());
+                               playButton.setOnAction(e -> renderGameScreen());
                         }
                 });
-                showWordButton.setOnAction(e -> renderShowWordScreen());
-                reviewButton.setOnAction(e -> renderReviewScreen());
-                playButton.setOnAction(e -> renderGameScreen());
+                loginController.registerLink.setOnAction(ee -> {
+                        loginController.loginWindow.setVisible(false);
+                        loginController.loginWindow.setDisable(true);
+                        loginController.registerWindow.setVisible(true);
+                        loginController.registerWindow.setDisable(false);
+                });
+                loginController.register.setOnAction(ee -> {
+                        if (loginController.userNameRegister.getText() != ""
+                                && loginController.passwordRegister.getText() != "") {
+                                Database.register(loginController.userNameRegister.getText(),
+                                        loginController.passwordRegister.getText());
+                                loginController.loginWindow.setVisible(true);
+                                loginController.loginWindow.setDisable(false);
+                                loginController.registerWindow.setVisible(false);
+                                loginController.registerWindow.setDisable(true);
+                        } else {
+                                loginController.userNameRegister.clear();
+                                loginController.passwordRegister.clear();
+                        }
+                });
+
+//                initController();
+//                initTranslateButton();
+//                initReviewButton();
+//                initPlayButton();
+//                mainPane.getChildren().add(showWordButton);
+//                mainPane.getChildren().add(reviewButton);
+//                mainPane.getChildren().add(playButton);
+//
+//                createWordlist(reviewController.numberOfWordlist);
+//                creatChoicesofWordlist(reviewController.numberOfWordlist);
+//
+//                reviewController.creatingWordlist.setOnKeyPressed(new EventHandler<KeyEvent>() {
+//                        @Override
+//                        public void handle(KeyEvent keyEvent) {
+//                                if (keyEvent.getCode() == KeyCode.ENTER) {
+//                                        if (reviewController.creatingWordlist.getText() != null) {
+//                                                reviewController.nameofNewWordlist = reviewController.creatingWordlist.getText();
+//                                        }
+//                                        reviewController.creatingWordlist.clear();
+//                                        reviewController.blurBG.setVisible(false);
+//                                        reviewController.addNewWordlistWindow.setVisible(false);
+//                                        reviewController.newWordlist = new WordList(reviewController.nameofNewWordlist);
+//                                        System.out.println(reviewController.nameofNewWordlist);
+//                                        user.getAllWordLists().add(reviewController.newWordlist);
+//                                        reviewController.numberOfWordlist = user.getAllWordLists().size();
+//                                        createWordlist(reviewController.numberOfWordlist);
+//                                        creatChoicesofWordlist(reviewController.numberOfWordlist);
+//                                }
+//                        }
+//                });
+//                showWordButton.setOnAction(e -> renderShowWordScreen());
+//                reviewButton.setOnAction(e -> renderReviewScreen());
+//                playButton.setOnAction(e -> renderGameScreen());
         }
 
         /**
@@ -236,6 +325,13 @@ public class MainController implements Initializable {
                 mainPane.getChildren().add(wordlistPane);
         }
 
+        public void renderLoginScreen() {
+                mainPane.getChildren().remove(loginPane);
+                loginPane.setLayoutX(0);
+                loginPane.setLayoutY(0);
+                mainPane.getChildren().add(loginPane);
+        }
+
         private Label getWordListLabelObject(String wordListName) {
                 Label label = new Label();
                 label.setText(wordListName);
@@ -277,11 +373,52 @@ public class MainController implements Initializable {
                         reviewController.anchorPane.getChildren().add(button);
                         reviewController.anchorPane.getChildren().add(getWordListLabelObject(user.getAllWordLists().get(j).getName()));
                         reviewController.buttons.add(button);
-                        wordlistController.nameofWordlist.setText(user.getAllWordLists().get(j).getName());
-                        button.setOnAction(e -> renderWordlistScreen());
+                        //wordlistController.nameofWordlist.setText(user.getAllWordLists().get(j).getName());
+                        //button.setOnAction(e -> renderWordlistScreen());
+                        button.setOnAction(e -> {
+                                choiceofWordlist[j0] = 0;
+                                choiceofWordlist[j] = 1;
+                                j0 = j;
+                                renderWordlistScreen();
+                        });
                         reviewController.w++;
                         if (reviewController.w % 3 == 0) reviewController.h++;
                         j++;
+                }
+        }
+
+        @FXML
+        public void creatChoicesofWordlist(int numberofWordlist) {
+                while (k < numberofWordlist) {
+                        Button button = new Button();
+                        ImageView imageView = new ImageView(showWordController.image);
+                        button.setGraphic(imageView);
+                        button.setPrefWidth(320);
+                        button.setPrefHeight(50);
+                        Label label = new Label();
+                        label.setText(user.getAllWordLists().get(k).getName());
+                        label.setFont(new Font("Century Gothic", 20));
+                        label.setTextFill(Color.WHITE);
+                        label.setPrefWidth(300);
+                        label.setPrefHeight(40);
+                        label.setDisable(true);
+                        label.setAlignment(Pos.BASELINE_CENTER);
+                        button.setLayoutX(10);
+                        label.setLayoutX(20);
+                        button.setLayoutY(10 + showWordController.h * 100);
+                        label.setLayoutY(15 + showWordController.h * 100);
+                        button.setMinHeight(Region.USE_PREF_SIZE);
+                        button.setMinWidth(Region.USE_PREF_SIZE);
+                        k++;
+                        button.setOnAction(e -> {
+                                user.addWordToWordList(dictionary.getWordData(showWord), k - 1);
+                                //user.getAllWordLists().get(k - 1).addWord(dictionary.getWordData(showWord));
+                                showWordController.popupWindow.setVisible(false);
+                                System.out.print(user.getAllWordLists().get(k - 1).getWord(0).getWord());
+                        });
+                        showWordController.h++;
+                        showWordController.showWordlist.getChildren().add(button);
+                        showWordController.showWordlist.getChildren().add(label);
                 }
         }
 }

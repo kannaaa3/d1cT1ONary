@@ -34,7 +34,6 @@ public class ReviewController implements Initializable  {
     int w = 0;
     List<String> buttonNames = new ArrayList<String>();
     Image[] images = new Image[6];
-    WordList newWordlist;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         for (int i = 0; i < 5; i++) {

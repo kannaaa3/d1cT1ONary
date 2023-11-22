@@ -15,8 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import static controller.MainController.j;
-import static controller.MainController.user;
+import static controller.MainController.*;
 
 public class WordlistController implements Initializable {
     @FXML
@@ -31,7 +30,7 @@ public class WordlistController implements Initializable {
     int w = 0;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //numberOfWord = user.getAllWordLists().get(j).getWords().size();
+        //if (user.getAllWordLists().size() > 0) numberOfWord = user.getAllWordLists().get(k).getWords().size();
         for (int i = 0; i < numberOfWord; i++) {
             Label label = new Label();
             label.setText(user.getAllWordLists().get(j).getWord(i).getWord());
