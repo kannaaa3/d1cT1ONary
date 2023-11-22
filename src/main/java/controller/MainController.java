@@ -176,15 +176,16 @@ public class MainController implements Initializable {
                                        @Override
                                        public void handle(KeyEvent keyEvent) {
                                                if (keyEvent.getCode() == KeyCode.ENTER) {
-                                                       if (reviewController.creatingWordlist.getText() != null) {
+                                                       if (!reviewController.creatingWordlist.getText().isEmpty()) {
                                                                reviewController.nameofNewWordlist = reviewController.creatingWordlist.getText();
+                                                       } else {
+                                                               return;
                                                        }
                                                        reviewController.creatingWordlist.clear();
                                                        reviewController.blurBG.setVisible(false);
                                                        reviewController.addNewWordlistWindow.setVisible(false);
-                                                       reviewController.newWordlist = new WordList(reviewController.nameofNewWordlist);
                                                        System.out.println(reviewController.nameofNewWordlist);
-                                                       user.getAllWordLists().add(reviewController.newWordlist);
+                                                       user.createNewWordList(reviewController.nameofNewWordlist);
                                                        reviewController.numberOfWordlist = user.getAllWordLists().size();
                                                        createWordlist(reviewController.numberOfWordlist);
                                                        creatChoicesofWordlist(reviewController.numberOfWordlist);
