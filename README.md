@@ -14,15 +14,16 @@ Our application leverages the MVC pattern in software design to divide the softw
 - Call API from
 - We store database // satisfy all the Normal Form
 - Algorithm: Radix Tree
-- All the words are stored in words.txt
+- All the words are stored in database
 
 This is the UML Diagram of the Database and the Application:
-// TODO: Add Diagram of Database and App
+![Screenshot](database.png)
+![Screenshot](2.png)
 
 ### View
 This is the reference design of D1ctatorsz in Figma: 
 <a href="https://www.figma.com/file/2o64Ur9zSjXQXakPDmkYx8/Dictionary?type=design&node-id=0%3A1&mode=design&t=g1viMZVVfMo8MH3J-1" target="_blank"><img src="https://cdn.discordapp.com/attachments/1168495030353268736/1176715237743939694/figma.png"></a>
-Using anchor pane in javaFX, we were able to create the layout for the application. Everything else was built up on this layout.
+Using anchor pane in javaFX, we were able o create the layout for the application. Everything else was built up on this layout.
 
 ### Controller
 Each screen has its own controller, all managed by the main controller in `MyApplication.java`.
@@ -56,3 +57,6 @@ This app is designed to be able to extend many functionalities. Since we've got 
 - UI inspired by [Web App UI Design](https://www.figma.com/community/file/1116248614926294639) and [Diamond Icons](https://www.figma.com/community/file/1079690264559560037).
 - [JavaFX](https://openjfx.io/), a Java Framework for developing UI.
 
+# Note
+- Controller UML: https://imgur.com/a/r5QELBx.
+- txt file can be used for remoteDictionary.
