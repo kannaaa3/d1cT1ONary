@@ -58,6 +58,8 @@ public class GameController implements Initializable {
     public Button replayButton;
     @FXML
     public AnchorPane endView;
+    @FXML
+    public Label currentScore;
     public Game game;
     public ImageView[] choice = new ImageView[5];
     public ImageView[] correctChoice = new ImageView[5];
@@ -77,6 +79,7 @@ public class GameController implements Initializable {
                 endView.setDisable(true);
                 game.startGame();
                 updateGameState();
+                currentScore.setText(game.getGameScore()+ "");
         });
     }
 
@@ -141,6 +144,7 @@ public class GameController implements Initializable {
         } else {
             try {
                 Thread.sleep(200);
+                currentScore.setText(""+ game.getGameScore());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

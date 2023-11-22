@@ -22,7 +22,7 @@
             <Font name="Century Gothic Bold" size="40.0" />
          </font>
       </Label>
-      <Label layoutX="868.0" layoutY="38.0" text="30" textFill="WHITE">
+      <Label fx:id="currentScore" layoutX="848.0" layoutY="38.0" prefHeight="51.0" prefWidth="73.0" text="0" textFill="WHITE">
          <font>
             <Font name="Century Gothic Bold" size="40.0" />
          </font>
