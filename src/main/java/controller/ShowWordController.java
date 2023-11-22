@@ -42,7 +42,7 @@ public class ShowWordController implements Initializable {
     @FXML
     public Button add;
     @FXML
-    private ImageView addWordlistBG;
+    public ImageView addWordlistBG;
     @FXML
     private Dialog<ImageView> addWordlistWindow;
     @FXML
@@ -83,6 +83,7 @@ public class ShowWordController implements Initializable {
         });
         add.setOnAction(e -> {
             popupWindow.setVisible(true);
+            addWordlistBG.setVisible(true);
         });
         buttons = new Button[]{
                 wordList1, wordList2, wordList3

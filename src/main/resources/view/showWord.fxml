@@ -2,8 +2,10 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
 <AnchorPane fx:id="showWordScreen" prefHeight="800.0" prefWidth="946.0" style="-fx-background-color: #705CAC; -fx-background-color: #2C2F48;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ShowWordController">
@@ -74,6 +76,13 @@
                                             <Image url="@../assets/TranslateScreen/WordlistDescription0.png" />
                                         </ImageView>
                                     </graphic>
+                           <effect>
+                              <DropShadow offsetY="10.0">
+                                 <color>
+                                    <Color opacity="0.595890462398529" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
                                 </Button>
                                 <Button fx:id="wordList2" layoutX="260.0" layoutY="85.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" style="-fx-background-radius: 20;">
                                     <graphic>
@@ -81,18 +90,27 @@
                                             <Image url="@../assets/TranslateScreen/WordlistDescription1.png" />
                                         </ImageView>
                                     </graphic>
+                           <effect>
+                              <DropShadow offsetY="10.0">
+                                 <color>
+                                    <Color opacity="0.5958904027938843" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
                                 </Button>
-                                <Button fx:id="wordList3" layoutX="500.0" layoutY="85.0"
-                                        minHeight="-Infinity" minWidth="-Infinity"
-                                        mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0"
-                                        style="-fx-background-radius: 20;">
+                                <Button fx:id="wordList3" layoutX="500.0" layoutY="85.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" style="-fx-background-radius: 20;">
                                     <graphic>
-                                        <ImageView fx:id="backgroundImage3" fitHeight="200.0"
-                                                   fitWidth="200.0" pickOnBounds="true"
-                                                   preserveRatio="true">
-                                            <Image url="@../assets/TranslateScreen/WordlistDescription2.png"/>
+                                        <ImageView fx:id="backgroundImage3" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                            <Image url="@../assets/TranslateScreen/WordlistDescription2.png" />
                                         </ImageView>
                                     </graphic>
+                           <effect>
+                              <DropShadow offsetY="10.0">
+                                 <color>
+                                    <Color opacity="0.5993150472640991" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
                                 </Button>
                                 <ImageView fx:id="addImage" fitHeight="40.0" fitWidth="40.0" layoutX="660.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -100,9 +118,9 @@
                                     </image>
                                 </ImageView>
                                 <Button fx:id="add" layoutX="660.0" layoutY="19.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" opacity="0.0" prefHeight="40.0" prefWidth="40.0" />
-                        <Label fx:id="label1" layoutX="20.0" layoutY="200.0" prefHeight="56.0" prefWidth="200.0" text="Label" textFill="aliceblue" alignment="CENTER"/>
-                        <Label fx:id="label2" layoutX="260.0" layoutY="200.0" prefHeight="56.0" prefWidth="200.0" text="Label" textFill="aliceblue" alignment="CENTER"/>
-                        <Label fx:id="label3" layoutX="500.0" layoutY="200.0" prefHeight="56.0" prefWidth="200.0" text="Label" textFill="aliceblue" alignment="CENTER"/>
+                        <Label fx:id="label1" alignment="CENTER" layoutX="20.0" layoutY="200.0" prefHeight="56.0" prefWidth="200.0" text="Label" textFill="aliceblue" />
+                        <Label fx:id="label2" alignment="CENTER" layoutX="260.0" layoutY="200.0" prefHeight="56.0" prefWidth="200.0" text="Label" textFill="aliceblue" />
+                        <Label fx:id="label3" alignment="CENTER" layoutX="500.0" layoutY="200.0" prefHeight="56.0" prefWidth="200.0" text="Label" textFill="aliceblue" />
                             </children>
                         </AnchorPane>
                     </left>
@@ -135,6 +153,11 @@
                 </BorderPane>
             </bottom>
         </BorderPane>
+        <ImageView fx:id="addWordlistBG" fitHeight="807.0" fitWidth="946.0" layoutX="-1.0" pickOnBounds="true" visible="false">
+            <image>
+                <Image url="@../assets/TranslateScreen/Blur Background.png" />
+            </image>
+        </ImageView>
         <AnchorPane fx:id="popupWindow" layoutX="244.0" layoutY="230.0" prefHeight="316.0" prefWidth="468.0" visible="false">
             <children>
                 <ImageView fitHeight="315.0" fitWidth="626.0" pickOnBounds="true" preserveRatio="true">
@@ -162,10 +185,5 @@
                 </ScrollPane>
             </children>
         </AnchorPane>
-        <ImageView fx:id="addWordlistBG" fitHeight="807.0" fitWidth="946.0" layoutX="-1.0" pickOnBounds="true" visible="false">
-            <image>
-                <Image url="@../assets/TranslateScreen/Blur Background.png" />
-            </image>
-        </ImageView>
     </children>
 </AnchorPane>

@@ -8,6 +8,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -324,8 +325,12 @@ public class MainController implements Initializable {
 
     private Button getWordListButtonObject() {
         ImageView imageView = new ImageView(reviewController.images[j % 5]);
+        DropShadow dropShadow = new DropShadow();
+        dropShadow.setOffsetY(7);
+        dropShadow.setRadius(10);
         Button button = new Button();
         button.setGraphic(imageView);
+        button.setEffect(dropShadow);
         button.setContentDisplay(ContentDisplay.BOTTOM);
         button.setPrefWidth(200);
         button.setPrefHeight(200);
@@ -389,6 +394,7 @@ public class MainController implements Initializable {
                 user.addWordToWordList(dictionary.getWordData(showWord), k - 1);
                 //user.getAllWordLists().get(k - 1).addWord(dictionary.getWordData(showWord));
                 showWordController.popupWindow.setVisible(false);
+                showWordController.addWordlistBG.setVisible(false);
                 System.out.print(user.getAllWordLists().get(k - 1).getWord(0).getWord());
             });
             showWordController.h++;
