@@ -20,6 +20,11 @@ module java {
     requires aws.crt;
     requires aws.iot.device.sdk;
 
+    exports model.user;
+    exports model.dictionary;
+    exports model.word;
+    exports model.database;
+
     opens unittest to org.junit.jupiter.api, org.slf4j.simple;
     opens model to org.slf4j.simple;
     opens view to javafx.fxml;
