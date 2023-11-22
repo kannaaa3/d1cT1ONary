@@ -12,7 +12,7 @@
     <children>
         <ImageView fitHeight="469.0" fitWidth="445.0" layoutX="525.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../assets/TranslateScreen/Diamond.png"/>
+                <Image url="@../assets/TranslateScreen/Diamond.png" />
             </image>
         </ImageView>
         <BorderPane fx:id="showWord" prefHeight="800.0" prefWidth="946.0">
@@ -172,7 +172,7 @@
                 </Label>
                 <ScrollPane layoutX="36.0" layoutY="135.0" prefHeight="158.0" prefWidth="403.0" style="-fx-background-color: #2C2F48;">
                     <content>
-                        <AnchorPane fx:id="showWordlist" minHeight="0.0" minWidth="0.0" prefWidth="387.0" style="-fx-background-color: #340077;" />
+                        <AnchorPane fx:id="showWordlist" minHeight="160.0" minWidth="0.0" prefWidth="387.0" style="-fx-background-color: #340077;" />
                     </content>
                 </ScrollPane>
             </children>
