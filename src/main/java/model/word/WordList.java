@@ -1,5 +1,7 @@
 package model.word;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -91,6 +93,23 @@ public class WordList {
             return;
         }
         words.remove(wordID);
+    }
+
+    public void writeWordListDataToFile(String filepath) {
+        try {
+            FileWriter fileWriter = new FileWriter(filepath);
+            fileWriter.write("Wordlist: " + name + '\n');
+            for (Word word : words) {
+                fileWriter.write(word.getWord() + '\n');
+                fileWriter.write("Meaning: " + word.getMeaning().definition());
+            }
+
+            fileWriter.close();
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
     }
 
     public int size() {
