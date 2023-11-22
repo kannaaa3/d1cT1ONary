@@ -89,16 +89,7 @@
                         <Font name="System Bold" size="41.0" />
                      </font>
                   </Label>
-                  <Label layoutX="47.0" layoutY="238.0" prefHeight="150.0" prefWidth="554.0" text="It is not knowledge, but the act of learning, not possession but the act of getting there, which grants the greatest enjoyment." wrapText="true">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                  </Label>
-                  <Button layoutX="298.0" layoutY="376.0" mnemonicParsing="false">
-                     <graphic>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                     </graphic>
-                  </Button>
+                  <Label layoutX="130.0" layoutY="274.0" prefHeight="83.0" prefWidth="439.0" text="It is not knowledge, but the act of learning, not possession but the act of getting there, which grants the greatest enjoyment." />
                </children>
             </AnchorPane>
          </children>
