@@ -389,6 +389,7 @@ public class MainController implements Initializable {
                 user.addWordToWordList(dictionary.getWordData(showWord), k - 1);
                 //user.getAllWordLists().get(k - 1).addWord(dictionary.getWordData(showWord));
                 showWordController.popupWindow.setVisible(false);
+                showWordController.addWordlistBG.setVisible(false);
                 System.out.print(user.getAllWordLists().get(k - 1).getWord(0).getWord());
             });
             showWordController.h++;
