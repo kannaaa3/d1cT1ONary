@@ -1,11 +1,9 @@
 package controller;
 
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
@@ -18,7 +16,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.util.Pair;
 import model.database.Database;
-import model.dictionary.Dictionary;
 import model.user.User;
 import model.word.WordList;
 
@@ -31,7 +28,7 @@ import static controller.SlideMenuController.*;
 
 public class MainController implements Initializable {
         @FXML
-        public GameController gameController;
+        public GameAgilityController gameAgilityController;
         @FXML
         public ReviewController reviewController;
         @FXML
@@ -42,19 +39,23 @@ public class MainController implements Initializable {
         public WordlistController wordlistController;
         @FXML
         public LoginController loginController;
+        @FXML
+        public GameController gameController;
 
         @FXML
         private AnchorPane showWordPane;
         @FXML
         private AnchorPane reviewPane;
         @FXML
-        private AnchorPane gamePane;
+        private AnchorPane gameAgilityPane;
         @FXML
         private AnchorPane slideMenuPane;
         @FXML
         private AnchorPane wordlistPane;
         @FXML
         private AnchorPane loginPane;
+        @FXML
+        private AnchorPane gamePane;
         @FXML
         public AnchorPane mainPane;
         public static User user;
@@ -127,14 +128,17 @@ public class MainController implements Initializable {
                 reviewPane = controller.getKey();
                 reviewController = (ReviewController) controller.getValue();
 
-                controller = getController("/view/game.fxml");
-                gamePane = controller.getKey();
-                gameController = (GameController) controller.getValue();
+                controller = getController("/view/gameAgility.fxml");
+                gameAgilityPane = controller.getKey();
+                gameAgilityController = (GameAgilityController) controller.getValue();
 
                 controller = getController("/view/wordlist.fxml");
                 wordlistPane = controller.getKey();
                 wordlistController = (WordlistController) controller.getValue();
 
+                controller = getController("/view/game.fxml");
+                gamePane = controller.getKey();
+                gameController = (GameController) controller.getValue();
         }
 
         @Override
@@ -190,6 +194,7 @@ public class MainController implements Initializable {
                                                }
                                        }
                                });
+                               gameController.agilityGame.setOnAction(e -> renderGameAgilityScreen());
                                showWordButton.setOnAction(e -> renderShowWordScreen());
                                reviewButton.setOnAction(e -> renderReviewScreen());
                                playButton.setOnAction(e -> renderGameScreen());
@@ -270,11 +275,11 @@ public class MainController implements Initializable {
         /**
          * Function to render game screen.
          */
-        public void renderGameScreen() {
-                mainPane.getChildren().remove(gamePane);
-                gamePane.setLayoutX(320);
-                gamePane.setLayoutY(0);
-                mainPane.getChildren().add(gamePane);
+        public void renderGameAgilityScreen() {
+                mainPane.getChildren().remove(gameAgilityPane);
+                gameAgilityPane.setLayoutX(320);
+                gameAgilityPane.setLayoutY(0);
+                mainPane.getChildren().add(gameAgilityPane);
                 slideMenuController.resetButtonState();
                 slideMenuController.gameSelected.setVisible(true);
         }
@@ -298,6 +303,13 @@ public class MainController implements Initializable {
                 loginPane.setLayoutX(0);
                 loginPane.setLayoutY(0);
                 mainPane.getChildren().add(loginPane);
+        }
+
+        public void renderGameScreen() {
+                mainPane.getChildren().remove(gamePane);
+                gamePane.setLayoutX(320);
+                gamePane.setLayoutY(0);
+                mainPane.getChildren().add(gamePane);
         }
 
         private Label getWordListLabelObject(String wordListName) {
