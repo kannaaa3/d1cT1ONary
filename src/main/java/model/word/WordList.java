@@ -102,6 +102,16 @@ public class WordList {
             for (Word word : words) {
                 fileWriter.write(word.getWord() + '\n');
                 fileWriter.write("Meaning: " + word.getMeaning().definition());
+                fileWriter.write("Synonym: ");
+                for (String wd : word.getMeaning().synonyms()) {
+                    fileWriter.write(wd + " ");
+                }
+                fileWriter.write("\n");
+                fileWriter.write("Antonym: ");
+                for (String wd : word.getMeaning().antonyms()) {
+                    fileWriter.write(wd + " ");
+                }
+                fileWriter.write("\n");
             }
 
             fileWriter.close();

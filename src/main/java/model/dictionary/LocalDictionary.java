@@ -10,6 +10,6 @@ public class LocalDictionary extends Dictionary {
 
     public Word getWordData(String word) {
         System.out.println(word);
-        return Database.getWordData(word);
+        return Database.getWordData(word.replace(" ", "_"));
     }
 }

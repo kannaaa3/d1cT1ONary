@@ -139,11 +139,9 @@ public class ShowWordController implements Initializable {
             buttons[i].setId(String.valueOf(i));
             buttons[i].setVisible(true);
             buttons[i].setDisable(false);
-            System.out.println("Haha" + i);
             switch (i) {
                 case 0: {
                     buttons[0].setOnAction(e -> {
-                        System.out.println("Hullo0");
                         Word word = dictionary.getWordData(showWord);
                         if (word != null) {
                             user.addWordToWordList(word, 0);
@@ -152,7 +150,6 @@ public class ShowWordController implements Initializable {
                 }
                 case 1: {
                     buttons[1].setOnAction(e -> {
-                        System.out.println("Hullo1");
                         Word word = dictionary.getWordData(showWord);
                         if (word != null) {
                             user.addWordToWordList(word, 1);
@@ -161,8 +158,6 @@ public class ShowWordController implements Initializable {
                 }
                 case 2: {
                     buttons[2].setOnAction(e -> {
-                        System.out.println("Hullo2");
-                        System.out.println(buttons[2].getLayoutX());
                         Word word = dictionary.getWordData(showWord);
                         if (word != null) {
                             user.addWordToWordList(word, 2);

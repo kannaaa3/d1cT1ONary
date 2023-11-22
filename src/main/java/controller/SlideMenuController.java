@@ -38,7 +38,7 @@ public class SlideMenuController implements Initializable {
     @FXML
     public Button gameButton;
     public String currentWord = "";
-    public static String showWord = "transpire";
+    public static String showWord = "hello";
 
     @FXML
     public ListView<String> myListView;
@@ -86,9 +86,7 @@ public class SlideMenuController implements Initializable {
         });
         myListView.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> {
             showWord = t1;
-            System.out.println(showWord);
             showWordController.displayWord();
-            System.out.println(showWordController);
         });
     }
 

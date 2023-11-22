@@ -17,16 +17,15 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.net.URL;
-import java.util.Objects;
-import java.util.ResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 public class GameAgilityController implements Initializable {
     public static final int TOP_LEFT = 1;
     public static final int TOP_RIGHT = 2;
     public static final int BOTTOM_LEFT = 3;
     public static final int BOTTOM_RIGHT = 4;
+    @FXML
+    public AnchorPane main;
     @FXML
     public Label score;
     @FXML
@@ -66,6 +65,7 @@ public class GameAgilityController implements Initializable {
     public ImageView[] correctChoice = new ImageView[5];
     public ImageView[] wrongChoice = new ImageView[5];
     public ImageView[] hoverChoice = new ImageView[5];
+    public Random random = new Random();
 
     @Override
     public void initialize(URL arg0, ResourceBundle resources) {
@@ -82,6 +82,7 @@ public class GameAgilityController implements Initializable {
             updateGameState();
             currentScore.setText(game.getGameScore() + "");
         });
+        createNewPlanet();
     }
 
     private void initSpecialImageView() {
@@ -108,7 +109,19 @@ public class GameAgilityController implements Initializable {
             hoverChoice[i].setFitHeight(120);
             hoverChoice[i].setFitWidth(450);
         }
+    }
 
+    private void createNewPlanet() {
+        int planetID = random.nextInt(0, 9);
+        System.out.println(String.format("/assets/Game/Elevate Agility/planet_0%d.png", planetID));
+        Image image = new Image(Objects.requireNonNull(GameAgilityController.class
+                .getResourceAsStream(String.format("/assets/Game/Elevate Agility/planet_0%d.png", planetID))));
+        ImageView imageView = new ImageView(image);
+        imageView.setFitHeight(50);
+        imageView.setFitWidth(50);
+        imageView.setX(800);
+        imageView.setY(200);
+        main.getChildren().add(imageView);
     }
 
     public void setFont() {
@@ -125,7 +138,6 @@ public class GameAgilityController implements Initializable {
     }
 
     private void resetAllButton() {
-        System.out.println(choiceTopLeftBorderPane.getCenter());
         choiceTopLeftBorderPane.setCenter(choice[TOP_LEFT]);
         choiceTopRightBorderPane.setCenter(choice[TOP_RIGHT]);
         choiceBottomLeftBorderPane.setCenter(choice[BOTTOM_LEFT]);
@@ -148,18 +160,13 @@ public class GameAgilityController implements Initializable {
         int questionAnswer = response.getInt("questionAnswer");
         if (questionAnswer != option) {
             showChoice(option, wrongChoice[option]);
-            endView.setDisable(false);
-            endView.setVisible(true);
-            score.setText("Score: " + game.getGameScore());
         } else {
-            try {
-                Thread.sleep(200);
-                currentScore.setText("" + game.getGameScore());
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            currentScore.setText("" + game.getGameScore());
         }
         showChoice(questionAnswer, correctChoice[questionAnswer]);
+        if (questionAnswer != option) {
+            lose();
+        }
         updateGameState();
     }
 
@@ -209,6 +216,20 @@ public class GameAgilityController implements Initializable {
                     if (currentGameData.get("game").equals(Game.AGILITY_GAME)) {
                         handleAgilityGame(currentGameData);
                     }
+                });
+            }
+        }, 1000);
+    }
+
+    public void lose() {
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                Platform.runLater(() -> {
+                    endView.setDisable(false);
+                    endView.setVisible(true);
+                    score.setText("Score: " + game.getGameScore());
                 });
             }
         }, 1000);
