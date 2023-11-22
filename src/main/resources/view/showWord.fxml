@@ -158,7 +158,7 @@
                 <Image url="@../assets/TranslateScreen/Blur Background.png" />
             </image>
         </ImageView>
-        <AnchorPane fx:id="popupWindow" layoutX="244.0" layoutY="230.0" prefHeight="316.0" prefWidth="468.0">
+        <AnchorPane fx:id="popupWindow" layoutX="244.0" layoutY="230.0" prefHeight="316.0" prefWidth="468.0" visible="false">
             <children>
                 <ImageView fitHeight="315.0" fitWidth="626.0" pickOnBounds="true" preserveRatio="true">
                     <image>
