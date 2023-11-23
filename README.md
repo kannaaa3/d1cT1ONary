@@ -39,6 +39,7 @@ There are 3 main functions:
 - A nice and blazing fast Dictionary, which allow searching for any words. Save word to any of your wordlist.
 - Review section for reviewing and creating wordlists.
 - Game Center with engaging games to enhance your English.
+    In Agility Game, you need to choose the word that has the opposite meaning to the word shown on the screen. 
 
 # Contributors
 We are the `10`th group to present. Our members:
