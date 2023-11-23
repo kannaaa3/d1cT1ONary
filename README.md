@@ -30,8 +30,9 @@ Each screen has its own controller, all managed by the main controller in `MyApp
 
 # Installation
 ```bash
-git clone https://github.com/kannaaa3/d1cT1ONary.git // TODO: Anything else?
+git clone https://github.com/kannaaa3/d1cT1ONary.git 
 ```
+Open and run project in the IDE.
 
 ### Usage
 There are 3 main functions:
